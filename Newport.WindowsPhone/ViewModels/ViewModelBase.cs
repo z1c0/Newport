@@ -9,16 +9,11 @@ using System.Runtime.CompilerServices;
 using Microsoft.Devices;
 using Microsoft.Phone.Marketplace;
 using System.Windows;
+using System.Runtime.CompilerServices;
 #endif
 
 namespace Newport
 {
-#if !NETFX_CORE
-  class CallerMemberNameAttribute : Attribute
-  {
-  }
-#endif
-
   public class ViewModelBase : DependencyObject, INotifyPropertyChanged
   {
     public event PropertyChangedEventHandler PropertyChanged;
@@ -33,7 +28,6 @@ namespace Newport
 #else
       _licenseInformation = new LicenseInformation();
 #endif
-      Random = new RandomData();
     }
 
     public bool IsDebug
@@ -59,8 +53,6 @@ namespace Newport
 #endif
       }
     }
-
-    public RandomData Random { get; private set; }
 
     public bool IsTrial
     {
@@ -94,10 +86,17 @@ namespace Newport
       }
       set
       {
-        _isBusy = value;
-        OnPropertyChanged("IsBusy");
-        CommandManager.InvalidateRequerySuggested();
+        if (_isBusy != value)
+        {
+          _isBusy = value;
+          OnPropertyChanged();
+          CommandManager.InvalidateRequerySuggested();
+        }
       }
+    }
+    public BusyScope BusyScope()
+    {
+      return new BusyScope(this);
     }
 
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -109,7 +108,7 @@ namespace Newport
       }
     }
 
-    protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
+    protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
       if (!object.Equals(storage, value))
       {

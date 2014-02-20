@@ -9,19 +9,15 @@ using System.Windows.Media;
 
 namespace Newport
 {
-  public class RandomData
+  public static class RandomData
   {
     private static Random _random;
-    private ListRandomizer<string> _firstNames;
-    private ListRandomizer<string> _surNames;
+    private static ListRandomizer<string> _firstNames;
+    private static ListRandomizer<string> _surNames;
 
     static RandomData()
     {
       _random = new Random();
-    }
-
-    public RandomData()
-    {
       _firstNames = new ListRandomizer<string>(new List<string>
       {
         "Wolfgang",
@@ -46,7 +42,7 @@ namespace Newport
       }) { ExcludeResults = false };
     }
 
-    public void RandomizeListItems(IList list)
+    public static void RandomizeListItems(IList list)
     {
       for (int index = 0; index < list.Count; index++)
       {
@@ -57,12 +53,12 @@ namespace Newport
       }
     }
 
-    public T GetRandomListItem<T>(List<T> list)
+    public static T GetRandomListItem<T>(List<T> list)
     {
       return list[GetInt(0, list.Count)];
     }
 
-    public DateTime GetRandomDate(int minYear, int maxYear)
+    public static DateTime GetRandomDate(int minYear, int maxYear)
     {
       return new DateTime(
         _random.Next(minYear, maxYear + 1),
@@ -70,7 +66,7 @@ namespace Newport
         _random.Next(1, 29));
     }
 
-    public DateTime GetRandomTime()
+    public static DateTime GetRandomTime()
     {
       return new DateTime(
         DateTime.Now.Year,
@@ -81,37 +77,42 @@ namespace Newport
         _random.Next(0, 60));
     }
 
-    public bool GetBoolean()
+    public static bool GetBoolean()
     {
       return (GetInt(0, 100) < 50);
     }
 
-    public double GetDouble()
+    public static double GetDouble()
     {
       return _random.NextDouble();
     }
 
-    public double GetDouble(double minValue, double maxValue)
+    public static double GetDouble(double maxValue)
+    {
+      return GetDouble(0, maxValue);
+    }
+
+    public static double GetDouble(double minValue, double maxValue)
     {
       return minValue + (_random.NextDouble() * (maxValue - minValue));
     }
 
-    public int GetInt()
+    public static int GetInt()
     {
       return _random.Next();
     }
 
-    public int GetInt(int maxValue)
+    public static int GetInt(int maxValue)
     {
       return _random.Next(maxValue);
     }
 
-    public int GetInt(int minValue, int maxValue)
+    public static int GetInt(int minValue, int maxValue)
     {
       return _random.Next(minValue, maxValue);
     }
 
-    public string DummyText
+    public static string DummyText
     {
       get
       {
@@ -119,22 +120,22 @@ namespace Newport
       }
     }
 
-    public string GetRandomName()
+    public static string GetRandomName()
     {
       return GetRandomFirstName() + " " + GetRandomSurName();
     }
 
-    public string GetRandomFirstName()
+    public static string GetRandomFirstName()
     {
       return _firstNames.Next();
     }
 
-    public string GetRandomSurName()
+    public static string GetRandomSurName()
     {
       return _surNames.Next();
     }
 
-    public Color GetRandomColor()
+    public static Color GetRandomColor()
     {
       return Color.FromArgb(
         255,
@@ -143,7 +144,7 @@ namespace Newport
         (byte)_random.Next(256));
     }
 
-    public char GetRandomPrintableCharacter()
+    public static char GetRandomPrintableCharacter()
     {
       return (char)_random.Next(33, 126);
     }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Media;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 #if NETFX_CORE
 using Windows.UI;
@@ -58,7 +60,7 @@ namespace Newport
 
     public static T GetRandomElement<T>(this IEnumerable<T> items)
     {
-      return items.ElementAt(new RandomData().GetInt(items.Count()));
+      return items.ElementAt(RandomData.GetInt(items.Count()));
     }
 
     public static void AddRange<T>(this ObservableCollection<T> items, IEnumerable<T> range)
@@ -73,40 +75,27 @@ namespace Newport
       return observableCollection;
     }
 
-    public static int ToARGB32(this Color color)
+    public static void SaveToMediaLibrary(this BitmapImage bmi, string fileName)
     {
-      return ((color.R << 16) | (color.G << 8) | (color.B << 0) | (color.A << 24));
+      new WriteableBitmap(bmi).SaveToMediaLibrary(fileName);
     }
 
-    public static Color ToColor(this int argb32)
+    public static void SaveToMediaLibrary(this WriteableBitmap wb, string fileName)
     {
-      byte b = (byte)(argb32 & 0xFF);
-      argb32 >>= 8;
-      byte g = (byte)(argb32 & 0xFF);
-      argb32 >>= 8;
-      byte r = (byte)(argb32 & 0xFF);
-      argb32 >>= 8;
-      byte a = (byte)(argb32 & 0xFF);
-      return Color.FromArgb(a, r, g, b);
-    }
-
-    public static Color GrayScale(this Color color)
-    {
-      // Lightness
-      //var v = (byte)((Math.Max(color.R, Math.Max(color.G, color.B)) + Math.Min(color.R, Math.Min(color.G, color.B))) / 2);
-      // Average
-      //var v = (byte)((color.R + color.G + color.B) / 3);
-      // Luminosity
-      var v = (byte)(0.21 * color.R + 0.71 * color.G + 0.07 * color.B);
-      return Color.FromArgb(255, v, v, v);
-    }
-
-    public static Color Sepia(this Color color)
-    {
-      var r = (byte)Math.Min(255, ((color.R * .393) + (color.G * .769) + (color.B * .189)));
-      var g = (byte)Math.Min(255, ((color.R * .349) + (color.G * .686) + (color.B * .168)));
-      var b = (byte)Math.Min(255, ((color.R * .272) + (color.G * .534) + (color.B * .131)));
-      return Color.FromArgb(255, r, g, b);
+      var store = IsolatedStorageFile.GetUserStoreForApplication();
+      // If a file with this name already exists, delete it.
+      var tempName = Guid.NewGuid().ToString();
+      using (var fileStream = store.CreateFile(tempName))
+      {
+        // Save the WriteableBitmap into isolated storage as JPEG.
+        Extensions.SaveJpeg(wb, fileStream, wb.PixelWidth, wb.PixelHeight, 0, 100);
+      }
+      using (var fileStream = store.OpenFile(tempName, FileMode.Open, FileAccess.Read))
+      {
+        // Now, add the JPEG image to the photos library.
+        var library = new MediaLibrary();
+        var pic = library.SavePicture(fileName, fileStream);
+      }
     }
   }
 }
