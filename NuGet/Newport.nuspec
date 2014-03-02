@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Newport</id>
+        <version>0.9.0.0</version>
+        <title>Newport</title>
+        <authors>Wolfgang Ziegler</authors>
+        <owners>Wolfgang Ziegler</owners>
+        <licenseUrl>http://opensource.org/licenses/mit-license</licenseUrl>
+        <projectUrl>https://github.com/z1c0/Newport/</projectUrl>
+        <iconUrl>F:\GitHub\Newport\newport48x48.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Newport is a library providing building blocks for Windows Phone App development.
+It provides an MVVM framework, attached properties for existing controls and custom controls.</description>
+        <copyright>(c) Wolfgang Ziegler 2014</copyright>
+        <language>en-US</language>
+        <tags>Winodws Phone,Silverlight,MVVM,Custom Controls</tags>
+    </metadata>
+    <files>
+        <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone.dll" target="lib\Newport.WindowsPhone.dll" />
+    </files>
+</package>
