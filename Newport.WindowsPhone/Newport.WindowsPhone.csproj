@@ -97,6 +97,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettingsService.cs" />
+    <Compile Include="AppResource.cs" />
     <Compile Include="Behaviors\BackNavigationBehavior.cs" />
     <Compile Include="Behaviors\SetViewModelBehavior.cs" />
     <Compile Include="BindingEvaluator.cs" />
@@ -112,12 +113,15 @@
     <Compile Include="Controls\RatingControl.cs" />
     <Compile Include="Controls\TileMenu.cs" />
     <Compile Include="Controls\UniformGrid.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\FormatConverter.cs" />
     <Compile Include="DataTrigger.cs" />
+    <Compile Include="EnumList.cs" />
     <Compile Include="EventArgs.cs" />
     <Compile Include="FrameworkElementExtensions.cs" />
     <Compile Include="GeneralExtensions.cs" />
     <Compile Include="IApplicationSettings.cs" />
+    <Compile Include="ImageCache.cs" />
     <Compile Include="IsolatedStorageHelper.cs" />
     <Compile Include="ListRandomizer.cs" />
     <Compile Include="NavigationAdapter.cs" />
@@ -127,9 +131,11 @@
     <Compile Include="UIElementExtensions.cs" />
     <Compile Include="ViewModels\BusyScope.cs" />
     <Compile Include="ViewModels\BusyViewModel.cs" />
+    <Compile Include="ViewModels\GroupedObservableList.cs" />
     <Compile Include="ViewModels\TileMenuItemViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelProvider.cs" />
+    <Compile Include="WebBrowserExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
