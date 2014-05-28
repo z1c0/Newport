@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace Newport
 {
-  public class GenericActionCommand<T> : ICommand where T : class
+  public class GenericActionCommand<T> : ICommand
   {
     public GenericActionCommand()
     {
@@ -34,7 +34,7 @@ namespace Newport
 
     public bool CanExecute(object parameter)
     {
-      return (IsEnabled != null) ? IsEnabled(parameter as T) : true;
+      return (IsEnabled != null) ? IsEnabled((T)parameter) : true;
     }
 
     public void Execute()
@@ -46,7 +46,7 @@ namespace Newport
     {
       if (Action != null)
       {
-        Action(parameter as T);
+        Action((T)parameter);
       }
       CommandManager.InvalidateRequerySuggested();
     }
