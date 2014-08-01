@@ -14,9 +14,10 @@
 It provides an MVVM framework, attached properties for existing controls and custom controls.</description>
         <copyright>(c) Wolfgang Ziegler 2014</copyright>
         <language>en-US</language>
-        <tags>Winodws Phone,Silverlight,MVVM,Custom Controls</tags>
+        <tags>WP7,WP,Windows Phone,wpdev,Silverlight,MVVM,Custom Controls,framework</tags>
     </metadata>
     <files>
-        <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone.dll" target="lib\Newport.WindowsPhone.dll" />
-    </files>
+      <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone7.dll" target="lib\sl4-windowsphone71\Newport.WindowsPhone7.dll"/>
+      <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone.dll" target="lib\windowsphone8\Newport.WindowsPhone.dll"/>
+</files>
 </package>
