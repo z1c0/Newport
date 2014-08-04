@@ -89,11 +89,12 @@ namespace Newport
         if (_isBusy != value)
         {
           _isBusy = value;
-          OnPropertyChanged();
+          OnPropertyChanged("IsBusy");
           CommandManager.InvalidateRequerySuggested();
         }
       }
     }
+    
     public BusyScope BusyScope()
     {
       return new BusyScope(this);
