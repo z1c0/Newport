@@ -8,7 +8,6 @@
         <owners>Wolfgang Ziegler</owners>
         <licenseUrl>http://opensource.org/licenses/mit-license</licenseUrl>
         <projectUrl>https://github.com/z1c0/Newport/</projectUrl>
-        <iconUrl>F:\GitHub\Newport\newport48x48.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Newport is a library providing building blocks for Windows Phone App development.
 It provides an MVVM framework, attached properties for existing controls and custom controls.</description>
@@ -17,7 +16,7 @@ It provides an MVVM framework, attached properties for existing controls and cus
         <tags>WP7,WP,Windows Phone,wpdev,Silverlight,MVVM,Custom Controls,framework</tags>
     </metadata>
     <files>
-      <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone7.dll" target="lib\sl4-windowsphone71\Newport.WindowsPhone7.dll"/>
-      <file src="F:\GitHub\Newport\Newport.WindowsPhone\Bin\Release\Newport.WindowsPhone.dll" target="lib\windowsphone8\Newport.WindowsPhone.dll"/>
+      <file src="..\Newport.WindowsPhone7\Bin\Release\Newport.WindowsPhone7.dll" target="lib\sl4-windowsphone71\Newport.WindowsPhone7.dll"/>
+      <file src="..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone8.dll" target="lib\windowsphone8\Newport.WindowsPhone8.dll"/>
 </files>
 </package>
