@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Newport</RootNamespace>
-    <AssemblyName>Newport.WindowsPhone8</AssemblyName>
+    <AssemblyName>Newport.WindowsPhone</AssemblyName>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>
     </SilverlightVersion>
