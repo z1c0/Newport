@@ -156,11 +156,23 @@
     <Compile Include="..\Newport\Controls\UniformGrid.cs">
       <Link>Controls\UniformGrid.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Converters\BooleanInvertConverter.cs">
+      <Link>Converters\BooleanInvertConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\BooleanToBrushConverter.cs">
+      <Link>Converters\BooleanToBrushConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Converters\BooleanToVisibilityConverter.cs">
       <Link>Converters\BooleanToVisibilityConverter.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Converters\CountToVisibilityConverter.cs">
+      <Link>Converters\CountToVisibilityConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Converters\FormatConverter.cs">
       <Link>Converters\FormatConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\IsNullToVisibilityConverter.cs">
+      <Link>Converters\IsNullToVisibilityConverter.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DataTemplateSelector.cs">
       <Link>DataTemplateSelector.cs</Link>
@@ -168,14 +180,23 @@
     <Compile Include="..\Newport\DataTrigger.cs">
       <Link>DataTrigger.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\DispatcherHelper.cs">
+      <Link>DispatcherHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\EnumList.cs">
       <Link>EnumList.cs</Link>
     </Compile>
     <Compile Include="..\Newport\EventArgs.cs">
       <Link>EventArgs.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\FastObservableCollection.cs">
+      <Link>FastObservableCollection.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\FrameworkElementExtensions.cs">
       <Link>FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\GameLoopBase.cs">
+      <Link>GameLoopBase.cs</Link>
     </Compile>
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
@@ -198,20 +219,32 @@
     <Compile Include="..\Newport\PhoneApplicationPageExtensions.cs">
       <Link>PhoneApplicationPageExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\PhoneExtensions.cs">
+      <Link>PhoneExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\Newport\RandomData.cs">
       <Link>RandomData.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\RandomEnum.cs">
+      <Link>RandomEnum.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Screenshot.cs">
       <Link>Screenshot.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ShakeDetector.cs">
+      <Link>ShakeDetector.cs</Link>
     </Compile>
     <Compile Include="..\Newport\SoundHandle.cs">
       <Link>SoundHandle.cs</Link>
     </Compile>
     <Compile Include="..\Newport\SoundPlayer.cs">
       <Link>SoundPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\TextBoxExtensions.cs">
+      <Link>TextBoxExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Newport\TheColors.cs">
       <Link>TheColors.cs</Link>
@@ -225,6 +258,9 @@
     <Compile Include="..\Newport\ViewModels\BusyViewModel.cs">
       <Link>ViewModels\BusyViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\ViewModels\ColorThemeViewModel.cs">
+      <Link>ViewModels\ColorThemeViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\ViewModels\GroupedObservableList.cs">
       <Link>ViewModels\GroupedObservableList.cs</Link>
     </Compile>
@@ -237,8 +273,14 @@
     <Compile Include="..\Newport\ViewModels\ViewModelProvider.cs">
       <Link>ViewModels\ViewModelProvider.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\VisualTreeEnumeration.cs">
+      <Link>VisualTreeEnumeration.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\WebBrowserExtensions.cs">
       <Link>WebBrowserExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\XNAFrameworkDispatcherService.cs">
+      <Link>XNAFrameworkDispatcherService.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

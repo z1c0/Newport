@@ -3,16 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone7", "Newport.WindowsPhone7\Newport.WindowsPhone7.csproj", "{D1188262-AF92-43C6-8CB0-0C1C01854259}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone8", "Newport.WindowsPhone8\Newport.WindowsPhone8.csproj", "{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D1188262-AF92-43C6-8CB0-0C1C01854259}.Release|x86.ActiveCfg = Release|Any CPU
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|ARM.ActiveCfg = Debug|ARM
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|ARM.Build.0 = Debug|ARM
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|x86.ActiveCfg = Debug|x86
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Debug|x86.Build.0 = Debug|x86
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|ARM.ActiveCfg = Release|ARM
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|ARM.Build.0 = Release|ARM
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|x86.ActiveCfg = Release|x86
+		{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
