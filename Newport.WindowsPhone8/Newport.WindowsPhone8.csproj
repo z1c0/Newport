@@ -129,11 +129,20 @@
     <Compile Include="..\Newport\Commands\NavigationCommand.cs">
       <Link>Commands\NavigationCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\BevelBorder.cs">
+      <Link>Controls\BevelBorder.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\ContentControlEx.cs">
+      <Link>Controls\ContentControlEx.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ControlFinder.cs">
       <Link>Controls\ControlFinder.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\FancyBackground.cs">
       <Link>Controls\FancyBackground.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\FlipControl.cs">
+      <Link>Controls\FlipControl.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\ProgressSpinner.cs">
       <Link>Controls\ProgressSpinner.cs</Link>
@@ -152,6 +161,9 @@
     </Compile>
     <Compile Include="..\Newport\Converters\FormatConverter.cs">
       <Link>Converters\FormatConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\DataTemplateSelector.cs">
+      <Link>DataTemplateSelector.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DataTrigger.cs">
       <Link>DataTrigger.cs</Link>
@@ -192,11 +204,17 @@
     <Compile Include="..\Newport\RandomData.cs">
       <Link>RandomData.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Screenshot.cs">
+      <Link>Screenshot.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\SoundHandle.cs">
       <Link>SoundHandle.cs</Link>
     </Compile>
     <Compile Include="..\Newport\SoundPlayer.cs">
       <Link>SoundPlayer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\TheColors.cs">
+      <Link>TheColors.cs</Link>
     </Compile>
     <Compile Include="..\Newport\UIElementExtensions.cs">
       <Link>UIElementExtensions.cs</Link>
