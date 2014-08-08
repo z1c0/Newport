@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone7", "Newport.WindowsPhone7\Newport.WindowsPhone7.csproj", "{D1188262-AF92-43C6-8CB0-0C1C01854259}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone8", "Newport.WindowsPhone8\Newport.WindowsPhone8.csproj", "{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D1188262-AF92-43C6-8CB0-0C1C01854259} = {D1188262-AF92-43C6-8CB0-0C1C01854259}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
