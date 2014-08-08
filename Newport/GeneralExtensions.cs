@@ -19,12 +19,12 @@ namespace Newport
   {
     public static T Random<T>(this List<T> list)
     {
-      return list[new Random().Next(list.Count)];
+      return list[RandomData.GetInt(list.Count)];
     }
 
     public static T Random<T>(this T[] array)
     {
-      return array[new Random().Next(array.Length)];
+      return array[RandomData.GetInt(array.Length)];
     }
 
     public static void Times(this int count, Action<int> action)

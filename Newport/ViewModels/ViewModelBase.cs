@@ -18,7 +18,7 @@ namespace Newport
   {
     public event PropertyChangedEventHandler PropertyChanged;
 
-    private LicenseInformation _licenseInformation;
+    private readonly LicenseInformation _licenseInformation;
     private bool _isBusy;
 
     public ViewModelBase()
@@ -61,7 +61,7 @@ namespace Newport
 #if NETFX_CORE
         return IsDebug ? true : _licenseInformation.IsTrial;
 #else
-        return IsDebug ? true : _licenseInformation.IsTrial();
+        return IsDebug || _licenseInformation.IsTrial();
 #endif
       }
     }
@@ -94,13 +94,23 @@ namespace Newport
         }
       }
     }
-    
+
     public BusyScope BusyScope()
     {
       return new BusyScope(this);
     }
 
+    public void AllPropertiesChanged()
+    {
+      OnPropertyChangedHelper(null);
+    }
+
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+      OnPropertyChangedHelper(propertyName);
+    }
+
+    private void OnPropertyChangedHelper(string propertyName)
     {
       var handler = PropertyChanged;
       if (handler != null)
@@ -111,10 +121,10 @@ namespace Newport
 
     protected void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
-      if (!object.Equals(storage, value))
+      if (!Equals(storage, value))
       {
         storage = value;
-        OnPropertyChanged(propertyName);
+        OnPropertyChangedHelper(propertyName);
       }
     }
   }
