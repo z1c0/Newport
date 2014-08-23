@@ -84,6 +84,9 @@
     <Compile Include="..\Newport\Commands\ActionCommand.cs">
       <Link>Commands\ActionCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Commands\CommandHelper.cs">
+      <Link>Commands\CommandHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Commands\CommandManager.cs">
       <Link>Commands\CommandManager.cs</Link>
     </Compile>

@@ -123,6 +123,9 @@
     <Compile Include="..\Newport\Commands\ActionCommand.cs">
       <Link>Commands\ActionCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Commands\CommandHelper.cs">
+      <Link>Commands\CommandHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Commands\CommandManager.cs">
       <Link>Commands\CommandManager.cs</Link>
     </Compile>
@@ -285,9 +288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\Newport\Themes\Generic.xaml">

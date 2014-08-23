@@ -60,18 +60,7 @@ namespace Newport
     private static void OnBackKeyPressCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
       var page = (PhoneApplicationPage)sender;
-      if (page != null)
-      {
-        page.BackKeyPress += (o, e) =>
-        {
-          var command = GetBackKeyPressCommand(page);
-          var parameter = e;
-          if ((command != null) && (command.CanExecute(parameter)))
-          {
-            command.Execute(parameter);
-          }
-        };
-      }
+      page.BackKeyPress += (o, e) => UIElementExtensions.TriggerCommand(GetBackKeyPressCommand(page), page, e);
     }
 
     #endregion BackKeyPressCommand (Attached Property)
@@ -79,8 +68,8 @@ namespace Newport
 
   public class ApplicationBarCommandButtonList : IList
   {
-    private List<ApplicationBarBaseButton> _buttons;
-    private PhoneApplicationPage _page;
+    private readonly List<ApplicationBarBaseButton> _buttons;
+    private readonly PhoneApplicationPage _page;
 
     public ApplicationBarCommandButtonList(PhoneApplicationPage page)
     {

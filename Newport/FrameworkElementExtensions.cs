@@ -78,14 +78,7 @@ namespace Newport
     private static void OnLoadedCommandCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
       var element = (FrameworkElement)sender;
-      element.Loaded += (o, e) =>
-      {
-        var command = GetLoadedCommand(element);
-        if ((command != null) && (command.CanExecute(null)))
-        {
-          command.Execute(null);
-        }
-      };
+      element.Loaded += (o, e) => UIElementExtensions.TriggerCommand(GetLoadedCommand(element), element, e);
     }
 
     #endregion LoadedCommand (Attached Property)
@@ -112,14 +105,7 @@ namespace Newport
     private static void OnUnloadedCommandCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
       var element = (FrameworkElement)sender;
-      element.Unloaded += (o, e) =>
-      {
-        var command = GetUnloadedCommand(element);
-        if ((command != null) && (command.CanExecute(null)))
-        {
-          command.Execute(null);
-        }
-      };
+      element.Unloaded += (o, e) => UIElementExtensions.TriggerCommand(GetUnloadedCommand(element), element, e);
     }
 
     #endregion UnloadedCommand (Attached Property)

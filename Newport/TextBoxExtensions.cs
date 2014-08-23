@@ -92,14 +92,7 @@ namespace Newport
     private static void OnTextChangedCommandCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
       var element = (TextBox)sender;
-      element.TextChanged += (o, e) =>
-      {
-        var command = GetTextChangedCommand(element);
-        if ((command != null) && (command.CanExecute(null)))
-        {
-          command.Execute(null);
-        }
-      };
+      element.TextChanged += (o, e) => UIElementExtensions.TriggerCommand(GetTextChangedCommand(element), element, e);
     }
 
     #endregion TextChangedCommand (Attached Property)

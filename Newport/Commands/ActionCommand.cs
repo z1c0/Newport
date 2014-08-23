@@ -1,9 +1,18 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Newport
 {
-  public class GenericActionCommand<T> : ICommand
+  public class ActionEventSource
+  {
+
+    public EventArgs OriginalEventArgs { get; set; }
+
+    public UIElement OriginalSender { get; set; }
+  }
+
+  public class GenericActionCommand<T> : ActionEventSource, ICommand
   {
     public GenericActionCommand()
     {
@@ -34,7 +43,7 @@ namespace Newport
 
     public bool CanExecute(object parameter)
     {
-      return (IsEnabled != null) ? IsEnabled((T)parameter) : true;
+      return (IsEnabled == null) || IsEnabled((T)parameter);
     }
 
     public void Execute()

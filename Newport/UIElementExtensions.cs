@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 #if NETFX_CORE
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 #else
-using Microsoft.Phone.Controls;
 using System.Windows.Media.Animation;
 #endif
 
@@ -60,26 +57,9 @@ namespace Newport
 #if NETFX_CORE
       throw new NotImplementedException();
 #else
-      var e = sender as UIElement;
-      if (e != null)
-      {
-        e.MouseLeftButtonDown += new MouseButtonEventHandler(HandleMouseLeftButtonDown);
-      }
+      var element = (UIElement)sender;
+      element.MouseLeftButtonDown += (o, e) => TriggerCommand(GetMouseLeftButtonDownCommand(element), element, e);
 #endif
-    }
-
-    private static void HandleMouseLeftButtonDown(object sender, RoutedEventArgs args)
-    {
-      var e = sender as UIElement;
-      if (e != null)
-      {
-        var command = GetMouseLeftButtonDownCommand(e);
-        var parameter = GetCommandParameter(e);
-        if ((command != null) && (command.CanExecute(parameter)))
-        {
-          command.Execute(parameter);
-        }
-      }
     }
 
     #endregion MouseLeftButtonDownCommand (Attached Property)
@@ -183,22 +163,31 @@ namespace Newport
 #if NETFX_CORE
       throw new NotImplementedException();
 #else
-      var e = sender as UIElement;
+      var e = (UIElement)sender;
       if (e != null)
       {
-        e.Tap += (o, a) =>
-        {
-          var command = GetTapCommand(e);
-          var parameter = GetCommandParameter(e);
-          if ((command != null) && (command.CanExecute(parameter)))
-          {
-            command.Execute(parameter);
-          }
-        };
+        e.Tap += (o, a) => TriggerCommand(GetTapCommand(e), e, a);
       }
 #endif
     }
-
     #endregion TapCommand (Attached Property)
+
+    internal static void TriggerCommand(ICommand command, UIElement e, EventArgs eventArgs)
+    {
+      if (command != null)
+      {
+        var actionEventSource = command as ActionEventSource;
+        if (actionEventSource != null)
+        {
+          actionEventSource.OriginalSender = e;
+          actionEventSource.OriginalEventArgs = eventArgs;
+        }
+        var parameter = GetCommandParameter(e);
+        if (command.CanExecute(parameter))
+        {
+          command.Execute(parameter);
+        }
+      }
+    }
   }
 }

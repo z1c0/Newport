@@ -27,25 +27,8 @@ namespace Newport
 
     private static void OnClickCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
-      Button button = sender as Button;
-      if (button != null)
-      {
-        button.Click += new RoutedEventHandler(HandleClick);
-      }
-    }
-
-    private static void HandleClick(object sender, RoutedEventArgs e)
-    {
-      Button button = sender as Button;
-      if (button != null)
-      {
-        ICommand command = GetClickCommand(button);
-        object parameter = UIElementExtensions.GetCommandParameter(button);
-        if ((command != null) && (command.CanExecute(parameter)))
-        {
-          command.Execute(parameter);
-        }
-      }
+      var button = (Button)sender;
+      button.Click += (o, e) => UIElementExtensions.TriggerCommand(GetClickCommand(button), button, e);
     }
 
     #endregion ClickCommand (Attached Property)
