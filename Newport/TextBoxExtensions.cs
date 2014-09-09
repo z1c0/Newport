@@ -48,7 +48,7 @@ namespace Newport
     private static void OnUpdateBindingOnTextChangeChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
       var textBox = (TextBox)sender;
-      textBox.TextChanged += (o, e) =>
+      textBox.TextChanged += (_, __) =>
       {
         var binding = textBox.GetBindingExpression(TextBox.TextProperty);
         if (binding != null)

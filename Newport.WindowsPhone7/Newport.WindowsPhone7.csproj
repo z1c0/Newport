@@ -180,6 +180,9 @@
     <Compile Include="..\Newport\NavigationAdapter.cs">
       <Link>NavigationAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\PasswordBoxExtensions.cs">
+      <Link>PasswordBoxExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\PhoneApplicationPageExtensions.cs">
       <Link>PhoneApplicationPageExtensions.cs</Link>
     </Compile>

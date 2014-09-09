@@ -11,9 +11,9 @@ namespace Newport
 {
   public static class RandomData
   {
-    private static Random _random;
-    private static ListRandomizer<string> _firstNames;
-    private static ListRandomizer<string> _surNames;
+    private static readonly Random _random;
+    private static readonly ListRandomizer<string> _firstNames;
+    private static readonly ListRandomizer<string> _surNames;
 
     static RandomData()
     {
@@ -44,7 +44,7 @@ namespace Newport
 
     public static void RandomizeListItems(IList list)
     {
-      for (int index = 0; index < list.Count; index++)
+      for (var index = 0; index < list.Count; index++)
       {
         var swapIndex = _random.Next(list.Count);
         var swap = list[index];
