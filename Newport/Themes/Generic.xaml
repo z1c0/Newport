@@ -3,7 +3,9 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:n="clr-namespace:Newport">
 
-  <Style TargetType="n:FancyBackground">
+    <!--  FancyBackground -->
+
+    <Style TargetType="n:FancyBackground">
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="n:FancyBackground">
@@ -15,7 +17,24 @@
     </Setter>
   </Style>
 
-  <!--  BevelBorder  -->
+    <!--  Revealer -->
+    <Style TargetType="n:Revealer">
+        <Setter
+      Property="Template">
+            <Setter.Value>
+                <ControlTemplate
+          TargetType="n:Revealer">
+                    <Grid>
+                        <ContentPresenter
+              x:Name="ContentPresenter" />
+                        <Image x:Name="Image" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  BevelBorder  -->
 
   <Style TargetType="n:BevelBorder">
     <Setter Property="Template">

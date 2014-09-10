@@ -153,6 +153,9 @@
     <Compile Include="..\Newport\Controls\RatingControl.cs">
       <Link>Controls\RatingControl.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\Revealer.cs">
+      <Link>Controls\Revealer.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\TileMenu.cs">
       <Link>Controls\TileMenu.cs</Link>
     </Compile>
