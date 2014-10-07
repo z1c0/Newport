@@ -5,25 +5,26 @@ function Get-ScriptDirectory
  $Invocation = (Get-Variable MyInvocation -Scope 1).Value 
  Split-Path $Invocation.MyCommand.Path 
 } 
-
 $scriptDir = Get-ScriptDirectory;
-write($asmPath);
-cd $scriptDir
+write($scriptDir);
 
 # Get Version of Newport.WindowsPhone assembly.
 # We will use that as the version of our NuGet package.
-$asmPath = "..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll"
+$asmPath = Join-Path (Get-ScriptDirectory) "..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll"
 write($asmPath);
 $asm = [Reflection.Assembly]::ReflectionOnlyLoadFrom($asmPath)
 $asmVersion = $asm.GetName().Version.ToString()
 write($asmVersion);
 
 # Store version in NuSpec
-[xml]$nuspec = Get-Content .\Newport.nuspec
+$nuspecPath = Join-Path (Get-ScriptDirectory) "Newport.nuspec"
+write($nuspecPath);
+[xml]$nuspec = Get-Content $nuspecPath
 $nuspec.package.metadata.version = $asmVersion
-$nuspec.Save(".\Newport.nuspec");
+$nuspec.Save($nuspecPath);
 
-.\NuGet.exe pack .\Newport.nuspec
+cd $scriptDir;
+.\NuGet.exe pack $nuspecPath
 
 #If an API key was specified, upload the package.
 if (!$apiKey)
