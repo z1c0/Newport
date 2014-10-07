@@ -1,5 +1,14 @@
 param($apiKey)
 
+function Get-ScriptDirectory 
+{ 
+ $Invocation = (Get-Variable MyInvocation -Scope 1).Value 
+ Split-Path $Invocation.MyCommand.Path 
+} 
+
+$scriptDir = Get-ScriptDirectory;
+cd $scriptDir
+
 # Get Version of Newport.WindowsPhone assembly.
 # We will use that as the version of our NuGet package.
 $asmPath = "..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll"
