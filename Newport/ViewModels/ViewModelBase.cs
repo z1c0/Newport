@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
-#if NETFX_CORE
+#if UNIVERSAL
+using System;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Store;
 using Windows.ApplicationModel;
@@ -23,7 +24,7 @@ namespace Newport
 
     public ViewModelBase()
     {
-#if NETFX_CORE
+#if UNIVERSAL
       _licenseInformation = CurrentApp.LicenseInformation;
 #else
       _licenseInformation = new LicenseInformation();
@@ -46,7 +47,7 @@ namespace Newport
     {
       get
       {
-#if NETFX_CORE
+#if UNIVERSAL
         throw new NotImplementedException();
 #else
         return Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator;
@@ -58,8 +59,8 @@ namespace Newport
     {
       get
       {
-#if NETFX_CORE
-        return IsDebug ? true : _licenseInformation.IsTrial;
+#if UNIVERSAL
+        return IsDebug || _licenseInformation.IsTrial;
 #else
         return IsDebug || _licenseInformation.IsTrial();
 #endif
@@ -70,7 +71,7 @@ namespace Newport
     {
       get
       {
-#if NETFX_CORE
+#if UNIVERSAL
         return DesignMode.DesignModeEnabled;
 #else
         return DesignerProperties.IsInDesignTool;

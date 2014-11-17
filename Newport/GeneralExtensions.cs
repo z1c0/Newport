@@ -1,16 +1,16 @@
-﻿using Microsoft.Xna.Framework.Media;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI;
 using Windows.UI.Xaml.Media.Imaging;
 #else
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Xna.Framework.Media;
+using System.IO.IsolatedStorage;
 #endif
 
 namespace Newport
@@ -73,29 +73,6 @@ namespace Newport
       var observableCollection = new ObservableCollection<T>();
       items.ForEach(a => observableCollection.Add(a));
       return observableCollection;
-    }
-
-    public static void SaveToMediaLibrary(this BitmapImage bmi, string fileName)
-    {
-      new WriteableBitmap(bmi).SaveToMediaLibrary(fileName);
-    }
-
-    public static void SaveToMediaLibrary(this WriteableBitmap wb, string fileName)
-    {
-      var store = IsolatedStorageFile.GetUserStoreForApplication();
-      // If a file with this name already exists, delete it.
-      var tempName = Guid.NewGuid().ToString();
-      using (var fileStream = store.CreateFile(tempName))
-      {
-        // Save the WriteableBitmap into isolated storage as JPEG.
-        Extensions.SaveJpeg(wb, fileStream, wb.PixelWidth, wb.PixelHeight, 0, 100);
-      }
-      using (var fileStream = store.OpenFile(tempName, FileMode.Open, FileAccess.Read))
-      {
-        // Now, add the JPEG image to the photos library.
-        var library = new MediaLibrary();
-        var pic = library.SavePicture(fileName, fileStream);
-      }
     }
   }
 }

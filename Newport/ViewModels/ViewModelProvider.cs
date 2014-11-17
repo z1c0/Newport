@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml;
 using System.Reflection;
+#else
+using System.ComponentModel;
+using System.Windows;
 #endif
 
 namespace Newport
@@ -106,7 +107,7 @@ namespace Newport
     private static void RegisterViewModels()
     {
       _viewModels = new Dictionary<string, ViewModelInformation>();
-#if NETFX_CORE
+#if UNIVERSAL
       var types = Application.Current.GetType().GetTypeInfo().Assembly.ExportedTypes;
       foreach (var t in types)
       {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI;
 #else
 using System.Windows.Media;

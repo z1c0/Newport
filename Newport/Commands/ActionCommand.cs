@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Windows;
+#if UNIVERSAL
+using Windows.UI.Xaml;
 using System.Windows.Input;
+#else
+using System.Windows.Input;
+#endif
 
 namespace Newport
 {

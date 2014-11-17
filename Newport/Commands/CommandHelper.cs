@@ -1,6 +1,11 @@
 ﻿using System;
+using Windows.UI.Core;
+#if UNIVERSAL
+using Windows.Foundation;
+#else
 using System.Windows;
 using System.Windows.Input;
+#endif
 
 namespace Newport
 {
@@ -8,6 +13,7 @@ namespace Newport
   {
     public static Point GetPosition(ActionEventSource actionEventSource)
     {
+      //TappedRoutedEventArgs 
       var gestureEventArgs = actionEventSource.OriginalEventArgs as GestureEventArgs;
       if (gestureEventArgs != null)
       {

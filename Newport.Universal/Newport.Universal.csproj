@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23DE8D38-8887-464C-BB7B-1DEDC4B2AA81}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Newport</RootNamespace>
+    <AssemblyName>Newport.Universal</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile32</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNIVERSAL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;UNIVERSAL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Folder Include="Behaviors\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
+    <TargetPlatform Include="Windows, Version=8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Newport\Commands\ActionCommand.cs">
+      <Link>Commands\ActionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Commands\CommandManager.cs">
+      <Link>Commands\CommandManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\GeneralExtensions.cs">
+      <Link>GeneralExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ListRandomizer.cs">
+      <Link>ListRandomizer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\RandomData.cs">
+      <Link>RandomData.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\BusyScope.cs">
+      <Link>ViewModels\BusyScope.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\BusyViewModel.cs">
+      <Link>ViewModels\BusyViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\ColorThemeViewModel.cs">
+      <Link>ViewModels\ColorThemeViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\GroupedObservableList.cs">
+      <Link>ViewModels\GroupedObservableList.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\SimpleViewModelBase.cs">
+      <Link>ViewModels\SimpleViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\TileMenuItemViewModel.cs">
+      <Link>ViewModels\TileMenuItemViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\ViewModelBase.cs">
+      <Link>ViewModels\ViewModelBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\ViewModelProvider.cs">
+      <Link>ViewModels\ViewModelProvider.cs</Link>
+    </Compile>
+    <Compile Include="Commands\CommandHelper.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
