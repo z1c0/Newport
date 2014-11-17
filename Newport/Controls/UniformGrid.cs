@@ -51,7 +51,7 @@ namespace Newport
 
     protected override Size MeasureOverride(Size constraint)
     {
-      if ((ColumnCount > 0) && (RowCount > 0))
+      if (ColumnCount > 0 && RowCount > 0)
       {
         var childConstraint = new Size(constraint.Width / ColumnCount, constraint.Height / RowCount);
         var maxChildDesiredWidth = 0.0;
@@ -59,8 +59,7 @@ namespace Newport
         foreach (var child in Children)
         {
           child.Measure(childConstraint);
-          Size childDesiredSize = child.DesiredSize;
-
+          var childDesiredSize = child.DesiredSize;
           if (maxChildDesiredWidth < childDesiredSize.Width)
           {
             maxChildDesiredWidth = childDesiredSize.Width;

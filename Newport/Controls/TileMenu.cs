@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,7 +13,7 @@ namespace Newport
   public class TileMenu : Control
   {
     private ItemsControl _itemsControl;
-    private Stack<IEnumerable> _cascadeStack;
+    private readonly Stack<IEnumerable> _cascadeStack;
 
     public TileMenu()
     {
@@ -30,6 +29,7 @@ namespace Newport
         TileItemTemplate = (DataTemplate)_itemsControl.Resources["DefaultTileItemTemplate"];
       }
       InsertItems(Items);
+      OpenClose();
       var page = new ControlFinder().FindParent<PhoneApplicationPage>(this);
       page.BackKeyPress += (_, e) =>
       {
@@ -84,7 +84,7 @@ namespace Newport
     #region Items
 
     public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
-      "Items", typeof(IEnumerable), typeof(TileMenu), new PropertyMetadata(null, new PropertyChangedCallback(ItemsOpenPropertyChanged)));
+      "Items", typeof(IEnumerable), typeof(TileMenu), new PropertyMetadata(null, ItemsOpenPropertyChanged));
 
     private static void ItemsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -171,26 +171,31 @@ namespace Newport
     #region IsOpen
 
     public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-      "IsOpen", typeof(bool?), typeof(TileMenu), new PropertyMetadata(null, new PropertyChangedCallback(IsOpenPropertyChanged)));
+      "IsOpen", typeof(bool?), typeof(TileMenu), new PropertyMetadata(null, IsOpenPropertyChanged));
 
     private static void IsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
       var tileMenu = (TileMenu)d;
       if (tileMenu._itemsControl != null)
       {
-        if (tileMenu.IsOpen)
+        tileMenu.OpenClose();
+      }
+    }
+
+    private void OpenClose()
+    {
+      if (IsOpen)
+      {
+        VisualStateManager.GoToState(this, "IsOpen", true);
+        AnimateTiles(true, null);
+      }
+      else
+      {
+        AnimateTiles(false, () => VisualStateManager.GoToState(this, "IsClosed", true));
+        // TODO
+        if (_cascadeStack.Count > 0)
         {
-          VisualStateManager.GoToState(tileMenu, "IsOpen", true);
-          tileMenu.AnimateTiles(true, null);
-        }
-        else
-        {
-          tileMenu.AnimateTiles(false, () => VisualStateManager.GoToState(tileMenu, "IsClosed", true));
-          // TODO
-          if (tileMenu._cascadeStack.Count > 0)
-          {
-            tileMenu.InsertItems(tileMenu._cascadeStack.Pop());
-          }
+          InsertItems(_cascadeStack.Pop());
         }
       }
     }
@@ -198,7 +203,7 @@ namespace Newport
     private void AnimateTiles(bool visible, Action action)
     {
       var borders = _itemsControl.Items.Cast<Border>();
-      if (borders.Count() > 0)
+      if (borders.Any())
       {
         double total = _cascadeStack.Count > 0 ? 250 : 500;
         var begin = TimeSpan.FromMilliseconds(200);

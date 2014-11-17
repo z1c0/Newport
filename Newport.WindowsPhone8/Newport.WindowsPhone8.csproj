@@ -162,6 +162,9 @@
     <Compile Include="..\Newport\Controls\UniformGrid.cs">
       <Link>Controls\UniformGrid.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\WrapPanel.cs">
+      <Link>Controls\WrapPanel.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Converters\BooleanInvertConverter.cs">
       <Link>Converters\BooleanInvertConverter.cs</Link>
     </Compile>
@@ -272,6 +275,9 @@
     </Compile>
     <Compile Include="..\Newport\ViewModels\GroupedObservableList.cs">
       <Link>ViewModels\GroupedObservableList.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\SimpleViewModelBase.cs">
+      <Link>ViewModels\SimpleViewModelBase.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ViewModels\TileMenuItemViewModel.cs">
       <Link>ViewModels\TileMenuItemViewModel.cs</Link>

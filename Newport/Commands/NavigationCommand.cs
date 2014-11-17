@@ -5,6 +5,15 @@ namespace Newport
 {
   public class NavigationCommand : ICommand
   {
+    public NavigationCommand()
+    {
+    }
+
+    public NavigationCommand(string name)
+    {
+      Uri = new Uri(name, UriKind.RelativeOrAbsolute);
+    }
+
     public event EventHandler CanExecuteChanged
     {
       add

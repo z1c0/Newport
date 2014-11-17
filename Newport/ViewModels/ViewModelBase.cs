@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 #if NETFX_CORE
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Store;
@@ -20,6 +19,7 @@ namespace Newport
 
     private readonly LicenseInformation _licenseInformation;
     private bool _isBusy;
+    private string _text;
 
     public ViewModelBase()
     {
@@ -92,6 +92,17 @@ namespace Newport
           OnPropertyChanged("IsBusy");
           CommandManager.InvalidateRequerySuggested();
         }
+      }
+    }
+    public string Text
+    {
+      get
+      {
+        return _text;
+      }
+      set
+      {
+        SetProperty(ref _text, value, "Text");
       }
     }
 

@@ -66,14 +66,7 @@ namespace Newport
 
     public static ViewModelProvider Default
     {
-      get
-      {
-        if (_default == null)
-        {
-          _default = new ViewModelProvider();
-        }
-        return _default;
-      }
+      get { return _default ?? (_default = new ViewModelProvider()); }
     }
 
     public ViewModelBase this[string key]

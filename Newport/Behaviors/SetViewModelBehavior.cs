@@ -1,4 +1,6 @@
-﻿#if NETFX_CORE
+﻿using System;
+using System.Windows.Controls;
+#if NETFX_CORE
 using Windows.UI.Xaml;
 using WinRtBehaviors;
 #else
@@ -17,7 +19,10 @@ namespace Newport
     protected override void OnAttached()
     {
       base.OnAttached();
-
+      if (Key == null)
+      {
+        Key = InferViewModelKeyName();
+      }
       object data = ViewModelProvider.Default[Key];
       if (data != null)
       {
@@ -27,6 +32,17 @@ namespace Newport
         }
         AssociatedObject.DataContext = data;
       }
+    }
+
+    private string InferViewModelKeyName()
+    {
+      string keyName = null;
+      var className = AssociatedObject.GetType().Name;
+      if (className.EndsWith("Page"))
+      {
+        keyName = className.Remove(className.Length - 4) + "ViewModel";
+      }
+      return keyName;
     }
   }
 }
