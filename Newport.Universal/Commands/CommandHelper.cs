@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.Foundation;
-using Windows.UI.Xaml.Input;
 
 namespace Newport
 {
