@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.Demo.WindowsPhone", "Newport.Demo.WindowsPhone.csproj", "{ECB0BB71-0672-42AE-B324-8B2B3872FA4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.Demo.WindowsPhone", "Newport.Demo.WindowsPhone\Newport.Demo.WindowsPhone.csproj", "{ECB0BB71-0672-42AE-B324-8B2B3872FA4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone8", "..\..\Newport.WindowsPhone8\Newport.WindowsPhone8.csproj", "{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newport.WindowsPhone8", "..\Newport.WindowsPhone8\Newport.WindowsPhone8.csproj", "{76D5F10E-FED5-4EAC-ACD3-4C59F2381B31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

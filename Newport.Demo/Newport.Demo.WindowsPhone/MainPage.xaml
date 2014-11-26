@@ -29,20 +29,30 @@
     <Grid.RowDefinitions>
       <RowDefinition
         Height="Auto" />
+      <RowDefinition
+        Height="Auto" />
       <RowDefinition />
     </Grid.RowDefinitions>
     <CheckBox
       Grid.Row="0"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
 
-    <n:TileMenu
+    <Button
       Grid.Row="1"
+      Content="test">
+      <Button.Command>
+        <n:NavigationCommand Uri="/RevealerPage.xaml" />
+      </Button.Command>
+    </Button>
+    
+    <n:TileMenu
+      Grid.Row="2"
       Height="400"
-      Width="480"
+      Width="300"
       Background="WhiteSmoke"
       TileMargin="6"
       Items="{Binding Path=MenuItems}"
-      IsOpen="{Binding ShowMenu}">
+      IsOpen="{Binding ShowMenu, Mode=TwoWay}">
       <n:TileMenu.TileItemTemplate>
         <DataTemplate>
           <Border

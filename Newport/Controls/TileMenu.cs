@@ -131,8 +131,8 @@ namespace Newport
                 }
                 else if (viewModel.Command != null)
                 {
-                  viewModel.Command.Execute(null);
                   IsOpen = false;
+                  viewModel.Command.Execute(null);
                 }
               }
               else
