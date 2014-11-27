@@ -6,20 +6,27 @@ namespace Newport.Demo.WindowsPhone.ViewModels
   public class MainViewModel : ViewModelBase
   {
     private bool _showMenu;
-
+    
     public MainViewModel()
     {
       Text = "Hello Newport!";
       ShowMenu = true;
+      ShowMenuCommand = new ActionCommand(_ => ShowMenu = true);
       MenuItems = new List<TileMenuItemViewModel>
       {
-        new TileMenuItemViewModel { Text = "Content Revealer", Command = new NavigationCommand("/RevealerPage.xaml")}, // TODO: typeof(..page)?
+        new TileMenuItemViewModel
+        {
+          Text = "Content Revealer",
+          Command = new NavigationCommand("/RevealerPage.xaml")
+        }, // TODO: typeof(..page)?
         new TileMenuItemViewModel { Text = "Elmo" },
         new TileMenuItemViewModel { Text = "Kermit" },
         new TileMenuItemViewModel { Text = "Fozzy" },
         new TileMenuItemViewModel { Text = "Bert" },
       };
     }
+
+    public ActionCommand ShowMenuCommand { get; private set; }
 
     public bool ShowMenu
     {

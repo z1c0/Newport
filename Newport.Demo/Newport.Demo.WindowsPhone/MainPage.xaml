@@ -25,7 +25,8 @@
     <n:SetViewModelBehavior />
   </i:Interaction.Behaviors>
 
-  <Grid>
+  <Grid
+    n:FrameworkElementExtensions.LoadedCommand="{Binding Path=ShowMenuCommand}">
     <Grid.RowDefinitions>
       <RowDefinition
         Height="Auto" />
