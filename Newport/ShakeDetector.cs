@@ -8,7 +8,7 @@ namespace Newport
   {
     private const double SHAKE_THRESHOLD = 0.7;
 
-    private DispatcherHelper _dispatcherHelper;
+    private readonly DispatcherHelper _dispatcherHelper;
     private readonly Accelerometer _sensor;
     private Vector3 _lastReading;
     private int _shakeCount;
@@ -78,23 +78,20 @@ namespace Newport
         var reading = e.SensorReading.Acceleration;
         try
         {
-          if (_lastReading != null)
+          if (!_shaking && CheckForShake(_lastReading, reading, SHAKE_THRESHOLD) && _shakeCount >= 1)
           {
-            if (!_shaking && CheckForShake(_lastReading, reading, SHAKE_THRESHOLD) && _shakeCount >= 1)
-            {
-              _shaking = true;
-              _shakeCount = 0;
-              OnShakeDetected();
-            }
-            else if (CheckForShake(_lastReading, reading, SHAKE_THRESHOLD))
-            {
-              _shakeCount++;
-            }
-            else if (!CheckForShake(_lastReading, reading, 0.2))
-            {
-              _shakeCount = 0;
-              _shaking = false;
-            }
+            _shaking = true;
+            _shakeCount = 0;
+            OnShakeDetected();
+          }
+          else if (CheckForShake(_lastReading, reading, SHAKE_THRESHOLD))
+          {
+            _shakeCount++;
+          }
+          else if (!CheckForShake(_lastReading, reading, 0.2))
+          {
+            _shakeCount = 0;
+            _shaking = false;
           }
           _lastReading = reading;
         }

@@ -36,15 +36,7 @@
     <CheckBox
       Grid.Row="0"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
-
-    <Button
-      Grid.Row="1"
-      Content="test">
-      <Button.Command>
-        <n:NavigationCommand Uri="/RevealerPage.xaml" />
-      </Button.Command>
-    </Button>
-    
+   
     <n:TileMenu
       Grid.Row="2"
       Height="400"

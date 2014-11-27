@@ -27,13 +27,13 @@ namespace Newport
 
     public static Color ToColor(this int argb32)
     {
-      byte b = (byte)(argb32 & 0xFF);
+      var b = (byte)(argb32 & 0xFF);
       argb32 >>= 8;
-      byte g = (byte)(argb32 & 0xFF);
+      var g = (byte)(argb32 & 0xFF);
       argb32 >>= 8;
-      byte r = (byte)(argb32 & 0xFF);
+      var r = (byte)(argb32 & 0xFF);
       argb32 >>= 8;
-      byte a = (byte)(argb32 & 0xFF);
+      var a = (byte)(argb32 & 0xFF);
       return Color.FromArgb(a, r, g, b);
     }
 

@@ -18,15 +18,14 @@
   shell:SystemTray.IsVisible="True">
 
   <d:DesignProperties.DataContext>
-    <vm:RevealerViewModel/>
+    <vm:RevealerViewModel />
   </d:DesignProperties.DataContext>
 
   <i:Interaction.Behaviors>
     <n:SetViewModelBehavior />
   </i:Interaction.Behaviors>
-  
+
   <Grid
-    x:Name="LayoutRoot"
     Background="Transparent">
     <Grid.RowDefinitions>
       <RowDefinition
@@ -41,15 +40,32 @@
       <TextBlock
         Text="{Binding Path=Text}"
         Style="{StaticResource PhoneTextTitle2Style}" />
-      
-      <n:Revealer
-        Width="300"
-        Height="300"
-        Grid.Row="1">
-        <TextBlock Text="Hugo" FontSize="30"></TextBlock>
-      </n:Revealer>
     </StackPanel>
 
+    <n:Revealer
+      Margin="40,120"
+      Grid.Row="1">
+      <TextBlock
+        Text="Hello Hugo!"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        FontSize="40"/>
+      <n:Revealer.CoverBrush>
+        <RadialGradientBrush>
+          <GradientStop
+            Color="#FFF72525" />
+          <GradientStop
+            Color="#FFE4EE1C"
+            Offset="0.4" />
+          <GradientStop
+            Color="#FF58DC1A"
+            Offset="0.6" />
+          <GradientStop
+            Color="#FF1871F1"
+            Offset="0.9" />
+        </RadialGradientBrush>
+      </n:Revealer.CoverBrush>
+    </n:Revealer>
 
   </Grid>
 
