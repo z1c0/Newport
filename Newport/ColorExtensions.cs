@@ -1,8 +1,19 @@
 ﻿using System;
+#if UNIVERSAL
+using Windows.UI;
+#else
 using System.Windows.Media;
+#endif
 
 namespace Newport
 {
+  public enum GrayScaleMethod
+  {
+    Lightness,
+    Average,
+    Luminosity
+  }
+
   public static class ColorExtensions
   {
     public static Color Lerp(this Color fromColor, Color toColor, double amount)
@@ -37,14 +48,24 @@ namespace Newport
       return Color.FromArgb(a, r, g, b);
     }
 
-    public static Color GrayScale(this Color color)
+    public static Color GrayScale(this Color color, GrayScaleMethod method = GrayScaleMethod.Luminosity)
     {
-      // Lightness
-      //var v = (byte)((Math.Max(color.R, Math.Max(color.G, color.B)) + Math.Min(color.R, Math.Min(color.G, color.B))) / 2);
-      // Average
-      //var v = (byte)((color.R + color.G + color.B) / 3);
-      // Luminosity
-      var v = (byte)(0.21 * color.R + 0.71 * color.G + 0.07 * color.B);
+      byte v = 0;
+      switch (method)
+      {
+        case GrayScaleMethod.Lightness:
+          v = (byte)((Math.Max(color.R, Math.Max(color.G, color.B)) + Math.Min(color.R, Math.Min(color.G, color.B))) / 2);
+          break;
+
+        case GrayScaleMethod.Average:
+          v = (byte)((color.R + color.G + color.B) / 3);
+          break;
+
+        case GrayScaleMethod.Luminosity:
+          v = (byte)(0.21 * color.R + 0.71 * color.G + 0.07 * color.B);
+          break;
+      }
+
       return Color.FromArgb(255, v, v, v);
     }
 

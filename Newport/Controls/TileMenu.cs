@@ -1,12 +1,19 @@
-﻿using Microsoft.Phone.Controls;
-using System;
+﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+#if UNIVERSAL
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+#else
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using Microsoft.Phone.Controls;
+#endif
 
 namespace Newport
 {
@@ -21,7 +28,11 @@ namespace Newport
       _cascadeStack = new Stack<IEnumerable>();
     }
 
+#if UNIVERSAL
+    protected override void OnApplyTemplate()
+#else
     public override void OnApplyTemplate()
+#endif
     {
       _itemsControl = (ItemsControl)GetTemplateChild("itemsControl");
       if (TileItemTemplate == null)
@@ -30,6 +41,7 @@ namespace Newport
       }
       InsertItems(Items);
       OpenClose();
+      /*
       var page = new ControlFinder().FindParent<PhoneApplicationPage>(this);
       page.BackKeyPress += (_, e) =>
       {
@@ -39,6 +51,7 @@ namespace Newport
           e.Cancel = true;
         }
       };
+      */
       base.OnApplyTemplate();
     }
 
@@ -115,7 +128,11 @@ namespace Newport
                 Content = i
               }
             };
+#if UNIVERSAL
+            tile.Tapped += (_, __) =>
+#else
             tile.Tap += (_, __) =>
+#endif
             {
               var viewModel = i as TileMenuItemViewModel;
               if (viewModel != null)
@@ -171,7 +188,7 @@ namespace Newport
     #region IsOpen
 
     public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-      "IsOpen", typeof(bool?), typeof(TileMenu), new PropertyMetadata(null, IsOpenPropertyChanged));
+      "IsOpen", typeof(bool), typeof(TileMenu), new PropertyMetadata(null, IsOpenPropertyChanged));
 
     private static void IsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
@@ -225,7 +242,11 @@ namespace Newport
               }
             });
             Storyboard.SetTarget(sb, b.Projection);
+#if UNIVERSAL
+            Storyboard.SetTargetProperty(sb, "PlaneProjection.RotationY"); // TODO
+#else
             Storyboard.SetTargetProperty(sb, new PropertyPath(PlaneProjection.RotationYProperty));
+#endif
             sb.Begin();
             begin += step;
           }
@@ -246,7 +267,11 @@ namespace Newport
             });
             sb.Completed += (_, __) => action();
             Storyboard.SetTarget(sb, b.Projection);
+#if UNIVERSAL
+            Storyboard.SetTargetProperty(sb, "PlaneProjection.RotationY");
+#else
             Storyboard.SetTargetProperty(sb, new PropertyPath(PlaneProjection.RotationYProperty));
+#endif
             sb.Begin();
             begin += step;
           }

@@ -15,7 +15,12 @@ namespace Newport
 
     public static Dictionary<string, object> State { get; private set; }
 
-    public static NavigationService NavigationService
+    public static void Navigate(object o)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal static NavigationService NavigationService
     {
       get
       {
@@ -32,7 +37,7 @@ namespace Newport
       }
     }
 
-    public static NavigationService TryGetNavigationService()
+    internal static NavigationService TryGetNavigationService()
     {
       NavigationService service = null;
       try

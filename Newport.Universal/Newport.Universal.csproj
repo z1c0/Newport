@@ -35,24 +35,81 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Behaviors\" />
-    <Folder Include="Controls\" />
     <Folder Include="Converters\" />
-    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Newport\Behaviors\SetViewModelBehavior.cs">
+      <Link>Behaviors\SetViewModelBehavior.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\BindingEvaluator.cs">
+      <Link>BindingEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\BindingListener.cs">
+      <Link>BindingListener.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ColorExtensions.cs">
+      <Link>ColorExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Commands\ActionCommand.cs">
       <Link>Commands\ActionCommand.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Commands\CommandManager.cs">
       <Link>Commands\CommandManager.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Commands\NavigationCommand.cs">
+      <Link>Commands\NavigationCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\ControlFinder.cs">
+      <Link>Controls\ControlFinder.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\FancyBackground.cs">
+      <Link>Controls\FancyBackground.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\ProgressSpinner.cs">
+      <Link>Controls\ProgressSpinner.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\Revealer.cs">
+      <Link>Controls\Revealer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\TileMenu.cs">
+      <Link>Controls\TileMenu.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\UniformGrid.cs">
+      <Link>Controls\UniformGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\WrapPanel.cs">
+      <Link>Controls\WrapPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\DataTemplateSelector.cs">
+      <Link>DataTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\DataTrigger.cs">
+      <Link>DataTrigger.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\EnumList.cs">
+      <Link>EnumList.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\EventArgs.cs">
+      <Link>EventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\FastObservableCollection.cs">
+      <Link>FastObservableCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\FrameworkElementExtensions.cs">
+      <Link>FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\GameLoopBase.cs">
+      <Link>GameLoopBase.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ImageCache.cs">
+      <Link>ImageCache.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ListRandomizer.cs">
       <Link>ListRandomizer.cs</Link>
@@ -62,6 +119,15 @@
     </Compile>
     <Compile Include="..\Newport\RandomData.cs">
       <Link>RandomData.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\RandomEnum.cs">
+      <Link>RandomEnum.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\TheColors.cs">
+      <Link>TheColors.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\UIElementExtensions.cs">
+      <Link>UIElementExtensions.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ViewModels\BusyScope.cs">
       <Link>ViewModels\BusyScope.cs</Link>
@@ -87,7 +153,20 @@
     <Compile Include="..\Newport\ViewModels\ViewModelProvider.cs">
       <Link>ViewModels\ViewModelProvider.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\VisualTreeEnumeration.cs">
+      <Link>VisualTreeEnumeration.cs</Link>
+    </Compile>
+    <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Commands\CommandHelper.cs" />
+    <Compile Include="Extensions\WriteableBitmapExtensions.cs" />
+    <Compile Include="NavigationAdapter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

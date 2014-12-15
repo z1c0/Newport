@@ -1,4 +1,4 @@
-﻿#if NETFX_CORE
+﻿#if UNIVERSAL
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 #else
@@ -10,7 +10,7 @@ namespace Newport
 {
   public class BindingEvaluator : FrameworkElement
   {
-    private Binding _binding;
+    private readonly Binding _binding;
 
     private static readonly DependencyProperty DummyProperty = DependencyProperty.Register(
       "Dummy",
@@ -24,7 +24,6 @@ namespace Newport
     }
 
     public BindingEvaluator(object container, string expression) :
-      //this(new Binding(expression) { Source = container })
       this(new Binding() { Source = container, Path = new PropertyPath(expression) })
     {
     }

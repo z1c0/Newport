@@ -8,7 +8,7 @@ namespace Newport
   {
     public EnumList()
     {
-#if NETFX_CORE
+#if UNIVERSAL
       AddRange(from f in typeof(T).GetRuntimeFields()
                where f.IsStatic
                select (T)f.GetValue(null));

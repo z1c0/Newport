@@ -5,6 +5,8 @@ namespace Newport
 {
   public class NavigationCommand : ICommand
   {
+    private readonly Type _type;
+
     public NavigationCommand()
     {
     }
@@ -12,6 +14,11 @@ namespace Newport
     public NavigationCommand(string name)
     {
       Uri = new Uri(name, UriKind.RelativeOrAbsolute);
+    }
+
+    public NavigationCommand(Type t)
+    {
+      _type = t;
     }
 
     public event EventHandler CanExecuteChanged
@@ -33,8 +40,9 @@ namespace Newport
     {
       if (Uri != null)
       {
-        NavigationAdapter.NavigationService.Navigate(Uri);
+        NavigationAdapter.Navigate(null);//TODO
       }
+      NavigationAdapter.Navigate(_type);//TODO
     }
 
     public Uri Uri { get; set; }

@@ -1,8 +1,17 @@
 ﻿using System;
+#if UNIVERSAL
+using Windows.UI.Xaml.Controls;
+using Windows.Foundation;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+#else
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+#endif
 
 namespace Newport
 {
@@ -17,7 +26,11 @@ namespace Newport
       Loaded += (_, __) => CreateItems();
     }
 
+#if UNIVERSAL
+    protected override void OnApplyTemplate()
+#else
     public override void OnApplyTemplate()
+#endif
     {
       _canvas = (Canvas)GetTemplateChild("canvas");
       _isInitialized = true;
@@ -59,11 +72,11 @@ namespace Newport
       var yT = 0;
       var p = new Path();
       p.Data = new PathGeometry
-      {        
+      {
         Figures = new PathFigureCollection()
         {
           new PathFigure
-          {             
+          {
             IsClosed = true,
             StartPoint = new Point(xM, yM),
             Segments = new PathSegmentCollection()
@@ -85,7 +98,7 @@ namespace Newport
 
     private double ExponentialEase(double x, double a)
     {
-      var epsilon = 0.00001;
+      const double epsilon = 0.00001;
       var minA = 0.0 + epsilon;
       var maxA = 1.0 - epsilon;
       a = Math.Max(minA, Math.Min(maxA, a));

@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+#else
 using System.Windows;
 using System.Windows.Media;
+#endif
 
 namespace Newport
 {

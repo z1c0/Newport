@@ -17,12 +17,12 @@ namespace Newport.Demo.WindowsPhone.ViewModels
         new TileMenuItemViewModel
         {
           Text = "Content Revealer",
-          Command = new NavigationCommand("/RevealerPage.xaml")
-        }, // TODO: typeof(..page)?
-        new TileMenuItemViewModel { Text = "Elmo" },
-        new TileMenuItemViewModel { Text = "Kermit" },
-        new TileMenuItemViewModel { Text = "Fozzy" },
-        new TileMenuItemViewModel { Text = "Bert" },
+          Command = new NavigationCommand(typeof(RevealerPage))
+        },
+        new TileMenuItemViewModel { Text = "Particles" },
+        new TileMenuItemViewModel { Text = "Spinner" },
+        new TileMenuItemViewModel { Text = "Rating" },
+        new TileMenuItemViewModel { Text = "FancyBackground" },
       };
     }
 

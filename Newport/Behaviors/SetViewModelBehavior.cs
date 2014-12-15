@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Windows.Controls;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml;
-using WinRtBehaviors;
 #else
 using System.Windows;
 using System.Windows.Interactivity;

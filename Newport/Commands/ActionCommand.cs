@@ -11,8 +11,12 @@ namespace Newport
 {
   public class ActionEventSource
   {
-
+    // TODO Wrap EVent class
+#if UNIVERSAL
+    public RoutedEventArgs OriginalEventArgs { get; set; }
+#else
     public EventArgs OriginalEventArgs { get; set; }
+#endif
 
     public UIElement OriginalSender { get; set; }
   }

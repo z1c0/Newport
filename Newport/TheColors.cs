@@ -1,12 +1,11 @@
-﻿
-//
-// This is generated code
-//
-
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
+#if UNIVERSAL
+using Windows.UI;
+#else
 using System.Windows.Media;
+#endif
+
 namespace Newport
 {
   public static class TheColors

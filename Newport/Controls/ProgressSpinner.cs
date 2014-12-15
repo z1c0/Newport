@@ -1,8 +1,16 @@
-﻿using System;
+﻿#if UNIVERSAL
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+#else
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+#endif
 
 namespace Newport
 {
@@ -18,7 +26,11 @@ namespace Newport
       DefaultStyleKey = typeof(ProgressSpinner);
     }
 
+#if UNIVERSAL
+    protected override void OnApplyTemplate()
+#else
     public override void OnApplyTemplate()
+#endif
     {
       var viewBox = (Viewbox)GetTemplateChild("viewBox");
       _storyBoard = (Storyboard)viewBox.Resources["storyboard"];

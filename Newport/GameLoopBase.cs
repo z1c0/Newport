@@ -1,5 +1,5 @@
 ﻿using System;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml.Media;
 #else
 using System.Windows.Media;

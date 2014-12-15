@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.Foundation;
@@ -127,7 +127,7 @@ namespace Newport
 
     private static void OnInvalidateRequerySuggestedAfterTouchPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-#if NETFX_CORE
+#if UNIVERSAL
       throw new NotImplementedException();
 #else
       var fe = (FrameworkElement)d;
@@ -211,7 +211,7 @@ namespace Newport
 
     private static void HandleElementLoaded(object sender, RoutedEventArgs e)
     {
-#if NETFX_CORE
+#if UNIVERSAL
       throw new NotImplementedException();
 #else
       var element = (FrameworkElement)sender;

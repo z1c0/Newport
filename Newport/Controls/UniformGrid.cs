@@ -1,5 +1,11 @@
-﻿using System.Windows;
+﻿#if UNIVERSAL
+using Windows.UI.Xaml.Controls;
+using Windows.Foundation;
+using Windows.UI.Xaml;
+#else
+using System.Windows;
 using System.Windows.Controls;
+#endif
 
 namespace Newport
 {

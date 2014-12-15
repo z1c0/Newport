@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+#if UNIVERSAL
+using Windows.UI.Xaml.Media.Imaging;
+#else
 using System.Windows.Media.Imaging;
+#endif
 
 namespace Newport
 {
@@ -24,9 +28,10 @@ namespace Newport
         }
         else
         {
-          bmi = new BitmapImage();
+          bmi = new BitmapImage { UriSource = uri };
+#if (!UNIVERSAL)
           bmi.CreateOptions = BitmapCreateOptions.BackgroundCreation;
-          bmi.UriSource = uri;
+#endif
           _dict[uri] = bmi;
         }
         return bmi;

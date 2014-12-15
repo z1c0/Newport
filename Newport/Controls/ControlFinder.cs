@@ -1,5 +1,10 @@
-﻿using System.Windows;
+﻿#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+#else
+using System.Windows;
 using System.Windows.Media;
+#endif
 
 namespace Newport
 {
@@ -25,7 +30,7 @@ namespace Newport
       var t = o as T;
       if (t == null)
       {
-        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(o); i++)
+        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(o); i++)
         {
           t = FindChild<T>(VisualTreeHelper.GetChild(o, i));
           if (t != null)

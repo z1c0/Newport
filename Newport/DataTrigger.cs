@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
@@ -13,14 +13,14 @@ using System.Windows.Media.Animation;
 
 namespace Newport
 {
-#if NETFX_CORE
+#if UNIVERSAL
   [ContentProperty(Name = "Action")]
 #else
   [ContentProperty("Action")]
 #endif
   public class DataTrigger : DependencyObject
   {
-    private BindingListener _bindingListener;
+    private readonly BindingListener _bindingListener;
 
     public DataTrigger()
     {
