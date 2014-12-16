@@ -36,6 +36,7 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <Folder Include="Converters\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
@@ -74,6 +75,9 @@
     </Compile>
     <Compile Include="..\Newport\Controls\Revealer.cs">
       <Link>Controls\Revealer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\TemplatedControl.cs">
+      <Link>Controls\TemplatedControl.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\TileMenu.cs">
       <Link>Controls\TileMenu.cs</Link>
@@ -156,10 +160,10 @@
     <Compile Include="..\Newport\VisualTreeEnumeration.cs">
       <Link>VisualTreeEnumeration.cs</Link>
     </Compile>
+    <Compile Include="Adapters\BitmapBuffer.cs" />
     <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Commands\CommandHelper.cs" />
-    <Compile Include="Extensions\WriteableBitmapExtensions.cs" />
-    <Compile Include="NavigationAdapter.cs" />
+    <Compile Include="Adapters\NavigationAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">

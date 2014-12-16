@@ -1,12 +1,12 @@
 ﻿<Page
-    x:Class="Newport.Demo.Universal.RevealerPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:vm="using:Newport.Demo.Universal.ViewModels"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:n="using:Newport"
-    mc:Ignorable="d">
+  x:Class="Newport.Demo.Universal.RevealerPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vm="using:Newport.Demo.Universal.ViewModels"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:n="using:Newport"
+  mc:Ignorable="d">
 
   <d:DesignProperties.DataContext>
     <vm:RevealerViewModel />
@@ -36,11 +36,15 @@
     <n:Revealer
       Margin="40,120"
       Grid.Row="1">
-      <TextBlock
-        Text="Hello Hugo!"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        FontSize="40" />
+      <Border
+        Background="LightBlue">
+        <TextBlock
+          Text="Hello Hugo!"
+          Foreground="Black"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          FontSize="40" />
+      </Border>
       <n:Revealer.CoverBrush>
         <LinearGradientBrush>
           <GradientStop

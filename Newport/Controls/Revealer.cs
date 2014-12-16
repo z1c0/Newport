@@ -5,11 +5,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.IO;
 #else
 using System.Windows;
 using System.Windows.Controls;
@@ -26,15 +23,13 @@ namespace Newport
 #else
   [ContentProperty("Content")]
 #endif
-  public class Revealer : Control
+  public class Revealer : TemplatedControl
   {
     private byte[,] _alphaMap;
-    private WriteableBitmap _bitmap; // TODO: derive 
-#if UNIVERSAL
-    private Stream _pixelStream;
-#endif
+    private BitmapBuffer _bitmap;
     private ContentPresenter _contentPresenter;
     private Image _image;
+    private Rectangle _rectangle;
 
     public Revealer()
     {
@@ -59,19 +54,14 @@ namespace Newport
       }
     }
 
-#if UNIVERSAL
-    protected override void OnApplyTemplate()
-#else
-    public override void OnApplyTemplate()
-#endif
+    protected override void OnFromTemplate()
     {
-      base.OnApplyTemplate();
-      _contentPresenter = (ContentPresenter)GetTemplateChild("ContentPresenter");
+      _contentPresenter = VerifyGetTemplateChild<ContentPresenter>("ContentPresenter");
       _contentPresenter.Content = Content;
-      // TODO: helper: get -> check for null -> trhow
-      _image = (Image)GetTemplateChild("Image");
+      _image = VerifyGetTemplateChild<Image>("Image");
+      _rectangle = VerifyGetTemplateChild<Rectangle>("Rectangle");
 #if UNIVERSAL
-      _image.PointerMoved += (sender, args) => Reveal(args.GetCurrentPoint(_image).Position);
+      _rectangle.PointerMoved += (sender, args) => Reveal(args.GetCurrentPoint(_image).Position);
 #else
       _image.MouseMove += (sender, args) => Reveal(args.GetPosition(_image));
 #endif
@@ -100,27 +90,25 @@ namespace Newport
     {
       var w = (int)finalSize.Width;
       var h = (int)finalSize.Height;
-      if (_bitmap == null || _bitmap.PixelWidth != w || _bitmap.PixelHeight != h)
+      if (_bitmap == null || _bitmap.Width != w || _bitmap.Height != h)
       {
-        _bitmap = new WriteableBitmap(w, h);
-        var rect = new Rectangle
-        {
-          Width = w,
-          Height = h,
-          Fill = CoverBrush
-        };
-        _bitmap.Render(rect, new MatrixTransform());
+        _bitmap = new BitmapBuffer(w, h);
+        _rectangle.Width = w;
+        _rectangle.Height = h;
+        _rectangle.Fill = CoverBrush;
+        _bitmap.Render(_rectangle);
         _bitmap.Invalidate();
-        _image.Source = _bitmap;
-#if UNIVERSAL
-        _pixelStream = _bitmap.PixelBuffer.AsStream();
-#endif
+        _image.Width = w;
+        _image.Height = h;
+        _image.Source = _bitmap.ImageSource;
       }
       return base.ArrangeOverride(finalSize);
     }
 
     private void Reveal(Point point)
     {
+      _rectangle.Opacity = 0.0;
+
       var mapOffsetX = 0;
       var left = (int)(point.X - Radius);
       if (left < 0)
@@ -135,8 +123,8 @@ namespace Newport
         mapOffsetY = Math.Abs(top);
         top = 0;
       }
-      var right = (int)Math.Min(_bitmap.PixelWidth, point.X + Radius);
-      var bottom = (int)Math.Min(_bitmap.PixelHeight, point.Y + Radius);
+      var right = (int)Math.Min(_bitmap.Width, point.X + Radius);
+      var bottom = (int)Math.Min(_bitmap.Height, point.Y + Radius);
 
       for (var y = top; y < bottom; y++)
       {
@@ -145,42 +133,12 @@ namespace Newport
           var a = _alphaMap[x - left + mapOffsetX, y - top + mapOffsetY];
           if (a != 255)
           {
-            var i = y * _bitmap.PixelWidth + x;
-            var c = GetPixel(_bitmap, i);
-            SetPixel(_bitmap, i, a, c);
+            var c = _bitmap.GetPixel(x, y);
+            _bitmap.SetPixel(x, y, a, c);
           }
         }
       }
       _bitmap.Invalidate();
-    }
-
-    private Color GetPixel(WriteableBitmap bmp, int index)
-    {
-#if UNIVERSAL
-      _pixelStream.Seek(4 * index, SeekOrigin.Begin);
-      var b = (byte)_pixelStream.ReadByte();
-      var g = (byte)_pixelStream.ReadByte();
-      var r = (byte)_pixelStream.ReadByte();
-      var a = (byte)_pixelStream.ReadByte();
-      return Color.FromArgb(a, r, g, b);
-#else
-      return _bitmap.Pixels[index].ToColor();
-#endif
-    }
-
-    private void SetPixel(WriteableBitmap bmp, int index, byte a, Color color)
-    {
-      const float preMultiplyFactor = 1 / 255f;
-      var ai = a * preMultiplyFactor;
-#if UNIVERSAL
-      _pixelStream.Seek(4 * index, SeekOrigin.Begin);
-      _pixelStream.WriteByte(color.B);
-      _pixelStream.WriteByte(color.G);
-      _pixelStream.WriteByte(color.R);
-      _pixelStream.WriteByte(a);
-#else
-      bmp.Pixels[index] = (a << 24) | ((byte)(color.R * ai) << 16) | ((byte)(color.G * ai) << 8) | (byte)(color.B * ai);
-#endif
     }
 
     public double Radius { get; set; }

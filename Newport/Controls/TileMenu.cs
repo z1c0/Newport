@@ -41,6 +41,7 @@ namespace Newport
       }
       InsertItems(Items);
       OpenClose();
+      // TODO
       /*
       var page = new ControlFinder().FindParent<PhoneApplicationPage>(this);
       page.BackKeyPress += (_, e) =>

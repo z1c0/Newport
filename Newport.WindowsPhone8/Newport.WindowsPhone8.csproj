@@ -96,6 +96,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Newport\Adapters\BitmapBuffer.cs">
+      <Link>Adapters\BitmapBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Adapters\NavigationAdapter.cs">
+      <Link>Adapters\NavigationAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\ApplicationSettingsService.cs">
       <Link>ApplicationSettingsService.cs</Link>
     </Compile>
@@ -155,6 +161,9 @@
     </Compile>
     <Compile Include="..\Newport\Controls\Revealer.cs">
       <Link>Controls\Revealer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\TemplatedControl.cs">
+      <Link>Controls\TemplatedControl.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\TileMenu.cs">
       <Link>Controls\TileMenu.cs</Link>
@@ -224,9 +233,6 @@
     </Compile>
     <Compile Include="..\Newport\MediaExtensions.cs">
       <Link>MediaExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Newport\NavigationAdapter.cs">
-      <Link>NavigationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\Newport\PasswordBoxExtensions.cs">
       <Link>PasswordBoxExtensions.cs</Link>
