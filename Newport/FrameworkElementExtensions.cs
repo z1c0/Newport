@@ -218,7 +218,7 @@ namespace Newport
       element.Loaded -= HandleElementLoaded;
       if (GetSwapDimensionsOnRotation(element))
       {
-        var page = new ControlFinder().FindParent<PhoneApplicationPage>(element);
+        var page = ControlFinder.FindParent<PhoneApplicationPage>(element);
         page.OrientationChanged += (_, __) =>
         {
           var tmp = element.Width;

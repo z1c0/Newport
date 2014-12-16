@@ -24,7 +24,7 @@ namespace Newport
     {
       get
       {
-        var page = new ControlFinder().FindChild<PhoneApplicationPage>(Application.Current.RootVisual);
+        var page = ControlFinder.FindChild<PhoneApplicationPage>(Application.Current.RootVisual);
         if (page == null)
         {
           throw new InvalidOperationException("No PhoneApplicationPage ");
