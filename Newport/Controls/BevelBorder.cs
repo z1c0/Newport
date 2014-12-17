@@ -1,21 +1,31 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Markup;
+#else
+using System.Windows;
 using System.Windows.Markup;
+using System.Windows.Controls;
+#endif
 
 namespace Newport
 {
+#if UNIVERSAL
+  [ContentProperty(Name = "Child")]
+#else
   [ContentProperty("Child")]
-  public class BevelBorder : Control
+#endif
+  public class BevelBorder : TemplatedControl
   {
     public BevelBorder()
     {
       DefaultStyleKey = typeof(BevelBorder);
     }
 
-    public override void OnApplyTemplate()
+    protected override void OnFromTemplate()
     {
-      base.OnApplyTemplate();
-      var presenter = GetTemplateChild("ContentContainer") as ContentPresenter;
+      var presenter = VerifyGetTemplateChild<ContentPresenter>("ContentContainer");
       presenter.Content = Child;
     }
 

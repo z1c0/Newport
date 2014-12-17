@@ -1,117 +1,203 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:n="using:Newport">
-
-  <!--  Revealer -->
-  <Style
-    TargetType="n:Revealer">
-    <Setter
-      Property="Template">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:n="using:Newport">
+  <!--  FancyBackground -->
+  <Style TargetType="n:FancyBackground">
+    <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate
-          TargetType="n:Revealer">
+        <ControlTemplate TargetType="n:FancyBackground">
+          <Canvas x:Name="canvas" Background="WhiteSmoke" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!--  Revealer -->
+  <Style TargetType="n:Revealer">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="n:Revealer">
           <Grid>
-            <ContentPresenter
-              x:Name="ContentPresenter" />
-            <Image
-              x:Name="Image" />
-            <Rectangle
-              x:Name="Rectangle" />
+            <ContentPresenter x:Name="ContentPresenter" />
+            <Image x:Name="Image" />
+            <Rectangle x:Name="Rectangle" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
-  
-  <Style
-    TargetType="n:TileMenu">
-    <Setter
-      Property="Template">
+  <!--  BevelBorder  -->
+  <Style TargetType="n:BevelBorder">
+    <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate
-          TargetType="n:TileMenu">
-          <Border
-            x:Name="main"
-            Width="{TemplateBinding Width}"
-            Height="{TemplateBinding Height}"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="{TemplateBinding Background}"
-            RenderTransformOrigin="0.5,0.5">
+        <ControlTemplate TargetType="n:BevelBorder">
+          <Border Background="{TemplateBinding Background}" BorderBrush="#90000000" BorderThickness="1" CornerRadius="10">
+            <Border BorderBrush="#70000000" BorderThickness="1" CornerRadius="11">
+              <Border BorderBrush="#50000000" BorderThickness="1" CornerRadius="12">
+                <Border BorderBrush="#40000000" BorderThickness="1" CornerRadius="13">
+                  <Border BorderBrush="#30000000" BorderThickness="1" CornerRadius="14">
+                    <Border BorderBrush="#20000000" BorderThickness="1" CornerRadius="15">
+                      <Border BorderBrush="#10000000" BorderThickness="1" CornerRadius="16">
+                        <ContentPresenter x:Name="ContentContainer" />
+                      </Border>
+                    </Border>
+                  </Border>
+                </Border>
+              </Border>
+            </Border>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!--  FlipControl  -->
+  <Style TargetType="n:FlipControl">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="n:FlipControl">
+          <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+            <Grid x:Name="front" RenderTransformOrigin="0.5,0.5">
+              <Grid.RenderTransform>
+                <ScaleTransform />
+              </Grid.RenderTransform>
+              <ContentPresenter x:Name="ContentFront" />
+            </Grid>
+            <Grid x:Name="back" RenderTransformOrigin="0.5,0.5">
+              <Grid.RenderTransform>
+                <ScaleTransform ScaleX="0" />
+              </Grid.RenderTransform>
+              <ContentPresenter x:Name="ContentBack" />
+            </Grid>
+            <Grid.Resources>
+              <Storyboard x:Key="Storyboard_Flip">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="front" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                  <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="back" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                  <SplineDoubleKeyFrame KeyTime="00:00:00.4" Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+              </Storyboard>
+              <Storyboard x:Key="Storyboard_Reverse">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="back" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                  <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
+                </DoubleAnimationUsingKeyFrames>
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00.2" Storyboard.TargetName="front" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                  <SplineDoubleKeyFrame KeyTime="00:00:00.4" Value="1" />
+                </DoubleAnimationUsingKeyFrames>
+              </Storyboard>
+            </Grid.Resources>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="n:RatingControl">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="n:RatingControl">
+          <StackPanel x:Name="itemsPanel" Orientation="Horizontal">
+            <StackPanel.Resources>
+              <DataTemplate x:Key="DefaultItemTemplate">
+                <Border Width="24" Height="24" Margin="3" Background="Gold" BorderBrush="Black" BorderThickness="1" CornerRadius="5" />
+              </DataTemplate>
+            </StackPanel.Resources>
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style TargetType="n:ProgressSpinner">
+    <Setter Property="Visibility" Value="Collapsed" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="n:ProgressSpinner">
+          <Viewbox x:Name="viewBox" Width="48" Height="48" x:FieldModifier="private">
+            <Viewbox.Resources>
+              <Storyboard x:Name="storyboard" RepeatBehavior="ForEver" x:FieldModifier="private">
+                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="canvas" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">
+                  <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                  <EasingDoubleKeyFrame KeyTime="00:00:00.5000000" Value="180" />
+                  <EasingDoubleKeyFrame KeyTime="00:00:01" Value="359" />
+                </DoubleAnimationUsingKeyFrames>
+              </Storyboard>
+            </Viewbox.Resources>
+            <Canvas x:Name="canvas" Width="24" Height="24" RenderTransformOrigin="0.5,0.5">
+              <Canvas.RenderTransform>
+                <RotateTransform />
+              </Canvas.RenderTransform>
+              <Path Canvas.Left="1.937" Canvas.Top="1.932" Data="F1 M 10.000,2.918 C 6.123,2.918 2.964,6.050 2.920,9.917 L 0.002,9.917 C 0.046,4.441 4.514,0.000 10.000,0.000 C 15.487,0.000 19.954,4.441 19.999,9.917 L 17.080,9.917 C 17.036,6.050 13.878,2.918 10.000,2.918 Z" UseLayoutRounding="False">
+                <Path.Fill>
+                  <LinearGradientBrush MappingMode="Absolute" StartPoint="399.906,240.414" EndPoint="419.903,240.414">
+                    <LinearGradientBrush.GradientStops>
+                      <GradientStop x:Name="stop1" x:FieldModifier="private" Offset="0.26" Color="#7F7F7F7F" />
+                      <GradientStop Offset="1.00" Color="#00000000" />
+                    </LinearGradientBrush.GradientStops>
+                    <LinearGradientBrush.Transform>
+                      <MatrixTransform Matrix="-1.000,0.000,0.000,-1.000,419.905,245.373" />
+                    </LinearGradientBrush.Transform>
+                  </LinearGradientBrush>
+                </Path.Fill>
+              </Path>
+              <Path Canvas.Left="1.937" Canvas.Top="1.932" Data="F1 M 17.080,9.917 C 17.080,9.945 17.083,9.972 17.083,10.000 C 17.083,13.904 13.905,17.082 10.000,17.082 C 6.095,17.082 2.917,13.904 2.917,10.000 C 2.917,9.972 2.920,9.945 2.920,9.917 L 0.002,9.917 C 0.002,9.945 0.000,9.972 0.000,10.000 C 0.000,15.514 4.485,20.000 10.000,20.000 C 15.514,20.000 20.000,15.514 20.000,10.000 C 20.000,9.972 19.999,9.945 19.999,9.917 L 17.080,9.917 Z" UseLayoutRounding="False">
+                <Path.Fill>
+                  <LinearGradientBrush MappingMode="Absolute" StartPoint="489.491,230.414" EndPoint="509.491,230.414">
+                    <LinearGradientBrush.GradientStops>
+                      <GradientStop x:Name="stop3" x:FieldModifier="private" Offset="0.00" Color="#ffffffff" />
+                      <GradientStop x:Name="stop2" x:FieldModifier="private" Offset="0.73" Color="#7F7f7f7f" />
+                    </LinearGradientBrush.GradientStops>
+                    <LinearGradientBrush.Transform>
+                      <MatrixTransform Matrix="1.000,0.000,-0.000,-1.000,-489.491,245.373" />
+                    </LinearGradientBrush.Transform>
+                  </LinearGradientBrush>
+                </Path.Fill>
+              </Path>
+            </Canvas>
+          </Viewbox>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!--  TileMenu  -->
+  <Style TargetType="n:TileMenu">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="n:TileMenu">
+          <Border x:Name="main" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
-              <ScaleTransform
-                ScaleX="1"
-                ScaleY="0" />
+              <ScaleTransform ScaleX="1" ScaleY="0" />
             </Border.RenderTransform>
-
             <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup
-                x:Name="OpenCloseStates">
-                <VisualState
-                  x:Name="IsClosed">
+              <VisualStateGroup x:Name="OpenCloseStates">
+                <VisualState x:Name="IsClosed">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames
-                      BeginTime="00:00:00"
-                      Storyboard.TargetName="main"
-                      Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                      <SplineDoubleKeyFrame
-                        KeyTime="00:00:00.2"
-                        Value="0" />
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="main" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
                     </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames
-                      BeginTime="00:00:00"
-                      Storyboard.TargetName="main"
-                      Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                      <SplineDoubleKeyFrame
-                        KeyTime="00:00:00.2"
-                        Value="0" />
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="main" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="0" />
                     </DoubleAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
-                <VisualState
-                  x:Name="IsOpen">
+                <VisualState x:Name="IsOpen">
                   <Storyboard>
-                    <DoubleAnimationUsingKeyFrames
-                      BeginTime="00:00:00"
-                      Storyboard.TargetName="main"
-                      Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
-                      <SplineDoubleKeyFrame
-                        KeyTime="00:00:00.2"
-                        Value="1" />
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="main" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="1" />
                     </DoubleAnimationUsingKeyFrames>
-                    <DoubleAnimationUsingKeyFrames
-                      BeginTime="00:00:00"
-                      Storyboard.TargetName="main"
-                      Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
-                      <SplineDoubleKeyFrame
-                        KeyTime="00:00:00.2"
-                        Value="1" />
+                    <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="main" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)">
+                      <SplineDoubleKeyFrame KeyTime="00:00:00.2" Value="1" />
                     </DoubleAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-
-            <ItemsControl
-              x:Name="itemsControl"
-              Opacity="1">
+            <ItemsControl x:Name="itemsControl" Opacity="1">
               <ItemsControl.Resources>
-                <DataTemplate
-                  x:Key="DefaultTileItemTemplate">
-                  <Border
-                    Width="100"
-                    Height="100"
-                    Margin="3">
-                    <TextBlock
-                      Text="{Binding Path=Text}" />
+                <DataTemplate x:Key="DefaultTileItemTemplate">
+                  <Border Width="100" Height="100" Margin="3">
+                    <TextBlock Text="{Binding Path=Text}" />
                   </Border>
                 </DataTemplate>
               </ItemsControl.Resources>
               <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                  <n:WrapPanel
-                    Orientation="Horizontal" />
+                  <n:WrapPanel Orientation="Horizontal" />
                 </ItemsPanelTemplate>
               </ItemsControl.ItemsPanel>
             </ItemsControl>
@@ -120,5 +206,5 @@
       </Setter.Value>
     </Setter>
   </Style>
-
 </ResourceDictionary>
+

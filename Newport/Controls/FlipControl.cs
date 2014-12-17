@@ -1,10 +1,17 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
+#else
+using System.Windows;
 using System.Windows.Media.Animation;
+using System.Windows.Controls;
+#endif
 
 namespace Newport
 {
-  public class FlipControl : Control
+  public class FlipControl : TemplatedControl
   {
     private Storyboard _sbFlip;
     private Storyboard _sbReverse;
@@ -18,9 +25,8 @@ namespace Newport
       DefaultStyleKey = typeof(FlipControl);
     }
 
-    public override void OnApplyTemplate()
+    protected override void OnFromTemplate()
     {
-      base.OnApplyTemplate();
       var grid = (Grid)GetTemplateChild("Grid");
       _sbFlip = (Storyboard)grid.Resources["Storyboard_Flip"];
       _sbReverse = (Storyboard)grid.Resources["Storyboard_Reverse"];

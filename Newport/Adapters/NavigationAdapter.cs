@@ -15,9 +15,14 @@ namespace Newport
 
     public static Dictionary<string, object> State { get; private set; }
 
-    public static void Navigate(object o)
+    public static void Navigate(Type t)
     {
-      throw new NotImplementedException();
+      Navigate(new Uri("/" + t.Name + ".xaml", UriKind.Relative));
+    }
+
+    public static void Navigate(Uri uri)
+    {
+      NavigationService.Navigate(uri);
     }
 
     internal static NavigationService NavigationService
@@ -35,19 +40,6 @@ namespace Newport
         }
         return page.NavigationService;
       }
-    }
-
-    internal static NavigationService TryGetNavigationService()
-    {
-      NavigationService service = null;
-      try
-      {
-        service = NavigationService;
-      }
-      catch (Exception)
-      {
-      }
-      return service;
     }
   }
 }

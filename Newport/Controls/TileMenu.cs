@@ -189,7 +189,7 @@ namespace Newport
     #region IsOpen
 
     public static readonly DependencyProperty IsOpenProperty = DependencyProperty.Register(
-      "IsOpen", typeof(bool), typeof(TileMenu), new PropertyMetadata(null, IsOpenPropertyChanged));
+      "IsOpen", typeof(bool), typeof(TileMenu), new PropertyMetadata(false, IsOpenPropertyChanged));
 
     private static void IsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

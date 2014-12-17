@@ -33,6 +33,8 @@
               x:Name="ContentPresenter" />
             <Image
               x:Name="Image" />
+            <Rectangle
+              x:Name="Rectangle" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

@@ -1,0 +1,16 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".xaml" #>
+<#@ assembly name="System.Core"#>
+<#@ assembly name="System.Xml"#>
+<#@ assembly name="System.Xml.Linq"#>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<# 
+  var doc = XDocument.Load(Path.Combine(Host.ResolvePath(string.Empty), @"..\..\Newport\Themes\Generic.xaml"));
+  var xml = doc.ToString();
+  xml = xml.Replace("http://schemas.microsoft.com/client/2007", "http://schemas.microsoft.com/winfx/2006/xaml/presentation");
+  xml = xml.Replace("clr-namespace:", "using:");
+#>
+<#= xml #>
+

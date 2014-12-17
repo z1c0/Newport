@@ -1,9 +1,17 @@
-﻿using System.Windows;
+﻿using System;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
+#else
+using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Controls;
+#endif
 
 namespace Newport
 {
-  public class RatingControl : Control
+  public class RatingControl : TemplatedControl
   {
     private StackPanel _itemsPanel;
     private bool _isInitialized;
@@ -13,9 +21,9 @@ namespace Newport
       DefaultStyleKey = typeof(RatingControl);
     }
 
-    public override void OnApplyTemplate()
+    protected override void OnFromTemplate()
     {
-      _itemsPanel = (StackPanel)GetTemplateChild("itemsPanel");
+      _itemsPanel = VerifyGetTemplateChild<StackPanel>("itemsPanel");
       if (ItemTemplate == null)
       {
         ItemTemplate = (DataTemplate)_itemsPanel.Resources["DefaultItemTemplate"];
@@ -36,7 +44,11 @@ namespace Newport
           {
             ContentTemplate = ItemTemplate
           };
-          c.Tap += (_, __) =>
+#if UNIVERSAL
+            c.Tapped += (_, __) =>
+#else
+            c.Tap += (_, __) =>
+#endif
           {
             Value = i + 1;
             UpdateItems();

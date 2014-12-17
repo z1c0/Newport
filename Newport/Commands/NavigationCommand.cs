@@ -40,9 +40,13 @@ namespace Newport
     {
       if (Uri != null)
       {
-        NavigationAdapter.Navigate(null);//TODO
+        throw new NotImplementedException("TODO");
+        //NavigationAdapter.Navigate(Uri);
       }
-      NavigationAdapter.Navigate(_type);//TODO
+      else
+      {
+        NavigationAdapter.Navigate(_type);
+      }
     }
 
     public Uri Uri { get; set; }

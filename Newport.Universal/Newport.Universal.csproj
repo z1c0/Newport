@@ -64,14 +64,23 @@
     <Compile Include="..\Newport\Commands\NavigationCommand.cs">
       <Link>Commands\NavigationCommand.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\BevelBorder.cs">
+      <Link>Controls\BevelBorder.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ControlFinder.cs">
       <Link>Controls\ControlFinder.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\FancyBackground.cs">
       <Link>Controls\FancyBackground.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\FlipControl.cs">
+      <Link>Controls\FlipControl.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ProgressSpinner.cs">
       <Link>Controls\ProgressSpinner.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Controls\RatingControl.cs">
+      <Link>Controls\RatingControl.cs</Link>
     </Compile>
     <Compile Include="..\Newport\Controls\Revealer.cs">
       <Link>Controls\Revealer.cs</Link>
@@ -166,10 +175,21 @@
     <Compile Include="Adapters\NavigationAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Themes\Generic.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Generic.xaml</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Page Include="Themes\Generic.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generic.tt</DependentUpon>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

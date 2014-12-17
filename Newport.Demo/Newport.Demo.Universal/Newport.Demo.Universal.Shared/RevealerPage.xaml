@@ -34,7 +34,8 @@
     </StackPanel>
 
     <n:Revealer
-      Margin="40,120"
+      Width="200"
+      Height="200"
       Grid.Row="1">
       <Border
         Background="LightBlue">

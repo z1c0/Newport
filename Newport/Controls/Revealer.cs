@@ -61,9 +61,9 @@ namespace Newport
       _image = VerifyGetTemplateChild<Image>("Image");
       _rectangle = VerifyGetTemplateChild<Rectangle>("Rectangle");
 #if UNIVERSAL
-      _rectangle.PointerMoved += (sender, args) => Reveal(args.GetCurrentPoint(_image).Position);
+      _rectangle.PointerMoved += (sender, args) => Reveal(args.GetCurrentPoint(_rectangle).Position);
 #else
-      _image.MouseMove += (sender, args) => Reveal(args.GetPosition(_image));
+      _rectangle.MouseMove += (sender, args) => Reveal(args.GetPosition(_rectangle));
 #endif
 
       var r = (int)Radius;
@@ -96,7 +96,17 @@ namespace Newport
         _rectangle.Width = w;
         _rectangle.Height = h;
         _rectangle.Fill = CoverBrush;
+#if UNIVERSAL
         _bitmap.Render(_rectangle);
+#else
+        var r = new Rectangle()
+        {
+          Width = w,
+          Height = h,
+          Fill = CoverBrush
+        };
+        _bitmap.Render(r);
+#endif
         _bitmap.Invalidate();
         _image.Width = w;
         _image.Height = h;
