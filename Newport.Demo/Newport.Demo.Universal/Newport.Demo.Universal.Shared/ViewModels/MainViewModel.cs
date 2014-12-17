@@ -19,9 +19,17 @@ namespace Newport.Demo.Universal.ViewModels
           Text = "Content Revealer",
           Command = new NavigationCommand(typeof(RevealerPage))
         }, 
-        new TileMenuItemViewModel { Text = "Particles" },
+        new TileMenuItemViewModel
+        {
+          Text = "Particles" ,
+          Command = new NavigationCommand(typeof(ParticlesPage))
+        },
         new TileMenuItemViewModel { Text = "Spinner" },
-        new TileMenuItemViewModel { Text = "Rating" },
+        new TileMenuItemViewModel
+        {
+          Text = "Rating",
+          Command = new NavigationCommand(typeof(RatingPage)),
+        },
         new TileMenuItemViewModel { Text = "FancyBackground" },
       };
     }

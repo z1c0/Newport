@@ -10,17 +10,18 @@ namespace Newport
 {
   public class BitmapBuffer
   {
-    private readonly WriteableBitmap _writeableBitmap;
+    private WriteableBitmap _writeableBitmap;
 
     public BitmapBuffer(int width, int height)
     {
-      _writeableBitmap = new WriteableBitmap(width, height);
+      _writeableBitmap = new WriteableBitmap(width, height);// TODO DPI scale
     }
 
     public async void Render(UIElement e)
     {
       var rtb = new RenderTargetBitmap();
       await rtb.RenderAsync(e, Width, Height);
+      _writeableBitmap = new WriteableBitmap(rtb.PixelWidth, rtb.PixelHeight);
       var p = await rtb.GetPixelsAsync();
       p.CopyTo(_writeableBitmap.PixelBuffer);
     }

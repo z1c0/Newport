@@ -1,5 +1,5 @@
 ﻿<Page
-  x:Class="Newport.Demo.Universal.RevealerPage"
+  x:Class="Newport.Demo.Universal.ParticlesPage"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vm="using:Newport.Demo.Universal.ViewModels"
@@ -9,7 +9,7 @@
   mc:Ignorable="d">
 
   <d:DesignProperties.DataContext>
-    <vm:RevealerViewModel />
+    <vm:ParticlesViewModel />
   </d:DesignProperties.DataContext>
 
   <n:Interaction.Behaviors>
@@ -30,37 +30,9 @@
       Grid.Row="0">
       <TextBlock
         Text="{Binding Path=Text}"
+        HorizontalAlignment="Center"
         Style="{StaticResource TitleTextBlockStyle}" />
     </StackPanel>
-
-    <n:Revealer
-      Margin="50"
-      Grid.Row="1">
-      <Border
-        Background="LightBlue">
-        <TextBlock
-          Text="Hello Hugo!"
-          Foreground="Black"
-          HorizontalAlignment="Center"
-          VerticalAlignment="Center"
-          FontSize="40" />
-      </Border>
-      <n:Revealer.CoverBrush>
-        <LinearGradientBrush>
-          <GradientStop
-            Color="#FFF72525" />
-          <GradientStop
-            Color="#FFE4EE1C"
-            Offset="0.4" />
-          <GradientStop
-            Color="#FF58DC1A"
-            Offset="0.6" />
-          <GradientStop
-            Color="#FF1871F1"
-            Offset="0.9" />
-        </LinearGradientBrush>
-      </n:Revealer.CoverBrush>
-    </n:Revealer>
 
   </Grid>
 </Page>
