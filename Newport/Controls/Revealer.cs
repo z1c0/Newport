@@ -90,7 +90,7 @@ namespace Newport
     {
       var w = (int)finalSize.Width;
       var h = (int)finalSize.Height;
-      if (_bitmap == null || _bitmap.Width != w || _bitmap.Height != h)
+      if (_bitmap == null || _bitmap.PixelWidth != w || _bitmap.PixelHeight != h)
       {
         _bitmap = new BitmapBuffer(w, h);
         _rectangle.Width = w;
@@ -133,8 +133,8 @@ namespace Newport
         mapOffsetY = Math.Abs(top);
         top = 0;
       }
-      var right = (int)Math.Min(_bitmap.Width, point.X + Radius);
-      var bottom = (int)Math.Min(_bitmap.Height, point.Y + Radius);
+      var right = (int)Math.Min(_bitmap.PixelWidth, point.X + Radius);
+      var bottom = (int)Math.Min(_bitmap.PixelHeight, point.Y + Radius);
 
       for (var y = top; y < bottom; y++)
       {

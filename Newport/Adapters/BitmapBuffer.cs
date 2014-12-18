@@ -40,12 +40,12 @@ namespace Newport
       _bitmap.Pixels[i] = (a << 24) | ((byte)(color.R * ai) << 16) | ((byte)(color.G * ai) << 8) | (byte)(color.B * ai);
     }
 
-    public int Width
+    public int PixelWidth
     {
       get { return _bitmap.PixelWidth; }
     }
 
-    public int Height
+    public int PixelHeight
     {
       get { return _bitmap.PixelHeight; }
     }
