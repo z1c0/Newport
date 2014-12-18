@@ -17,7 +17,7 @@ using Microsoft.Phone.Controls;
 
 namespace Newport
 {
-  public class TileMenu : Control
+  public class TileMenu : TemplatedControl
   {
     private ItemsControl _itemsControl;
     private readonly Stack<IEnumerable> _cascadeStack;
@@ -28,13 +28,9 @@ namespace Newport
       _cascadeStack = new Stack<IEnumerable>();
     }
 
-#if UNIVERSAL
-    protected override void OnApplyTemplate()
-#else
-    public override void OnApplyTemplate()
-#endif
+    protected override void OnFromTemplate()
     {
-      _itemsControl = (ItemsControl)GetTemplateChild("itemsControl");
+      _itemsControl = VerifyGetTemplateChild<ItemsControl>("itemsControl");
       if (TileItemTemplate == null)
       {
         TileItemTemplate = (DataTemplate)_itemsControl.Resources["DefaultTileItemTemplate"];
@@ -53,7 +49,6 @@ namespace Newport
         }
       };
       */
-      base.OnApplyTemplate();
     }
 
     #region TileMenuBackground

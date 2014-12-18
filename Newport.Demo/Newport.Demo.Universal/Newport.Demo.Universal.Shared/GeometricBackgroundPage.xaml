@@ -1,0 +1,39 @@
+﻿<Page
+  x:Class="Newport.Demo.Universal.GeometricBackgroundPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vm="using:Newport.Demo.Universal.ViewModels"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:n="using:Newport"
+  mc:Ignorable="d">
+
+  <d:DesignProperties.DataContext>
+    <vm:GeometricBackgroundViewModel />
+  </d:DesignProperties.DataContext>
+
+  <n:Interaction.Behaviors>
+    <n:SetViewModelBehavior />
+  </n:Interaction.Behaviors>
+
+  <Grid
+    Background="Transparent">
+    <Grid.RowDefinitions>
+      <RowDefinition
+        Height="Auto" />
+      <RowDefinition
+        Height="*" />
+    </Grid.RowDefinitions>
+
+    <!--TitlePanel contains the name of the application and page title-->
+    <StackPanel
+      Grid.Row="0">
+      <TextBlock
+        Text="{Binding Path=Text}"
+        Style="{StaticResource TitleTextBlockStyle}" />
+    </StackPanel>
+
+    <n:FancyBackground
+      Grid.Row="1"></n:FancyBackground>
+  </Grid>
+</Page>

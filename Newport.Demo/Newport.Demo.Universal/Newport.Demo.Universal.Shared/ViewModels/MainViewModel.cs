@@ -6,7 +6,7 @@ namespace Newport.Demo.Universal.ViewModels
   public class MainViewModel : ViewModelBase
   {
     private bool? _showMenu;
-    
+
     public MainViewModel()
     {
       Text = "Hello Newport!";
@@ -18,19 +18,27 @@ namespace Newport.Demo.Universal.ViewModels
         {
           Text = "Content Revealer",
           Command = new NavigationCommand(typeof(RevealerPage))
-        }, 
+        },
         new TileMenuItemViewModel
         {
           Text = "Particles" ,
           Command = new NavigationCommand(typeof(ParticlesPage))
         },
-        new TileMenuItemViewModel { Text = "Spinner" },
+        new TileMenuItemViewModel
+        {
+          Text = "Spinner",
+          Command = new NavigationCommand(typeof(SpinnerPage))
+        },
         new TileMenuItemViewModel
         {
           Text = "Rating",
           Command = new NavigationCommand(typeof(RatingPage)),
         },
-        new TileMenuItemViewModel { Text = "FancyBackground" },
+        new TileMenuItemViewModel
+        {
+          Text = "Geometric Background",
+          Command = new NavigationCommand(typeof(GeometricBackgroundPage)),  //TODO -> rename
+        },
       };
     }
 

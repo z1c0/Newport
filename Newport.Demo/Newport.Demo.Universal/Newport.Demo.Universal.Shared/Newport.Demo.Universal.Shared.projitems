@@ -15,6 +15,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GeometricBackgroundPage.xaml.cs">
+      <DependentUpon>GeometricBackgroundPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -27,12 +30,21 @@
     <Compile Include="$(MSBuildThisFileDirectory)RevealerPage.xaml.cs">
       <DependentUpon>RevealerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)SpinnerPage.xaml.cs">
+      <DependentUpon>SpinnerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ParticlesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RatingViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpinnerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeometricBackgroundViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RevealerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)GeometricBackgroundPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -46,6 +58,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)RevealerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)SpinnerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

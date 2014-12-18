@@ -30,7 +30,6 @@ namespace Newport
       }
       _isInitialized = true;
       CreateItems();
-      base.OnApplyTemplate();
     }
 
     private void CreateItems()

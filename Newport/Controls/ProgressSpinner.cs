@@ -14,7 +14,7 @@ using System.Windows.Media.Animation;
 
 namespace Newport
 {
-  public class ProgressSpinner : Control
+  public class ProgressSpinner : TemplatedControl
   {
     private Storyboard _storyBoard;
     private GradientStop _gradientStop1;
@@ -26,11 +26,7 @@ namespace Newport
       DefaultStyleKey = typeof(ProgressSpinner);
     }
 
-#if UNIVERSAL
-    protected override void OnApplyTemplate()
-#else
-    public override void OnApplyTemplate()
-#endif
+    protected override void OnFromTemplate()
     {
       var viewBox = (Viewbox)GetTemplateChild("viewBox");
       _storyBoard = (Storyboard)viewBox.Resources["storyboard"];
@@ -40,8 +36,6 @@ namespace Newport
 
       AdjustGradient();
       StartStopAnimation(IsBusy);
-
-      base.OnApplyTemplate();
     }
 
     private void StartStopAnimation(bool isBusy)

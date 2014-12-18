@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace Newport
 {
-  public class FancyBackground : Control
+  public class FancyBackground : TemplatedControl
   {
     private Canvas _canvas;
     private bool _isInitialized;
@@ -26,15 +26,10 @@ namespace Newport
       Loaded += (_, __) => CreateItems();
     }
 
-#if UNIVERSAL
-    protected override void OnApplyTemplate()
-#else
-    public override void OnApplyTemplate()
-#endif
+    protected override void OnFromTemplate()
     {
-      _canvas = (Canvas)GetTemplateChild("canvas");
+      _canvas = VerifyGetTemplateChild<Canvas>("canvas");
       _isInitialized = true;
-      base.OnApplyTemplate();
     }
 
     protected override Size ArrangeOverride(Size finalSize)
@@ -96,11 +91,11 @@ namespace Newport
       _canvas.Children.Add(p);
     }
 
-    private double ExponentialEase(double x, double a)
+    private static double ExponentialEase(double x, double a)
     {
       const double epsilon = 0.00001;
-      var minA = 0.0 + epsilon;
-      var maxA = 1.0 - epsilon;
+      const double minA = 0.0 + epsilon;
+      const double maxA = 1.0 - epsilon;
       a = Math.Max(minA, Math.Min(maxA, a));
       var y = 0.0;
       if (x <= 0.5)
