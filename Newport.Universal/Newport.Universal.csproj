@@ -67,6 +67,9 @@
     <Compile Include="..\Newport\Controls\BevelBorder.cs">
       <Link>Controls\BevelBorder.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\CircularFrame.cs">
+      <Link>Controls\CircularFrame.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ControlFinder.cs">
       <Link>Controls\ControlFinder.cs</Link>
     </Compile>

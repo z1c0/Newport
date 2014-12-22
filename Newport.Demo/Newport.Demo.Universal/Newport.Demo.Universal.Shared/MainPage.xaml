@@ -18,6 +18,7 @@
   </n:Interaction.Behaviors>
 
   <Grid
+    Margin="40"
     n:FrameworkElementExtensions.LoadedCommand="{Binding Path=ShowMenuCommand}">
     <Grid.RowDefinitions>
       <RowDefinition
@@ -31,6 +32,10 @@
       IsThreeState="False"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
 
+    <n:CircularFrame>
+      <Image Source="Assets/spaceman.jpg"/>
+    </n:CircularFrame>
+    
     <n:TileMenu
       Grid.Row="2"
       Height="400"

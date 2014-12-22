@@ -66,4 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\spaceman.jpg" />
+  </ItemGroup>
 </Project>

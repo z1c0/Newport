@@ -141,6 +141,9 @@
     <Compile Include="..\Newport\Controls\BevelBorder.cs">
       <Link>Controls\BevelBorder.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\CircularFrame.cs">
+      <Link>Controls\CircularFrame.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ContentControlEx.cs">
       <Link>Controls\ContentControlEx.cs</Link>
     </Compile>
