@@ -153,6 +153,9 @@
     <Compile Include="..\Newport\Controls\FlipControl.cs">
       <Link>Controls\FlipControl.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\ParticleControl.cs">
+      <Link>Controls\ParticleControl.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\ProgressSpinner.cs">
       <Link>Controls\ProgressSpinner.cs</Link>
     </Compile>

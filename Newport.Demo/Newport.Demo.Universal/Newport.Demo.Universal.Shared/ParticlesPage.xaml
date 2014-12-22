@@ -33,6 +33,9 @@
         HorizontalAlignment="Center"
         Style="{StaticResource TitleTextBlockStyle}" />
     </StackPanel>
+    
+    <n:ParticleControl Grid.Row="1"
+                       IsRunning="True"/>
 
   </Grid>
 </Page>
