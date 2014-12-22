@@ -10,6 +10,8 @@ namespace Newport
 
     public BitmapBuffer(int width, int height)
     {
+      Width = width;
+      Height = height;
       _bitmap = new WriteableBitmap(width, height);
     }
 
@@ -49,5 +51,9 @@ namespace Newport
     {
       get { return _bitmap.PixelHeight; }
     }
+
+    public int Width { get; private set; }
+
+    public int Height { get; private set; }
   }
 }

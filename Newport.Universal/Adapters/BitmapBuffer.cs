@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Graphics.Display;
+using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
@@ -11,22 +11,20 @@ namespace Newport
 {
   public class BitmapBuffer
   {
-    private readonly WriteableBitmap _writeableBitmap;
+    private WriteableBitmap _writeableBitmap;
 
     public BitmapBuffer(int width, int height)
     {
-      const double DEFAULT_DPI = 96.0;
-      var dpi = DisplayInformation.GetForCurrentView().LogicalDpi;
-      var w = (int)(width * (dpi / DEFAULT_DPI));
-      var h = (int)(height * (dpi / DEFAULT_DPI));
-      _writeableBitmap = new WriteableBitmap(w, h);
+      Width = width;
+      Height = height;
     }
 
-    public async void Render(UIElement e)
+    public async Task Render(UIElement e)
     {
       var rtb = new RenderTargetBitmap();
-      await rtb.RenderAsync(e, PixelWidth, PixelHeight);
+      await rtb.RenderAsync(e, Width, Height);
       var p = await rtb.GetPixelsAsync();
+      _writeableBitmap = new WriteableBitmap(rtb.PixelWidth, rtb.PixelHeight);
       p.CopyTo(_writeableBitmap.PixelBuffer);
     }
 
@@ -46,6 +44,9 @@ namespace Newport
     }
 
     public ImageSource ImageSource { get { return _writeableBitmap; } }
+
+    public int Width { get; private set; }
+    public int Height { get; private set; }
 
     public Color GetPixel(int x, int y)
     {

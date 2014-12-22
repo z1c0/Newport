@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Graphics.Display;
 #if UNIVERSAL
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -90,35 +91,44 @@ namespace Newport
     {
       var w = (int)finalSize.Width;
       var h = (int)finalSize.Height;
-      if (_bitmap == null || _bitmap.PixelWidth != w || _bitmap.PixelHeight != h)
+      if (_bitmap == null || _bitmap.Width != w || _bitmap.Height != h)
       {
-        _bitmap = new BitmapBuffer(w, h);
-        _rectangle.Width = w;
-        _rectangle.Height = h;
-        _rectangle.Fill = CoverBrush;
-#if UNIVERSAL
-        _bitmap.Render(_rectangle);
-#else
-        var r = new Rectangle()
-        {
-          Width = w,
-          Height = h,
-          Fill = CoverBrush
-        };
-        _bitmap.Render(r);
-#endif
-        _bitmap.Invalidate();
-        _image.Width = w;
-        _image.Height = h;
-        _image.Source = _bitmap.ImageSource;
+        CreateBitmap(w, h);
       }
       return base.ArrangeOverride(finalSize);
+    }
+
+    private async void CreateBitmap(int w, int h)
+    {
+      _bitmap = new BitmapBuffer(w, h);
+      _rectangle.Width = w;
+      _rectangle.Height = h;
+      _rectangle.Fill = CoverBrush;
+#if UNIVERSAL
+      await _bitmap.Render(_rectangle);
+#else
+      var r = new Rectangle()
+      {
+        Width = w,
+        Height = h,
+        Fill = CoverBrush
+      };
+      _bitmap.Render(r);
+#endif
+      _bitmap.Invalidate();
+      _image.Width = w;
+      _image.Height = h;
+      _image.Source = _bitmap.ImageSource;
     }
 
     private void Reveal(Point point)
     {
       _rectangle.Opacity = 0.0;
-
+#if UNIVERSAL
+      const double DEFAULT_DPI = 96.0;
+      var dpiScale = DisplayInformation.GetForCurrentView().LogicalDpi / DEFAULT_DPI;
+      point = new Point(point.X * dpiScale, point.Y * dpiScale);
+#endif
       var mapOffsetX = 0;
       var left = (int)(point.X - Radius);
       if (left < 0)
