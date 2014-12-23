@@ -38,6 +38,13 @@
       Grid.Row="0"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
    
+    <n:CircularFrame
+      Grid.Row="1"
+      Width="120"
+      Height="120">
+      <Image Source="Assets/spaceman.jpg"/>
+    </n:CircularFrame>
+
     <n:TileMenu
       Grid.Row="2"
       Height="400"

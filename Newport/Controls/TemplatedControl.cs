@@ -24,7 +24,7 @@ namespace Newport
 
     protected abstract void OnFromTemplate();
 
-    protected T VerifyGetTemplateChild<T>(string name) where T : UIElement
+    protected T VerifyGetTemplateChild<T>(string name) where T : DependencyObject
     {
       var t = GetTemplateChild(name) as T;
       if (t == null)

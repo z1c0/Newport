@@ -14,15 +14,21 @@
           TargetType="n:CircularFrame">
           <Border
             BorderBrush="Blue"
-            BorderThickness="10">
-            <ContentPresenter x:Name="ContentPresenter"/>
+            BorderThickness="0">
+            <ContentPresenter
+              x:Name="ContentPresenter">
+              <ContentPresenter.Clip>
+                <EllipseGeometry
+                  x:Name="EllipseGeometry" />
+              </ContentPresenter.Clip>
+            </ContentPresenter>
           </Border>
 
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-  </Style>  
-  
+  </Style>
+
   <!--  FancyBackground -->
 
   <Style

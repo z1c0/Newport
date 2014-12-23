@@ -54,7 +54,7 @@ namespace Newport
       CompositionTarget.Rendering += (o, e) => UpdateParticles();
     }
 
-    private void < GenerateBrushes(int count)
+    private void GenerateBrushes(int count)
     {
       _brushes = new Brush[count];
       for (var i = 0; i < count; i++)
