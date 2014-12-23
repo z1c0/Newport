@@ -36,15 +36,14 @@
 
     <Grid
       Grid.Row="1"
-      Background="LightBlue">
+      Background="Blue">
       <n:ParticleControl 
-        OffsetX="{Binding Path=OffsetX}"
-        OffsetY="{Binding Path=OffsetY}"
+        OnNewParticleCommand="{Binding Path=InitParticleCommand}"
         MaxParticleCount="50"
         Speed="2"
-        Life="40"
+        Life="50"
         StartColor="White"
-        EndColor="LightGray"
+        EndColor="White"
         IsRunning="True"/>
     </Grid>
   </Grid>

@@ -4,8 +4,12 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="n:CircularFrame">
-          <Border BorderBrush="Blue" BorderThickness="10">
-            <ContentPresenter x:Name="ContentPresenter" />
+          <Border BorderBrush="Blue" BorderThickness="0">
+            <ContentPresenter x:Name="ContentPresenter">
+              <!--<ContentPresenter.Clip>
+                <EllipseGeometry x:Name="EllipseGeometry" />
+              </ContentPresenter.Clip>-->
+            </ContentPresenter>
           </Border>
         </ControlTemplate>
       </Setter.Value>

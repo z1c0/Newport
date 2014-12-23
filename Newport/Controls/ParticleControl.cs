@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 #if UNIVERSAL
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -16,6 +17,18 @@ using System.Windows.Shapes;
 
 namespace Newport
 {
+  public class Particle
+  {
+    public Point Position;
+    public Point Velocity;
+    public double StartLife;
+    public double Life;
+    public double Decay;
+    public double StartSize;
+    public double Size;
+    internal Ellipse Ellipse;
+  }
+
   public class ParticleControl : ContentControl
   {
     public event EventHandler Update;
@@ -132,7 +145,7 @@ namespace Newport
             // update position
             p.Position.X = p.Position.X + (p.Velocity.X * _elapsed);
             p.Position.Y = p.Position.Y + (p.Velocity.Y * _elapsed);
-            p.Position.Z = p.Position.Z + (p.Velocity.Z * _elapsed);
+            //p.Position.Z = p.Position.Z + (p.Velocity.Z * _elapsed);
             var t = (p.Ellipse.RenderTransform as TranslateTransform);
             t.X = p.Position.X;
             t.Y = p.Position.Y;
@@ -201,7 +214,7 @@ namespace Newport
       double size = RandomWithVariance(this.ParticleSize, this.ParticleSizeVariance);
 
       var p = new Particle();
-      p.Position = new Point3D(x, y, z);
+      p.Position = new Point(x, y);
       p.StartLife = life;
       p.Life = life;
       p.StartSize = size;
@@ -236,19 +249,30 @@ namespace Newport
       var vX = (1.0 - (RandomData.GetDouble() * 2.0)) * velocityMultiplier;
       var vY = (1.0 - (RandomData.GetDouble() * 2.0)) * velocityMultiplier;
 
-      // TODO: OnNewParticleCommand
-      vY = Math.Abs(vY);
+      p.Velocity = new Point(vX, vY);
 
-      p.Velocity = new Point3D(vX, vY, 0);
-
+      var command = OnNewParticleCommand;
+      if (command != null)
+      {
+        command.Execute(p);
+      }
       _particles.Add(p);
     }
 
+    public ICommand OnNewParticleCommand
+    {
+      get { return (ICommand)GetValue(OnNewParticleCommandProperty); }
+      set { SetValue(OnNewParticleCommandProperty, value); }
+    }
+
+    public static readonly DependencyProperty OnNewParticleCommandProperty =
+        DependencyProperty.Register("OnNewParticleCommand", typeof(ICommand), typeof(ParticleControl), new PropertyMetadata(null));
+
     private double RandomWithVariance(double midvalue, double variance)
     {
-      double min = Math.Max(midvalue - (variance / 2), 0);
-      double max = midvalue + (variance / 2);
-      double value = min + ((max - min) * RandomData.GetDouble());
+      var min = Math.Max(midvalue - (variance / 2), 0);
+      var max = midvalue + (variance / 2);
+      var value = min + ((max - min) * RandomData.GetDouble());
       return value;
     }
 
@@ -479,29 +503,5 @@ namespace Newport
     }
 
     #endregion Fuzziness (DependencyProperty)
-
-    private class Particle
-    {
-      public Point3D Position;
-      public Point3D Velocity;
-      public double StartLife;
-      public double Life;
-      public double Decay;
-      public double StartSize;
-      public double Size;
-      public Ellipse Ellipse;
-    }
-  }
-
-  internal class Point3D
-  {
-    public Point3D(double x, double y, double z)
-    {
-      X = x;
-      Y = y;
-      Z = z;
-    }
-
-    public double X, Y, Z;
   }
 }

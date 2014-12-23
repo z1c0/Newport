@@ -1,8 +1,10 @@
 ﻿using System;
 #if UNIVERSAL
+using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Media;
 #else
 using System.Windows;
 using System.Windows.Markup;
@@ -19,7 +21,7 @@ namespace Newport
 #endif
   public class CircularFrame : TemplatedControl
   {
-    private EllipseGeometry _ellipseGeometry;
+    //private EllipseGeometry _ellipseGeometry;
 
     public CircularFrame()
     {
@@ -30,14 +32,14 @@ namespace Newport
     {
       var presenter = VerifyGetTemplateChild<ContentPresenter>("ContentPresenter");
       presenter.Content = Child;
-      _ellipseGeometry = VerifyGetTemplateChild<EllipseGeometry>("EllipseGeometry");
+      //_ellipseGeometry = VerifyGetTemplateChild<EllipseGeometry>("EllipseGeometry");
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-      _ellipseGeometry.RadiusX = finalSize.Width / 2;
-      _ellipseGeometry.RadiusY = finalSize.Height / 2;
-      _ellipseGeometry.Center = new Point(finalSize.Width / 2, finalSize.Height / 2);
+      //_ellipseGeometry.RadiusX = finalSize.Width / 2;
+      //_ellipseGeometry.RadiusY = finalSize.Height / 2;
+      //_ellipseGeometry.Center = new Point(finalSize.Width / 2, finalSize.Height / 2);
       return base.ArrangeOverride(finalSize);
     }
 
