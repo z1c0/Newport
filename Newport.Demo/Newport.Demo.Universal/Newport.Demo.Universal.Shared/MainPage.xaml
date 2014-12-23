@@ -32,7 +32,9 @@
       IsThreeState="False"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
 
-    <n:CircularFrame>
+    <n:CircularFrame
+      Grid.Row="1"
+      Width="90" Height="90">
       <Image Source="Assets/spaceman.jpg"/>
     </n:CircularFrame>
     

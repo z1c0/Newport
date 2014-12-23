@@ -54,12 +54,9 @@ namespace Newport
       CompositionTarget.Rendering += (o, e) => UpdateParticles();
     }
 
-    private void GenerateBrushes(int count)
+    private void < GenerateBrushes(int count)
     {
       _brushes = new Brush[count];
-      var from = this.StartColor;
-      var to = this.EndColor;
-
       for (var i = 0; i < count; i++)
       {
         var progress = (1.0 / (double)count) * (double)i;
@@ -67,7 +64,6 @@ namespace Newport
         if (this.Fuzziness > 0.01)
         {
           // use gradient brushes to create "fuzziness"
-
 #if UNIVERSAL
           var r = new LinearGradientBrush();
 #else
@@ -86,7 +82,6 @@ namespace Newport
 
           r.GradientStops.Add(stop1);
           r.GradientStops.Add(stop2);
-
           _brushes[i] = r;
         }
         else
