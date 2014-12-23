@@ -23,7 +23,6 @@ namespace Newport
     private readonly Canvas _particleHost;
     private readonly List<Particle> _particles;
     private readonly List<Particle> _deadList;
-    private readonly Random _random;
     private Brush[] _brushes;
     private readonly double _elapsed;
     private bool _areBrushesValid;
@@ -35,7 +34,6 @@ namespace Newport
 
       _particles = new List<Particle>();
       _deadList = new List<Particle>();
-      _random = new Random();
       _elapsed = 0.1;
 
       Speed = 20;
@@ -43,7 +41,6 @@ namespace Newport
       ParticleSize = 12;
       ParticleSizeVariance = 5;
       MaxParticleCount = 100;
-      Density = 0.5;
       OffsetX = 400;
       OffsetY = 200;
       Life = 10;
@@ -106,6 +103,7 @@ namespace Newport
       {
         if (Update != null)
         {
+          // TODO: Make command
           Update(this, EventArgs.Empty);
         }
 
@@ -135,7 +133,7 @@ namespace Newport
             p.Position.X = p.Position.X + (p.Velocity.X * _elapsed);
             p.Position.Y = p.Position.Y + (p.Velocity.Y * _elapsed);
             p.Position.Z = p.Position.Z + (p.Velocity.Z * _elapsed);
-            TranslateTransform t = (p.Ellipse.RenderTransform as TranslateTransform);
+            var t = (p.Ellipse.RenderTransform as TranslateTransform);
             t.X = p.Position.X;
             t.Y = p.Position.Y;
 
@@ -198,12 +196,11 @@ namespace Newport
     {
       double x = RandomWithVariance(OffsetX, OriginVariance);
       double y = RandomWithVariance(OffsetY, OriginVariance);
-      double z = 10 * (_random.NextDouble() * OriginVariance);
-      double speed = this.Speed; //RandomWithVariance(this.Speed, this.SpeedVariance);
+      double z = 10 * (RandomData.GetDouble() * OriginVariance);
       double life = RandomWithVariance(this.Life, this.LifeVariance);
       double size = RandomWithVariance(this.ParticleSize, this.ParticleSizeVariance);
 
-      Particle p = new Particle();
+      var p = new Particle();
       p.Position = new Point3D(x, y, z);
       p.StartLife = life;
       p.Life = life;
@@ -215,20 +212,17 @@ namespace Newport
 
       if (e != null)
       {
-        //e.Fill = brushes[0];
-        e.Fill = null;
+        //e.Fill = _brushes[0];
         e.Width = e.Height = size;
         p.Ellipse = e;
-
         t = e.RenderTransform as TranslateTransform;
       }
       else
       {
         p.Ellipse = new Ellipse();
-
         //p.Ellipse.Fill = brushes[0];
         p.Ellipse.Width = p.Ellipse.Height = size;
-        this._particleHost.Children.Add(p.Ellipse);
+        _particleHost.Children.Add(p.Ellipse);
 
         t = new TranslateTransform();
         p.Ellipse.RenderTransform = t;
@@ -238,20 +232,23 @@ namespace Newport
       t.X = p.Position.X;
       t.Y = p.Position.Y;
 
-      double velocityMultiplier = (_random.NextDouble() + 0.25) * speed;
-      double vX = (1.0 - (_random.NextDouble() * 2.0)) * velocityMultiplier;
-      double vY = (1.0 - (_random.NextDouble() * 2.0)) * velocityMultiplier;
+      var velocityMultiplier = (RandomData.GetDouble() + 0.25) * Speed;
+      var vX = (1.0 - (RandomData.GetDouble() * 2.0)) * velocityMultiplier;
+      var vY = (1.0 - (RandomData.GetDouble() * 2.0)) * velocityMultiplier;
+
+      // TODO: OnNewParticleCommand
+      vY = Math.Abs(vY);
 
       p.Velocity = new Point3D(vX, vY, 0);
 
-      this._particles.Add(p);
+      _particles.Add(p);
     }
 
     private double RandomWithVariance(double midvalue, double variance)
     {
       double min = Math.Max(midvalue - (variance / 2), 0);
       double max = midvalue + (variance / 2);
-      double value = min + ((max - min) * _random.NextDouble());
+      double value = min + ((max - min) * RandomData.GetDouble());
       return value;
     }
 
@@ -482,19 +479,6 @@ namespace Newport
     }
 
     #endregion Fuzziness (DependencyProperty)
-
-    #region Density (DependencyProperty)
-
-    public double Density
-    {
-      get { return (double)GetValue(DensityProperty); }
-      set { SetValue(DensityProperty, value); }
-    }
-
-    public static readonly DependencyProperty DensityProperty =
-        DependencyProperty.Register("Density", typeof(double), typeof(ParticleControl), null);
-
-    #endregion Density (DependencyProperty)
 
     private class Particle
     {

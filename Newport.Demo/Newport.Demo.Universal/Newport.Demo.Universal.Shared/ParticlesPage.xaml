@@ -33,9 +33,19 @@
         HorizontalAlignment="Center"
         Style="{StaticResource TitleTextBlockStyle}" />
     </StackPanel>
-    
-    <n:ParticleControl Grid.Row="1"
-                       IsRunning="True"/>
 
+    <Grid
+      Grid.Row="1"
+      Background="LightBlue">
+      <n:ParticleControl 
+        OffsetX="{Binding Path=OffsetX}"
+        OffsetY="{Binding Path=OffsetY}"
+        MaxParticleCount="50"
+        Speed="2"
+        Life="40"
+        StartColor="White"
+        EndColor="LightGray"
+        IsRunning="True"/>
+    </Grid>
   </Grid>
 </Page>
