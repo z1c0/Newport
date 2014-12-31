@@ -127,6 +127,9 @@
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\IApplicationSettings.cs">
+      <Link>IApplicationSettings.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\ImageCache.cs">
       <Link>ImageCache.cs</Link>
     </Compile>
@@ -179,6 +182,7 @@
     <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Commands\CommandHelper.cs" />
     <Compile Include="Adapters\NavigationAdapter.cs" />
+    <Compile Include="DispatcherHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

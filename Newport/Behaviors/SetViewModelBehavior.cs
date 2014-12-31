@@ -36,9 +36,14 @@ namespace Newport
     {
       string keyName = null;
       var className = AssociatedObject.GetType().Name;
-      if (className.EndsWith("Page"))
+      var suffices = new [] { "Page", "View", "Control" };
+      foreach (var s in suffices)
       {
-        keyName = className.Remove(className.Length - 4) + "ViewModel";
+        if (className.EndsWith(s))
+        {
+          keyName = className.Remove(className.Length - s.Length) + "ViewModel";
+          break;
+        }
       }
       return keyName;
     }

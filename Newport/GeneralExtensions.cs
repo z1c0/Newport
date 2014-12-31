@@ -35,7 +35,7 @@ namespace Newport
       }
     }
 
-    public static void AppendUnique<T>(this List<T> list, T item)
+    public static void AddUnique<T>(this IList<T> list, T item)
     {
       if (!list.Contains(item))
       {
