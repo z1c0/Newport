@@ -57,17 +57,11 @@ namespace Newport
 
   public class ViewModelProvider
   {
-    private static Dictionary<string, ViewModelInformation> _viewModels;
-    private static ViewModelProvider _default;
+    private Dictionary<string, ViewModelInformation> _viewModels;
 
-    static ViewModelProvider()
+    internal ViewModelProvider()
     {
       RegisterViewModels();
-    }
-
-    public static ViewModelProvider Default
-    {
-      get { return _default ?? (_default = new ViewModelProvider()); }
     }
 
     public ViewModelBase this[string key]
@@ -104,7 +98,7 @@ namespace Newport
       return viewModel;
     }
 
-    private static void RegisterViewModels()
+    private void RegisterViewModels()
     {
       _viewModels = new Dictionary<string, ViewModelInformation>();
 #if UNIVERSAL

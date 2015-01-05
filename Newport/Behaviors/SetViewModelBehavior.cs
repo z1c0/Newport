@@ -21,7 +21,7 @@ namespace Newport
       {
         Key = InferViewModelKeyName();
       }
-      object data = ViewModelProvider.Default[Key];
+      object data = Get.ViewModelProvider[Key];
       if (data != null)
       {
         if (Path != null)
