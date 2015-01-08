@@ -43,6 +43,9 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Newport\ApplicationSettingsManager.cs">
+      <Link>ApplicationSettingsManager.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Behaviors\SetViewModelBehavior.cs">
       <Link>Behaviors\SetViewModelBehavior.cs</Link>
     </Compile>
@@ -127,8 +130,17 @@
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Get.cs">
+      <Link>Get.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\IApplicationSettings.cs">
+      <Link>IApplicationSettings.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\ImageCache.cs">
       <Link>ImageCache.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\IsolatedStorageHelper.cs">
+      <Link>IsolatedStorageHelper.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ListRandomizer.cs">
       <Link>ListRandomizer.cs</Link>
@@ -144,6 +156,9 @@
     </Compile>
     <Compile Include="..\Newport\TheColors.cs">
       <Link>TheColors.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Trace.cs">
+      <Link>Trace.cs</Link>
     </Compile>
     <Compile Include="..\Newport\UIElementExtensions.cs">
       <Link>UIElementExtensions.cs</Link>
@@ -179,6 +194,8 @@
     <Compile Include="Behaviors\Behavior.cs" />
     <Compile Include="Commands\CommandHelper.cs" />
     <Compile Include="Adapters\NavigationAdapter.cs" />
+    <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="Net\ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

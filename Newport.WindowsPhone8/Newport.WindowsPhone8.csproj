@@ -102,8 +102,8 @@
     <Compile Include="..\Newport\Adapters\NavigationAdapter.cs">
       <Link>Adapters\NavigationAdapter.cs</Link>
     </Compile>
-    <Compile Include="..\Newport\ApplicationSettingsService.cs">
-      <Link>ApplicationSettingsService.cs</Link>
+    <Compile Include="..\Newport\ApplicationSettingsManager.cs">
+      <Link>ApplicationSettingsManager.cs</Link>
     </Compile>
     <Compile Include="..\Newport\AppResource.cs">
       <Link>AppResource.cs</Link>
@@ -202,7 +202,7 @@
       <Link>DataTemplateSelector.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DataTrigger.cs">
-      <Link>DataTrigger.cs</Link>
+      <Link>ViewModels\DataTrigger.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DispatcherHelper.cs">
       <Link>DispatcherHelper.cs</Link>
@@ -224,6 +224,9 @@
     </Compile>
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Get.cs">
+      <Link>Get.cs</Link>
     </Compile>
     <Compile Include="..\Newport\IApplicationSettings.cs">
       <Link>IApplicationSettings.cs</Link>
@@ -276,6 +279,9 @@
     <Compile Include="..\Newport\TheColors.cs">
       <Link>TheColors.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Trace.cs">
+      <Link>Trace.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\UIElementExtensions.cs">
       <Link>UIElementExtensions.cs</Link>
     </Compile>
@@ -325,6 +331,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

@@ -1,19 +1,20 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Text;
-using System.Windows;
 using System.Xml.Serialization;
+using Windows.Storage;
+#if UNIVERSAL
+#else
+using System.Windows;
+using System.ComponentModel;
+using System.IO.IsolatedStorage;
+#endif
 
 namespace Newport
 {
   public class IsolatedStorageHelper
   {
-    private const string SAVE_KEY = "SAVE_KEY";
-
-    public void Save(object t)
+    public void Save(string key, object t)
     {
       try
       {
@@ -25,34 +26,34 @@ namespace Newport
           using (var reader = new StreamReader(ms))
           {
             var xml = reader.ReadToEnd();
-            IsolatedStorageSettings.ApplicationSettings[SAVE_KEY] = xml;
+#if UNIVERSAL
+            ApplicationData.Current.RoamingSettings.Values[key] = xml;
+#else
+            IsolatedStorageSettings.ApplicationSettings[key] = xml;
             IsolatedStorageSettings.ApplicationSettings.Save();
+#endif
           }
         }
       }
       catch (Exception e)
       {
-        Error(e);
+        Trace.WriteLine(e);
       }
     }
 
-    [Conditional("DEBUG")]
-    private void Error(Exception e)
-    {
-      if (!DesignerProperties.IsInDesignTool)
-      {
-        MessageBox.Show(e.ToString());
-      }
-    }
-
-    public T Load<T>() where T : class
+    public T Load<T>(string key) where T : class
     {
       var t = default(T);
       try
       {
-        string xml = null;
-        if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<string>(SAVE_KEY, out xml))
+        object o;
+#if UNIVERSAL
+        if (ApplicationData.Current.RoamingSettings.Values.TryGetValue(key, out o))
+#else
+        if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<object>(key, out o))
+#endif
         {
+          var xml = o as string;
           using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
           {
             var serializer = new XmlSerializer(typeof(T));
@@ -62,7 +63,7 @@ namespace Newport
       }
       catch (Exception e)
       {
-        Error(e);
+        Trace.WriteLine(e);
       }
       return t;
     }
