@@ -16,8 +16,10 @@
     <n:SetViewModelBehavior />
   </n:Interaction.Behaviors>
 
-  <Grid
-    Background="Transparent">
+  <Grid>
+    <Grid.Background>
+      <ImageBrush ImageSource="Assets/Weather.jpg"/>
+    </Grid.Background>
     <Grid.RowDefinitions>
       <RowDefinition
         Height="Auto" />
@@ -25,23 +27,15 @@
         Height="*" />
     </Grid.RowDefinitions>
 
-    <!--TitlePanel contains the name of the application and page title-->
-    <StackPanel
-      Grid.Row="0">
-      <TextBlock
-        Text="{Binding Path=Text}"
-        HorizontalAlignment="Center"
-        Style="{StaticResource TitleTextBlockStyle}" />
-    </StackPanel>
-
     <Grid
-      Grid.Row="1"
+      Grid.Row="0"
       Background="Blue">
       <n:ParticleControl 
         OnNewParticleCommand="{Binding Path=InitParticleCommand}"
-        MaxParticleCount="50"
+        MaxParticleCount="70"
         Speed="2"
-        Life="50"
+        Life="150"
+        LifeVariance="200"
         StartColor="White"
         EndColor="White"
         IsRunning="True"/>

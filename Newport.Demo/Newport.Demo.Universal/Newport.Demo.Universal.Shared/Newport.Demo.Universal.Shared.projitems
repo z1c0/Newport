@@ -68,5 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\spaceman.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Weather.jpg" />
   </ItemGroup>
 </Project>
