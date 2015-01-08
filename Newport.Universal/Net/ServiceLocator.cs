@@ -15,32 +15,22 @@ namespace Newport
     private readonly HttpClient _client;
     private readonly DatagramSocket _socket;
 
-    public DatagramSocket Socket
-    {
-      get
-      {
-        return _socket;
-      }
-    }
-
     public ServiceLocator()
     {
       _client = new HttpClient();
       _socket = new DatagramSocket();
       _socket.MessageReceived += HandleMessageReceived;
-      Init();
-    }
-
-    private async void Init()
-    {
-      await _socket.BindServiceNameAsync("");
-      _socket.JoinMulticastGroup(new HostName(SSDP_ADDR));
     }
 
     public async void Locate()
     {
       try
       {
+        if (string.IsNullOrEmpty(_socket.Information.LocalPort))
+        {
+          await _socket.BindServiceNameAsync("");
+          _socket.JoinMulticastGroup(new HostName(SSDP_ADDR));
+        }
         var s = await _socket.GetOutputStreamAsync(new HostName(SSDP_ADDR), "1900");
         using (var dataWriter = new DataWriter(s))
         {
