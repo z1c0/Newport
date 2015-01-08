@@ -159,9 +159,8 @@ namespace Newport
 
       // create new particles (up to 10 or MaxParticleCount)
 
-      for (int i = 0; i < 10 && this._particles.Count < this.MaxParticleCount; i++)
-
-      //for (int i = 0; this.particles.Count < this.MaxParticleCount; i++)
+      //for (int i = 0; i < 10 && this._particles.Count < this.MaxParticleCount; i++)
+      for (var i = 0; _particles.Count < MaxParticleCount; i++)
       {
         // attempt to recycle ellipses if they are in the deadlist
         if (_deadList.Count - 1 >= i)
