@@ -17,7 +17,7 @@ namespace Newport
         e.Cancel = true;
         if (NavigationUri != null)
         {
-          NavigationAdapter.NavigationService.Navigate(NavigationUri);
+          Get.Navigator.Navigate(NavigationUri);
         }
       };
     }

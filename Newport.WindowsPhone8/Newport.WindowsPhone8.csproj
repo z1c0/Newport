@@ -96,11 +96,14 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Newport\Adapters\BaseNavigator.cs">
+      <Link>Adapters\BaseNavigator.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Adapters\BitmapBuffer.cs">
       <Link>Adapters\BitmapBuffer.cs</Link>
     </Compile>
-    <Compile Include="..\Newport\Adapters\NavigationAdapter.cs">
-      <Link>Adapters\NavigationAdapter.cs</Link>
+    <Compile Include="..\Newport\Adapters\Navigator.cs">
+      <Link>Adapters\Navigator.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ApplicationSettingsManager.cs">
       <Link>ApplicationSettingsManager.cs</Link>

@@ -244,13 +244,13 @@ namespace Newport
     {
       if (GoBack)
       {
-        NavigationAdapter.NavigationService.GoBack();
+        Get.Navigator.NavigationService.GoBack();
       }
       else
       {
         if (NavigationUri != null)
         {
-          NavigationAdapter.NavigationService.Navigate(NavigationUri);
+          Get.Navigator.NavigationService.Navigate(NavigationUri);
         }
       }
     }

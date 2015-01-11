@@ -35,6 +35,18 @@ namespace Newport
       }
     }
 
+    public static void AddOrReplace<K, V>(this Dictionary<K, V> dict, K key, V value)
+    {
+      if (dict.ContainsKey(key))
+      {
+        dict[key] = value;
+      }
+      else
+      {
+        dict.Add(key, value);
+      }
+    }
+
     public static void AddUnique<T>(this IList<T> list, T item)
     {
       if (!list.Contains(item))

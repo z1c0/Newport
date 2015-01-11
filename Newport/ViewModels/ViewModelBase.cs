@@ -43,18 +43,6 @@ namespace Newport
       }
     }
 
-    public bool IsEmulator
-    {
-      get
-      {
-#if UNIVERSAL
-        throw new NotImplementedException();
-#else
-        return Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator;
-#endif
-      }
-    }
-
     public bool IsTrial
     {
       get

@@ -54,12 +54,13 @@ namespace Newport
 
     private static void OnMouseLeftButtonDownCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
-#if UNIVERSAL
-      throw new NotImplementedException();
-#else
       var element = (UIElement)sender;
-      element.MouseLeftButtonDown += (o, e) => TriggerCommand(GetMouseLeftButtonDownCommand(element), element, e);
+#if UNIVERSAL
+      element.PointerPressed += (_, e)
+#else
+      element.MouseLeftButtonDown += (_, e) 
 #endif
+        => TriggerCommand(GetMouseLeftButtonDownCommand(element), element, e);
     }
 
     #endregion MouseLeftButtonDownCommand (Attached Property)
@@ -160,19 +161,20 @@ namespace Newport
 
     private static void OnTapCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
     {
-#if UNIVERSAL
-      throw new NotImplementedException();
-#else
       var e = (UIElement)sender;
       if (e != null)
       {
-        e.Tap += (o, a) => TriggerCommand(GetTapCommand(e), e, a);
-      }
+#if UNIVERSAL
+        e.Tapped +=
+#else
+        e.Tap +=
 #endif
+          (o, a) => TriggerCommand(GetTapCommand(e), e, a);
+      }
     }
     #endregion TapCommand (Attached Property)
 
-// TODO Wrap EventArgs class
+    // TODO Wrap EventArgs class
 #if UNIVERSAL
     internal static void TriggerCommand(ICommand command, UIElement e, RoutedEventArgs eventArgs)
 #else

@@ -65,8 +65,9 @@ namespace Newport
       if (Action != null)
       {
         Action((T)parameter);
+        // TODO
+        //CommandManager.InvalidateRequerySuggested();
       }
-      CommandManager.InvalidateRequerySuggested();
     }
 
     public Action<T> Action { get; set; }

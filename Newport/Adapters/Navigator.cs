@@ -1,31 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 
 namespace Newport
 {
-  public static class NavigationAdapter
+  public class Navigator : BaseNavigator
   {
-    static NavigationAdapter()
-    {
-      State = new Dictionary<string, object>();
-    }
-
-    public static Dictionary<string, object> State { get; private set; }
-
-    public static void Navigate(Type t)
-    {
-      Navigate(new Uri("/" + t.Name + ".xaml", UriKind.Relative));
-    }
-
-    public static void Navigate(Uri uri)
+    public void Navigate(Uri uri)
     {
       NavigationService.Navigate(uri);
     }
 
-    internal static NavigationService NavigationService
+    public override void Navigate(Type type, object dataContext = null)
+    {
+      Navigate(new Uri("/" + type.Name + ".xaml", UriKind.Relative));
+    }
+
+    internal NavigationService NavigationService
     {
       get
       {

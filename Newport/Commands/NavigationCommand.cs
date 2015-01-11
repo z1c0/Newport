@@ -45,7 +45,7 @@ namespace Newport
       }
       else
       {
-        NavigationAdapter.Navigate(_type);
+        Get.Navigator.Navigate(_type);
       }
     }
 
