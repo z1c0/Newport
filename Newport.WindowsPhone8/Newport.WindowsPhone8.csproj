@@ -315,6 +315,9 @@
     <Compile Include="..\Newport\VisualTreeEnumeration.cs">
       <Link>VisualTreeEnumeration.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\WeakList.cs">
+      <Link>WeakList.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\WebBrowserExtensions.cs">
       <Link>WebBrowserExtensions.cs</Link>
     </Compile>

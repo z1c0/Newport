@@ -124,7 +124,7 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="n:ProgressSpinner">
-          <Viewbox x:Name="viewBox" Width="48" Height="48" x:FieldModifier="private">
+         <Viewbox x:Name="viewBox" Width="{TemplateBinding Width}" Height="{TemplateBinding Width}" x:FieldModifier="private">
             <Viewbox.Resources>
               <Storyboard x:Name="storyboard" RepeatBehavior="ForEver" x:FieldModifier="private">
                 <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="canvas" Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)">

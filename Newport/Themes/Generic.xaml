@@ -238,8 +238,8 @@
           TargetType="n:ProgressSpinner">
           <Viewbox
             x:Name="viewBox"
-            Width="48"
-            Height="48"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}"
             x:FieldModifier="private">
             <Viewbox.Resources>
               <Storyboard

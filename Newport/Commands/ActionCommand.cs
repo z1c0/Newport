@@ -3,6 +3,7 @@ using System.Windows.Input;
 #if UNIVERSAL
 using Windows.UI.Xaml;
 #else
+using System.Windows;
 #endif
 
 namespace Newport
