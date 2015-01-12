@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Windows;
+using System.Windows.Input;
 #if UNIVERSAL
 using Windows.UI.Xaml;
-using System.Windows.Input;
 #else
-using System.Windows.Input;
 #endif
 
 namespace Newport
 {
+  internal interface ITriggerable
+  {
+    void Trigger();
+  }
+
   public class ActionEventSource
   {
     // TODO Wrap EVent class
@@ -21,34 +24,28 @@ namespace Newport
     public UIElement OriginalSender { get; set; }
   }
 
-  public class GenericActionCommand<T> : ActionEventSource, ICommand
+  public class GenericActionCommand<T> : ActionEventSource, ITriggerable, ICommand
   {
     public GenericActionCommand()
     {
+      CommandManager.Commands.Add(this);
     }
 
     public GenericActionCommand(Action<T> action)
     {
+      CommandManager.Commands.Add(this);
       Action = action;
     }
 
     public GenericActionCommand(Action<T> action, Func<T, bool> isEnabled)
     {
+      CommandManager.Commands.Add(this);
       Action = action;
       IsEnabled = isEnabled;
     }
 
-    public event EventHandler CanExecuteChanged
-    {
-      add
-      {
-        CommandManager.RequerySuggested += value;
-      }
-      remove
-      {
-        CommandManager.RequerySuggested -= value;
-      }
-    }
+    public event EventHandler CanExecuteChanged;
+
 
     public bool CanExecute(object parameter)
     {
@@ -65,14 +62,22 @@ namespace Newport
       if (Action != null)
       {
         Action((T)parameter);
-        // TODO
-        //CommandManager.InvalidateRequerySuggested();
+        CommandManager.InvalidateRequerySuggested();
       }
     }
 
     public Action<T> Action { get; set; }
 
     public Func<T, bool> IsEnabled { get; set; }
+
+    public void Trigger()
+    {
+      var handler = CanExecuteChanged;
+      if (handler != null)
+      {
+        handler(this, EventArgs.Empty);
+      }
+    }
   }
 
   public class ActionCommand : GenericActionCommand<object>

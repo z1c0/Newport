@@ -1,25 +1,36 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Newport
 {
-  public class BackNavigationBehavior : Behavior<Frame>
+  public class BackNavigationBehavior : Behavior<Page>
   {
-    public Uri NavigationUri { get; set; }
+    private static Frame _frame;
+
+    public string NavigationTarget { get; set; }
 
     protected override void OnAttached()
     {
       base.OnAttached();
-
-      AssociatedObject.Navigating += (_, e) =>
+      if (_frame == null)
       {
-        e.Cancel = true;
-        if (e.NavigationMode == NavigationMode.Back && NavigationUri != null)
+        _frame = ControlFinder.FindParent<Frame>(Window.Current.Content);
+        _frame.Navigating += (f, e) =>
         {
-          //NavigationAdapter.NavigationService.Navigate(NavigationUri);
-        }
-      };
+          if (e.NavigationMode == NavigationMode.Back && ((Frame)f).SourcePageType == AssociatedObject.GetType())
+          {
+            e.Cancel = true;
+            if (NavigationTarget != null)
+            {
+              var t = Type.GetType(NavigationTarget);
+              // TODO: extension method -> Dispatcher.Run
+              new DispatcherHelper().Invoke(() => _frame.Navigate(t));
+            }
+          }
+        };
+      }
     }
   }
 }

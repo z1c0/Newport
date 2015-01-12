@@ -192,6 +192,9 @@
     <Compile Include="..\Newport\VisualTreeEnumeration.cs">
       <Link>VisualTreeEnumeration.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\WeakList.cs">
+      <Link>WeakList.cs</Link>
+    </Compile>
     <Compile Include="Adapters\BitmapBuffer.cs" />
     <Compile Include="Behaviors\BackNavigationBehavior.cs" />
     <Compile Include="Behaviors\Behavior.cs" />

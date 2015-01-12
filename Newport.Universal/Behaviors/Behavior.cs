@@ -81,7 +81,7 @@ namespace Newport
     }
   }
 
-  public class Behavior
+  public class Behavior : DependencyObject
   {
     protected DependencyObject _associatedObject;
 
