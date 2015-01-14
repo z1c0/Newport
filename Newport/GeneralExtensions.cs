@@ -75,15 +75,21 @@ namespace Newport
       return items.ElementAt(RandomData.GetInt(items.Count()));
     }
 
+    public static void ClearAndAddRange<T>(this ObservableCollection<T> items, IEnumerable<T> range)
+    {
+      items.Clear();
+      range.ForEach(items.Add);
+    }
+
     public static void AddRange<T>(this ObservableCollection<T> items, IEnumerable<T> range)
     {
-      range.ForEach(a => items.Add(a));
+      range.ForEach(items.Add);
     }
 
     public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> items)
     {
       var observableCollection = new ObservableCollection<T>();
-      items.ForEach(a => observableCollection.Add(a));
+      items.ForEach(observableCollection.Add);
       return observableCollection;
     }
   }

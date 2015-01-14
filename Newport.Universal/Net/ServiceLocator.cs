@@ -1,57 +1,77 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
 
 namespace Newport
 {
+  public class ServiceInformation
+  {
+    public override string ToString()
+    {
+      return string.Format("{0}: {1} at {2}", Identifier, Location, HostName);
+    }
+
+    public Uri Location { get; internal set; }
+
+    public string Identifier { get; internal set; }
+    
+    public HostName HostName { get; internal set; }
+  }
+
   public class ServiceLocator
   {
     private const string SSDP_ADDR = "239.255.255.250";
-    private readonly HttpClient _client;
-    private readonly DatagramSocket _socket;
 
-    public ServiceLocator()
+    public Task<IEnumerable<ServiceInformation>> LocateAll()
     {
-      _client = new HttpClient();
-      _socket = new DatagramSocket();
-      _socket.MessageReceived += HandleMessageReceived;
+      return Locate("ssdp:all");
+
     }
 
-    public async void Locate()
+    public async Task<IEnumerable<ServiceInformation>> Locate(string service)
     {
+      var results = new List<ServiceInformation>();
       try
       {
-        if (string.IsNullOrEmpty(_socket.Information.LocalPort))
+        var socket = new DatagramSocket();
+        TypedEventHandler<DatagramSocket, DatagramSocketMessageReceivedEventArgs> handler = (_, a) => HandleMessageReceived(results, a);
+        socket.MessageReceived += handler;
+        if (string.IsNullOrEmpty(socket.Information.LocalPort))
         {
-          await _socket.BindServiceNameAsync("");
-          _socket.JoinMulticastGroup(new HostName(SSDP_ADDR));
+          await socket.BindServiceNameAsync("");
+          socket.JoinMulticastGroup(new HostName(SSDP_ADDR));
         }
-        var s = await _socket.GetOutputStreamAsync(new HostName(SSDP_ADDR), "1900");
+        var s = await socket.GetOutputStreamAsync(new HostName(SSDP_ADDR), "1900");
         using (var dataWriter = new DataWriter(s))
         {
-          var msg = 
+          var msg = string.Format( 
             "M-SEARCH * HTTP/1.1\r\n" + 
             "HOST:239.255.255.250:1900\r\n" +
             "MAN:\"ssdp:discover\"\r\n" +
-            "ST:urn:schemas-frontier-silicon-com:fs_reference:fsapi:1\r\n" + 
-            "MX:3\r\n\r\n";
+            "ST:{0}\r\n" + 
+            "MX:3\r\n\r\n", service);
           var data = Encoding.UTF8.GetBytes(msg);
           dataWriter.WriteBytes(data);
           await dataWriter.StoreAsync();
+          await Task.Delay(TimeSpan.FromMilliseconds(100));
+          socket.MessageReceived -= handler;
         }
       }
       catch (Exception e)
       {
-        Debug.WriteLine(e);
+        Trace.WriteLine(e);
       }
+      return results;
     }
 
-    private void HandleMessageReceived(DatagramSocket sender, DatagramSocketMessageReceivedEventArgs args)
+    private static void HandleMessageReceived(ICollection<ServiceInformation> results, DatagramSocketMessageReceivedEventArgs args)
     {
       try
       {
@@ -59,7 +79,9 @@ namespace Newport
         var data = new byte[reader.UnconsumedBufferLength];
         reader.ReadBytes(data);
         var s = Encoding.UTF8.GetString(data, 0, data.Length);
-        ParseResponse(s);
+        var si = ParseResponse(s);
+        si.HostName = args.RemoteAddress;
+        results.Add(si);
       }
       catch (Exception e)
       {
@@ -67,24 +89,18 @@ namespace Newport
       }
     }
 
-    private void ParseResponse(string s)
+    private static ServiceInformation ParseResponse(string s)
     {
       var pairs =
-        from parts in s.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
-        where parts.Contains(':')
-        let t = parts.Split(new[] { ':' }, 2, StringSplitOptions.None)
-        select new Tuple<string, string>(t[0].Trim().ToUpperInvariant(), t[1].Trim());
-      var location = pairs.FirstOrDefault(t => t.Item1 == "LOCATION");
-      if (location != null)
+        (from parts in s.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries)
+         where parts.Contains(':')
+         let t = parts.Split(new[] {':'}, 2, StringSplitOptions.None)
+         select new Tuple<string, string>(t[0].Trim().ToUpperInvariant(), t[1].Trim())).ToList();
+      return new ServiceInformation
       {
-        Debug.WriteLine(location.Item2);
-        if (ServiceFound != null)
-        {
-          ServiceFound(this, new Uri(location.Item2));
-        }
-      }
+        Location = new Uri(pairs.FirstOrDefault(t => t.Item1 == "LOCATION").Item2),
+        Identifier = pairs.FirstOrDefault(t => t.Item1 == "ST").Item2,
+      };
     }
-
-    public event EventHandler<Uri> ServiceFound;
   }
 }
