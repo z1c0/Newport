@@ -40,15 +40,16 @@
                 x:Name="Border"
                 Margin="{TemplateBinding Margin}"
                 Background="{TemplateBinding Background}"
+                Padding="{TemplateBinding Padding}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}">
-              <ContentControl
+              <ContentPresenter
                   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                   Content="{TemplateBinding Content}"
                   ContentTemplate="{TemplateBinding ContentTemplate}"
                   Foreground="{TemplateBinding Foreground}"
-                  Padding="{TemplateBinding Padding}" />
+                   />
             </Border>
             <Border
               x:Name="EffectLayer"
