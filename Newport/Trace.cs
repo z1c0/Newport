@@ -9,5 +9,10 @@ namespace Newport
     {
       Debug.WriteLine(e);
     }
+
+    public static void WriteLine(string s)
+    {
+      Debug.WriteLine(string.Format("{0}: {1}", DateTime.Now, s));
+    }
   }
 }

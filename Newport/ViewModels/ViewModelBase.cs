@@ -18,17 +18,12 @@ namespace Newport
   {
     public event PropertyChangedEventHandler PropertyChanged;
 
-    private readonly LicenseInformation _licenseInformation;
+    private static LicenseInformation _licenseInformation;
     private bool _isBusy;
     private string _text;
 
     public ViewModelBase()
     {
-#if UNIVERSAL
-      _licenseInformation = CurrentApp.LicenseInformation;
-#else
-      _licenseInformation = new LicenseInformation();
-#endif
     }
 
     public bool IsDebug
@@ -48,8 +43,16 @@ namespace Newport
       get
       {
 #if UNIVERSAL
+        if (_licenseInformation == null)
+        {
+          _licenseInformation = CurrentApp.LicenseInformation;
+        }
         return IsDebug || _licenseInformation.IsTrial;
 #else
+        if (__licenseInformation == null)
+        {
+          _licenseInformation = new LicenseInformation();
+        }
         return IsDebug || _licenseInformation.IsTrial();
 #endif
       }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
-#if NETFX_CORE
+#if UNIVERSAL
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml;
 #else
+using System.Windows;
 using System.Windows.Data;
 #endif
 

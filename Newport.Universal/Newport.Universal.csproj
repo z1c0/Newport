@@ -35,7 +35,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <TargetPlatform Include="WindowsPhoneApp, Version=8.1" />
@@ -107,6 +106,9 @@
     </Compile>
     <Compile Include="..\Newport\Controls\WrapPanel.cs">
       <Link>Controls\WrapPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Converters\BooleanToVisibilityConverter.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DataTemplateSelector.cs">
       <Link>DataTemplateSelector.cs</Link>
