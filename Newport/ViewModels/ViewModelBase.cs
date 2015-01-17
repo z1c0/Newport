@@ -49,7 +49,7 @@ namespace Newport
         }
         return IsDebug || _licenseInformation.IsTrial;
 #else
-        if (__licenseInformation == null)
+        if (_licenseInformation == null)
         {
           _licenseInformation = new LicenseInformation();
         }

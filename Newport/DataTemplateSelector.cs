@@ -1,19 +1,10 @@
 ﻿using System.Collections.Generic;
-#if UNIVERSAL
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Markup;
-#else
 using System.Windows;
 using System.Windows.Markup;
-#endif
 
 namespace Newport
 {
-#if UNIVERSAL
-  [ContentProperty(Name = "Templates")]
-#else
   [ContentProperty("Templates")]
-#endif
   public abstract class DataTemplateSelector
   {
     public DataTemplateSelector()

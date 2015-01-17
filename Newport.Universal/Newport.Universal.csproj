@@ -110,9 +110,6 @@
     <Compile Include="..\Newport\Converters\BooleanToVisibilityConverter.cs">
       <Link>Converters\BooleanToVisibilityConverter.cs</Link>
     </Compile>
-    <Compile Include="..\Newport\DataTemplateSelector.cs">
-      <Link>DataTemplateSelector.cs</Link>
-    </Compile>
     <Compile Include="..\Newport\DataTrigger.cs">
       <Link>DataTrigger.cs</Link>
     </Compile>
