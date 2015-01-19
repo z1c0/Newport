@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -19,5 +18,14 @@ namespace Newport
         }
       }
     }
-  }
+
+    public override void NavigateBack()
+    {
+      var frame = ControlFinder.FindParent<Frame>(Window.Current.Content);
+      if (frame != null)
+      {
+        frame.GoBack();
+      }
+    }
+  }  
 }

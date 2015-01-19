@@ -23,5 +23,7 @@ namespace Newport
     {
       _dataContextDict.AddOrReplace(type, new WeakReference(dataContext));
     }
+
+    public abstract void NavigateBack();
   }
 }

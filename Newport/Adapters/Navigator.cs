@@ -17,6 +17,11 @@ namespace Newport
       Navigate(new Uri("/" + type.Name + ".xaml", UriKind.Relative));
     }
 
+    public override void NavigateBack()
+    {
+      NavigationService.GoBack();
+    }
+
     internal NavigationService NavigationService
     {
       get
