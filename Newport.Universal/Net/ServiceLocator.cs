@@ -18,7 +18,7 @@ namespace Newport
       return string.Format("{0}: {1} at {2}", Identifier, Location, HostName);
     }
 
-    public Uri Location { get; internal set; }
+    public string Location { get; internal set; }
 
     public string Identifier { get; internal set; }
     
@@ -28,6 +28,13 @@ namespace Newport
   public class ServiceLocator
   {
     private const string SSDP_ADDR = "239.255.255.250";
+
+    public ServiceLocator()
+    {
+      TimeOut = 200;
+    }
+
+    public int TimeOut { get; set; }
 
     public Task<IEnumerable<ServiceInformation>> LocateAll()
     {
@@ -60,7 +67,7 @@ namespace Newport
           var data = Encoding.UTF8.GetBytes(msg);
           dataWriter.WriteBytes(data);
           await dataWriter.StoreAsync();
-          await Task.Delay(TimeSpan.FromMilliseconds(100));
+          await Task.Delay(TimeSpan.FromMilliseconds(TimeOut));
           socket.MessageReceived -= handler;
         }
       }
@@ -85,7 +92,7 @@ namespace Newport
       }
       catch (Exception e)
       {
-        Debug.WriteLine(e);
+        Trace.WriteLine(e);
       }
     }
 
@@ -98,7 +105,7 @@ namespace Newport
          select new Tuple<string, string>(t[0].Trim().ToUpperInvariant(), t[1].Trim())).ToList();
       return new ServiceInformation
       {
-        Location = new Uri(pairs.FirstOrDefault(t => t.Item1 == "LOCATION").Item2),
+        Location = pairs.FirstOrDefault(t => t.Item1 == "LOCATION").Item2,
         Identifier = pairs.FirstOrDefault(t => t.Item1 == "ST").Item2,
       };
     }
