@@ -14,6 +14,15 @@ namespace Newport
   {
     private ViewModelBase _instance;
 
+    internal ViewModelInformation()
+    {
+    }
+
+    internal ViewModelInformation(ViewModelBase instance)
+    {
+      _instance = instance;
+    }
+
     internal Type Type { get; set; }
 
     internal bool IsSingleton { get; set; }
@@ -43,6 +52,7 @@ namespace Newport
     public ExportedViewModelAttribute(string key)
     {
       Key = key;
+      IsSingleton = true;
     }
 
     public ExportedViewModelAttribute()
@@ -96,6 +106,11 @@ namespace Newport
         }
       }
       return viewModel;
+    }
+
+    public void RegisterInstance(string key, ViewModelBase viewModel)
+    {
+      _viewModels.Add(key, new ViewModelInformation(viewModel) { IsSingleton = true });
     }
 
     private void RegisterViewModels()

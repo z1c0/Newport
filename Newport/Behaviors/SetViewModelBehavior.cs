@@ -17,18 +17,21 @@ namespace Newport
     protected override void OnAttached()
     {
       base.OnAttached();
-      if (Key == null)
+      if (!ViewModelBase.IsDesignMode)
       {
-        Key = InferViewModelKeyName();
-      }
-      object data = Get.ViewModelProvider[Key];
-      if (data != null)
-      {
-        if (Path != null)
+        if (Key == null)
         {
-          data = new BindingEvaluator(data, Path).Evaluate();
+          Key = InferViewModelKeyName();
         }
-        AssociatedObject.DataContext = data;
+        object data = Get.ViewModelProvider[Key];
+        if (data != null)
+        {
+          if (Path != null)
+          {
+            data = new BindingEvaluator(data, Path).Evaluate();
+          }
+          AssociatedObject.DataContext = data;
+        }
       }
     }
 

@@ -38,6 +38,11 @@ namespace Newport
       }
     }
 
+    public override string ToString()
+    {
+      return Text;
+    }
+
     public bool IsTrial
     {
       get

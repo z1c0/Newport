@@ -9,9 +9,15 @@ namespace Newport
       Navigator = new Navigator();
     }
 
-    public static ApplicationSettingsManager ApplicationSettingsManager { get; private set; }
+    public static T ViewModel<T>() where T : ViewModelBase, new()
+    {
+      return ViewModelProvider.Get<T>();
+    }
 
     public static ViewModelProvider ViewModelProvider { get; private set; }
+
+    public static ApplicationSettingsManager ApplicationSettingsManager { get; private set; }
+
 
     public static Navigator Navigator { get; private set; }
   }

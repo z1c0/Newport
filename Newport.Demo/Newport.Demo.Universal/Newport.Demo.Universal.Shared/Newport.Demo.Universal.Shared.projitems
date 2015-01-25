@@ -67,7 +67,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\newport.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\spaceman.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Weather.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

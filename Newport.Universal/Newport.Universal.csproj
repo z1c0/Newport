@@ -173,8 +173,17 @@
     <Compile Include="..\Newport\ViewModels\ColorThemeViewModel.cs">
       <Link>ViewModels\ColorThemeViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\ViewModels\EnumerationListViewModel.cs">
+      <Link>ViewModels\EnumerationListViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\EnumerationViewModel.cs">
+      <Link>ViewModels\EnumerationViewModel.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\ViewModels\GroupedObservableList.cs">
       <Link>ViewModels\GroupedObservableList.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ViewModels\MasterViewModel.cs">
+      <Link>ViewModels\MasterViewModel.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ViewModels\SimpleViewModelBase.cs">
       <Link>ViewModels\SimpleViewModelBase.cs</Link>

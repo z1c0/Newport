@@ -17,50 +17,52 @@
     <n:SetViewModelBehavior />
   </n:Interaction.Behaviors>
 
-  <Grid
-    Margin="40"
+  <Border
+    Padding="6">
+    <Border.Background>
+      <ImageBrush Stretch="UniformToFill" ImageSource="Assets/newport.jpg"/>
+    </Border.Background>
+    <Grid
     n:FrameworkElementExtensions.LoadedCommand="{Binding Path=ShowMenuCommand}">
-    <Grid.RowDefinitions>
-      <RowDefinition
+      <Grid.RowDefinitions>
+        <RowDefinition
         Height="Auto" />
-      <RowDefinition
+        <RowDefinition
         Height="Auto" />
-      <RowDefinition />
-    </Grid.RowDefinitions>
-    <CheckBox
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <CheckBox
       Grid.Row="0"
       IsThreeState="False"
       IsChecked="{Binding Path=ShowMenu, Mode=TwoWay}">Show Menu</CheckBox>
 
-    <n:CircularFrame
+      <n:CircularFrame
       Grid.Row="1"
       Width="90" Height="90">
-      <Image Source="Assets/spaceman.jpg"/>
-    </n:CircularFrame>
-    
-    <n:TileMenu
+        <Image Source="Assets/spaceman.jpg"/>
+      </n:CircularFrame>
+
+      <n:TileMenu
       Grid.Row="2"
-      Height="400"
-      Width="300"
-      Background="WhiteSmoke"
-      TileMargin="6"
+      Width="350"
       Items="{Binding Path=MenuItems}"
       IsOpen="{Binding ShowMenu, Mode=TwoWay}">
-      <n:TileMenu.TileItemTemplate>
-        <DataTemplate>
-          <Border
-            Width="100"
-            Height="100"
-            Margin="3"
-            Background="#FF3F54BD">
-            <TextBlock
-              FontSize="24"
-              TextWrapping="Wrap"
-              HorizontalAlignment="Center"
+        <n:TileMenu.TileItemTemplate>
+          <DataTemplate>
+            <Border
+            Width="90"
+            Height="90"
+            Background="#CC1A2C86">
+              <TextBlock
+              FontSize="16"
+                VerticalAlignment="Center"
+              TextWrapping="WrapWholeWords"
+              TextAlignment="Center"
               Text="{Binding Path=Text}" />
-          </Border>
-        </DataTemplate>
-      </n:TileMenu.TileItemTemplate>
-    </n:TileMenu>
-  </Grid>
+            </Border>
+          </DataTemplate>
+        </n:TileMenu.TileItemTemplate>
+      </n:TileMenu>
+    </Grid>
+  </Border>
 </Page>

@@ -23,10 +23,9 @@ namespace Newport
 #if UNIVERSAL
       Application.Current.Suspending += (_, __) => PersistSettings();
 #else
-      var s = new PhoneApplicationService();
+      var s = PhoneApplicationService.Current;
       s.Deactivated += (_, __) => PersistSettings();
       s.Closing += (_, __) => PersistSettings();
-      Application.Current.ApplicationLifetimeObjects.Add(s);
 #endif
     }
 

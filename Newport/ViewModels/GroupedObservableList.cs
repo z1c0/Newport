@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Newport;
 
 namespace Newport
 {
@@ -19,8 +18,8 @@ namespace Newport
 
   public class GroupedObservableList<T> : IEnumerable<ObservableGroup<T>>
   {
-    private ObservableCollection<ObservableGroup<T>> _groupList;
-    private Dictionary<string, ObservableGroup<T>> _groups;
+    private readonly ObservableCollection<ObservableGroup<T>> _groupList;
+    private readonly Dictionary<string, ObservableGroup<T>> _groups;
 
     public GroupedObservableList()
     {

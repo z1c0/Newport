@@ -19,6 +19,11 @@ namespace Newport.Demo.WindowsPhone.ViewModels
           Text = "Content Revealer",
           Command = new NavigationCommand(typeof(RevealerPage))
         },
+        new TileMenuItemViewModel
+        {
+          Text = "Misc",
+          Command = new NavigationCommand(typeof(MiscPage))
+        },
         new TileMenuItemViewModel { Text = "Particles" },
         new TileMenuItemViewModel { Text = "Spinner" },
         new TileMenuItemViewModel { Text = "Rating" },

@@ -46,7 +46,7 @@ namespace Newport
     }
   }
 
-  public class ColorThemeViewModel
+  public class ColorThemeViewModel : ViewModelBase
   {
     public event EventHandler ThemeSelected;
 
@@ -80,10 +80,12 @@ namespace Newport
       }
       set
       {
-        _selectedTheme = value;
-        if (ThemeSelected != null)
+        if (SetProperty(ref _selectedTheme, value, "SelectedTheme"))
         {
-          ThemeSelected(this, EventArgs.Empty);
+          if (ThemeSelected != null)
+          {
+            ThemeSelected(this, EventArgs.Empty);
+          }
         }
       }
     }
@@ -92,12 +94,8 @@ namespace Newport
     {
       var theme =
         (from t in Themes
-         where t.Name == name
-         select t).FirstOrDefault();
-      if (theme == null)
-      {
-        theme = Themes[0];
-      }
+          where t.Name == name
+          select t).FirstOrDefault() ?? Themes[0];
       return theme;
     }
   }

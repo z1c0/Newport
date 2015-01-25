@@ -1,0 +1,37 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Newport.Demo.WindowsPhone.MiscPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+  xmlns:n="clr-namespace:Newport;assembly=Newport.WindowsPhone"
+  xmlns:vm="clr-namespace:Newport.Demo.WindowsPhone.ViewModels"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <d:DesignProperties.DataContext>
+        <vm:MiscViewModel />
+    </d:DesignProperties.DataContext>
+
+    <i:Interaction.Behaviors>
+        <n:SetViewModelBehavior />
+    </i:Interaction.Behaviors>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="0" Command="{Binding Path=SundayCommand}">Sunday?</Button>
+        <Button Grid.Row="1" Command="{Binding Path=SomeDayCommand}" CommandParameter="Sunday">Some Day?</Button>
+    </Grid>
+
+</phone:PhoneApplicationPage>

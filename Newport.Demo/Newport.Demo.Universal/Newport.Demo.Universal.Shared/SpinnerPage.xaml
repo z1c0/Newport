@@ -8,34 +8,47 @@
   xmlns:n="using:Newport"
   mc:Ignorable="d">
 
-  <d:DesignProperties.DataContext>
-    <vm:SpinnerViewModel />
-  </d:DesignProperties.DataContext>
+    <d:DesignProperties.DataContext>
+        <vm:SpinnerViewModel />
+    </d:DesignProperties.DataContext>
 
-  <n:Interaction.Behaviors>
-    <n:SetViewModelBehavior />
-  </n:Interaction.Behaviors>
+    <n:Interaction.Behaviors>
+        <n:SetViewModelBehavior />
+    </n:Interaction.Behaviors>
 
-  <Grid
+    <Grid
     Background="Transparent">
-    <Grid.RowDefinitions>
-      <RowDefinition
+        <Grid.RowDefinitions>
+            <RowDefinition
         Height="Auto" />
-      <RowDefinition
+            <RowDefinition
+        Height="Auto" />
+            <RowDefinition
+        Height="Auto" />
+            <RowDefinition
         Height="*" />
-    </Grid.RowDefinitions>
+        </Grid.RowDefinitions>
 
-    <!--TitlePanel contains the name of the application and page title-->
-    <StackPanel
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel
       Grid.Row="0">
-      <TextBlock
+            <TextBlock
         Text="{Binding Path=Text}"
         Style="{StaticResource TitleTextBlockStyle}" />
-    </StackPanel>
+        </StackPanel>
 
-    <n:ProgressSpinner
-      Grid.Row="1"
-      IsBusy="{Binding Path=IsBusy}"></n:ProgressSpinner>
+        <Button
+            Grid.Row="1"
+            Command="{Binding Path=StartBusyCommand}">Start Busy Operation</Button>
+        
+        <ComboBox Grid.Row="2"
+                  SelectedItem="{Binding Path=Colors.SelectedTheme, Mode=TwoWay}"
+                  ItemsSource="{Binding Path=Colors.Themes}"/>
 
-  </Grid>
+        <n:ProgressSpinner
+          Grid.Row="3"
+          Color="{Binding Path=Colors.SelectedTheme.Color1.Color}"
+          IsBusy="{Binding Path=IsBusy}"/>
+
+    </Grid>
 </Page>
