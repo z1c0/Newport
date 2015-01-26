@@ -14,6 +14,11 @@ namespace Newport
       return ViewModelProvider.Get<T>();
     }
 
+    public static T Settings<T>() where T : class, IApplicationSettings, new()
+    {
+      return ApplicationSettingsManager.GetSettings<T>();
+    }
+
     public static ViewModelProvider ViewModelProvider { get; private set; }
 
     public static ApplicationSettingsManager ApplicationSettingsManager { get; private set; }
