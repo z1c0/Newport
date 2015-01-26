@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Newport.Demo.Universal.ViewModels
 {
@@ -13,7 +12,7 @@ namespace Newport.Demo.Universal.ViewModels
       {
         using (BusyScope())
         {
-          await Task.Delay(2000);
+          await Task.Delay(3000);
         }
       }, _ => !IsBusy);
       Colors = new ColorThemeViewModel();

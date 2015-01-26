@@ -21,6 +21,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MiscPage.xaml.cs">
+      <DependentUpon>MiscPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ParticlesPage.xaml.cs">
       <DependentUpon>ParticlesPage.xaml</DependentUpon>
     </Compile>
@@ -33,12 +36,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpinnerPage.xaml.cs">
       <DependentUpon>SpinnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeometricBackgroundViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MiscViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ParticlesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RatingViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpinnerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeometricBackgroundViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RevealerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpinnerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)GeometricBackgroundPage.xaml">
@@ -46,6 +50,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)MiscPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -70,8 +78,5 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\newport.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\spaceman.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Weather.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\" />
   </ItemGroup>
 </Project>

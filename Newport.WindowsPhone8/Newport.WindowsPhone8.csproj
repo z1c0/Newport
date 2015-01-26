@@ -114,6 +114,9 @@
     <Compile Include="..\Newport\Behaviors\BackNavigationBehavior.cs">
       <Link>Behaviors\BackNavigationBehavior.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Behaviors\SetViewModelAfterNavigationBehavior.cs">
+      <Link>Behaviors\SetViewModelAfterNavigationBehavior.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Behaviors\SetViewModelBehavior.cs">
       <Link>Behaviors\SetViewModelBehavior.cs</Link>
     </Compile>

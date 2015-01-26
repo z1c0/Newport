@@ -57,8 +57,17 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="..\Newport\ApplicationSettingsService.cs">
-      <Link>ApplicationSettingsService.cs</Link>
+    <Compile Include="..\Newport\Adapters\BaseNavigator.cs">
+      <Link>Adapters\BaseNavigator.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Adapters\BitmapBuffer.cs">
+      <Link>Adapters\BitmapBuffer.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Adapters\Navigator.cs">
+      <Link>Adapters\Navigator.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\ApplicationSettingsManager.cs">
+      <Link>ApplicationSettingsManager.cs</Link>
     </Compile>
     <Compile Include="..\Newport\AppResource.cs">
       <Link>AppResource.cs</Link>
@@ -117,6 +126,9 @@
     <Compile Include="..\Newport\Controls\Revealer.cs">
       <Link>Controls\Revealer.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Controls\TemplatedControl.cs">
+      <Link>Controls\TemplatedControl.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Controls\TileMenu.cs">
       <Link>Controls\TileMenu.cs</Link>
     </Compile>
@@ -171,6 +183,9 @@
     <Compile Include="..\Newport\GeneralExtensions.cs">
       <Link>GeneralExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Get.cs">
+      <Link>Get.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\IApplicationSettings.cs">
       <Link>IApplicationSettings.cs</Link>
     </Compile>
@@ -182,9 +197,6 @@
     </Compile>
     <Compile Include="..\Newport\ListRandomizer.cs">
       <Link>ListRandomizer.cs</Link>
-    </Compile>
-    <Compile Include="..\Newport\NavigationAdapter.cs">
-      <Link>NavigationAdapter.cs</Link>
     </Compile>
     <Compile Include="..\Newport\PasswordBoxExtensions.cs">
       <Link>PasswordBoxExtensions.cs</Link>
@@ -221,6 +233,9 @@
     </Compile>
     <Compile Include="..\Newport\TheColors.cs">
       <Link>TheColors.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Trace.cs">
+      <Link>Trace.cs</Link>
     </Compile>
     <Compile Include="..\Newport\UIElementExtensions.cs">
       <Link>UIElementExtensions.cs</Link>
@@ -259,6 +274,7 @@
       <Link>XNAFrameworkDispatcherService.cs</Link>
     </Compile>
     <Compile Include="CallerMemberNameAttribute.cs" />
+    <Compile Include="WeakList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\Newport\Themes\Generic.xaml">

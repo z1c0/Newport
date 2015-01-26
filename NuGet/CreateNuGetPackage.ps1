@@ -1,12 +1,23 @@
 param($apiKey)
 
+#(new-object Net.WebClient).DownloadString("https://raw.github.com/ligershark/psbuild/master/src/GetPSBuild.ps1") | iex
+#get-command -Module psbuild
+#Get-Help Invoke-MSBuild
+#Get-Help Invoke-MSBuild -Examples
+
 function Get-ScriptDirectory 
 { 
  $Invocation = (Get-Variable MyInvocation -Scope 1).Value 
  Split-Path $Invocation.MyCommand.Path 
 } 
 $scriptDir = Get-ScriptDirectory;
-write($scriptDir);
+write $scriptDir;
+
+#Invoke-MSBuild "..\NewportVS2012.sln" -configuration Release
+$sln = Join-Path (Get-ScriptDirectory) "..\NewportVS2013.sln"
+write $sln;
+Invoke-MSBuild $sln -configuration Release -visualStudioVersion 12.0
+
 
 # Get Version of Newport.WindowsPhone assembly.
 # We will use that as the version of our NuGet package.

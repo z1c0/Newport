@@ -1,8 +1,8 @@
 namespace Newport.Demo.Universal
 {
-  public partial class MainPage
+  public partial class RatingPage
   {
-    public MainPage()
+    public RatingPage()
     {
       InitializeComponent();
     }

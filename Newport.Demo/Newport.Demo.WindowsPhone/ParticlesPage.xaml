@@ -1,7 +1,7 @@
 <phone:PhoneApplicationPage
   xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-  x:Class="Newport.Demo.Universal.MiscPage"
+  x:Class="Newport.Demo.Universal.ParticlesPage"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vm="clr-namespace:Newport.Demo.Universal.ViewModels"
@@ -11,7 +11,7 @@
   mc:Ignorable="d">
 
   <d:DesignProperties.DataContext>
-    <vm:MiscViewModel />
+    <vm:ParticlesViewModel />
   </d:DesignProperties.DataContext>
 
   <i:Interaction.Behaviors>
@@ -19,21 +19,28 @@
   </i:Interaction.Behaviors>
 
   <Grid>
+    <Grid.Background>
+      <ImageBrush ImageSource="Assets/Weather.jpg"/>
+    </Grid.Background>
     <Grid.RowDefinitions>
       <RowDefinition
         Height="Auto" />
       <RowDefinition
-        Height="Auto" />
-      <RowDefinition />
+        Height="*" />
     </Grid.RowDefinitions>
 
-    <Button
+    <Grid
       Grid.Row="0"
-      Command="{Binding Path=SundayCommand}">Sunday?</Button>
-    <Button
-      Grid.Row="1"
-      Command="{Binding Path=SomeDayCommand}"
-      CommandParameter="Sunday">Some Day?</Button>
+      Background="Blue">
+      <n:ParticleControl 
+        OnNewParticleCommand="{Binding Path=InitParticleCommand}"
+        MaxParticleCount="70"
+        Speed="2"
+        Life="150"
+        LifeVariance="200"
+        StartColor="White"
+        EndColor="White"
+        IsRunning="True"/>
+    </Grid>
   </Grid>
-
 </phone:PhoneApplicationPage>

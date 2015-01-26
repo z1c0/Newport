@@ -29,8 +29,7 @@
     <StackPanel
       Grid.Row="0">
       <TextBlock
-        Text="{Binding Path=Text}"
-        Style="{StaticResource TitleTextBlockStyle}" />
+        Text="{Binding Path=Text}"/>
     </StackPanel>
 
     <n:FancyBackground

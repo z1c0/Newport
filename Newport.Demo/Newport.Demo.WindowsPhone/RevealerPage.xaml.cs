@@ -1,4 +1,4 @@
-﻿namespace Newport.Demo.WindowsPhone
+namespace Newport.Demo.Universal
 {
   public partial class RevealerPage
   {

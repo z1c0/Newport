@@ -1,8 +1,8 @@
 namespace Newport.Demo.Universal
 {
-  public partial class MainPage
+  public partial class ParticlesPage
   {
-    public MainPage()
+    public ParticlesPage()
     {
       InitializeComponent();
     }

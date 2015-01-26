@@ -2,8 +2,8 @@
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
-using Windows.Storage;
 #if UNIVERSAL
+using Windows.Storage;
 #else
 using System.Windows;
 using System.ComponentModel;

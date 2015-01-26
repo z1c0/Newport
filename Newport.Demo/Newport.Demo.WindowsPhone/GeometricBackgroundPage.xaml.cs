@@ -1,8 +1,8 @@
 namespace Newport.Demo.Universal
 {
-  public partial class MainPage
+  public partial class GeometricBackgroundPage
   {
-    public MainPage()
+    public GeometricBackgroundPage()
     {
       InitializeComponent();
     }

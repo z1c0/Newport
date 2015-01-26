@@ -90,46 +90,63 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\GeometricBackgroundViewModel.cs">
+      <Link>ViewModels\GeometricBackgroundViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\MainViewModel.cs">
+      <Link>ViewModels\MainViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\MiscViewModel.cs">
+      <Link>ViewModels\MiscViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\ParticlesViewModel.cs">
+      <Link>ViewModels\ParticlesViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\RatingViewModel.cs">
+      <Link>ViewModels\RatingViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\RevealerViewModel.cs">
+      <Link>ViewModels\RevealerViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\SpinnerViewModel.cs">
+      <Link>ViewModels\SpinnerViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GeometricBackgroundPage.xaml.cs">
+      <DependentUpon>GeometricBackgroundPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MiscPage.xaml.cs">
       <DependentUpon>MiscPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RevealerPage.xaml.cs">
-      <DependentUpon>RevealerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="ParticlesPage.xaml.cs">
+      <DependentUpon>ParticlesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingPage.xaml.cs">
+      <DependentUpon>RatingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MiscViewModel.cs" />
-    <Compile Include="ViewModels\RevealerViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="RevealerPage.xaml.cs">
+      <DependentUpon>RevealerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpinnerPage.xaml.cs">
+      <DependentUpon>SpinnerPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="MiscPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="RevealerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -138,11 +155,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\Assets\newport.jpg">
+      <Link>Assets\newport.jpg</Link>
+    </Content>
+    <Content Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\Assets\spaceman.jpg">
+      <Link>Assets\spaceman.jpg</Link>
+    </Content>
+    <Content Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\Assets\Weather.jpg">
+      <Link>Assets\Weather.jpg</Link>
+    </Content>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\spaceman.jpg" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -173,6 +198,36 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="GeometricBackgroundPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MiscPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ParticlesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RatingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RevealerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SpinnerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

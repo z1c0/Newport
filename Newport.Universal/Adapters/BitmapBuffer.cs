@@ -12,6 +12,7 @@ namespace Newport
   public class BitmapBuffer
   {
     private WriteableBitmap _writeableBitmap;
+    private Stream _stream;
 
     public BitmapBuffer(int width, int height)
     {
@@ -25,6 +26,7 @@ namespace Newport
       await rtb.RenderAsync(e, Width, Height);
       var p = await rtb.GetPixelsAsync();
       _writeableBitmap = new WriteableBitmap(rtb.PixelWidth, rtb.PixelHeight);
+      _stream = _writeableBitmap.PixelBuffer.AsStream();
       p.CopyTo(_writeableBitmap.PixelBuffer);
     }
 
@@ -51,12 +53,11 @@ namespace Newport
     public Color GetPixel(int x, int y)
     {
       var i = y * _writeableBitmap.PixelWidth + x;
-      var s = _writeableBitmap.PixelBuffer.AsStream();
-      s.Seek(4 * i, SeekOrigin.Begin);
-      var b = (byte)s.ReadByte();
-      var g = (byte)s.ReadByte();
-      var r = (byte)s.ReadByte();
-      var a = (byte)s.ReadByte();
+      _stream.Seek(4 * i, SeekOrigin.Begin);
+      var b = (byte)_stream.ReadByte();
+      var g = (byte)_stream.ReadByte();
+      var r = (byte)_stream.ReadByte();
+      var a = (byte)_stream.ReadByte();
       return Color.FromArgb(a, r, g, b);
     }
 
@@ -65,12 +66,11 @@ namespace Newport
       const float preMultiplyFactor = 1 / 255f;
       var ai = a * preMultiplyFactor;
       var i = y * _writeableBitmap.PixelWidth + x;
-      var s = _writeableBitmap.PixelBuffer.AsStream();
-      s.Seek(4 * i, SeekOrigin.Begin);
-      s.WriteByte(color.B);
-      s.WriteByte(color.B);
-      s.WriteByte(color.B);
-      s.WriteByte(a);
+      _stream.Seek(4 * i, SeekOrigin.Begin);
+      _stream.WriteByte(color.B);
+      _stream.WriteByte(color.B);
+      _stream.WriteByte(color.B);
+      _stream.WriteByte(a);
     }
   }
 }

@@ -3,46 +3,78 @@
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
+using Windows.UI.Xaml.Shapes;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 #else
 using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 #endif
 
 namespace Newport
 {
-#if UNIVERSAL
-  [ContentProperty(Name = "Child")]
-#else
-  [ContentProperty("Child")]
-#endif
   public class CircularFrame : TemplatedControl
   {
-    //private EllipseGeometry _ellipseGeometry;
+    public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source",
+      typeof(Uri), typeof(CircularFrame), new PropertyMetadata(null));
+
+    public static readonly DependencyProperty FrameThicknessProperty = DependencyProperty.Register("FrameThickness",
+      typeof(double), typeof(CircularFrame), new PropertyMetadata(0.0));
+
+    public static readonly DependencyProperty FrameBrushProperty = DependencyProperty.Register("FrameBrush",
+      typeof(Brush), typeof(CircularFrame), new PropertyMetadata(null));
 
     public CircularFrame()
     {
       DefaultStyleKey = typeof(CircularFrame);
     }
 
+
+    public Uri Source
+    {
+      get
+      {
+        return (Uri)GetValue(SourceProperty);
+      }
+      set
+      {
+        SetValue(SourceProperty, value);
+      }
+    }
+
+    public double FrameThickness
+    {
+      get
+      {
+        return (double)GetValue(FrameThicknessProperty);
+      }
+      set
+      {
+        SetValue(FrameThicknessProperty, value);
+      }
+    }
+
+    public Brush FrameBrush
+    {
+      get
+      {
+        return (Brush)GetValue(FrameBrushProperty);
+      }
+      set
+      {
+        SetValue(FrameBrushProperty, value);
+      }
+    }
+
     protected override void OnFromTemplate()
     {
-      var presenter = VerifyGetTemplateChild<ContentPresenter>("ContentPresenter");
-      presenter.Content = Child;
-      //_ellipseGeometry = VerifyGetTemplateChild<EllipseGeometry>("EllipseGeometry");
+      var ellipse = VerifyGetTemplateChild<Ellipse>("Ellipse");
+      ellipse.StrokeThickness = FrameThickness;
+      ellipse.Stroke = FrameBrush;
+      var imageBrush = VerifyGetTemplateChild<ImageBrush>("ImageBrush");
+      imageBrush.ImageSource = new BitmapImage { UriSource = Source };
     }
-
-    protected override Size ArrangeOverride(Size finalSize)
-    {
-      //_ellipseGeometry.RadiusX = finalSize.Width / 2;
-      //_ellipseGeometry.RadiusY = finalSize.Height / 2;
-      //_ellipseGeometry.Center = new Point(finalSize.Width / 2, finalSize.Height / 2);
-      return base.ArrangeOverride(finalSize);
-    }
-
-    public UIElement Child { get; set; }
   }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.Graphics.Display;
 #if UNIVERSAL
 using Windows.Foundation;
 using Windows.UI.Xaml;
@@ -8,6 +7,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Shapes;
 using Windows.UI;
+using Windows.Graphics.Display;
 #else
 using System.Windows;
 using System.Windows.Controls;
@@ -31,15 +31,23 @@ namespace Newport
     private ContentPresenter _contentPresenter;
     private Image _image;
     private Rectangle _rectangle;
+    private readonly double _dpiScale;
 
     public Revealer()
     {
       DefaultStyleKey = typeof(Revealer);
       Radius = 40;
+#if UNIVERSAL
+      const double DEFAULT_DPI = 96.0;
+      _dpiScale = DisplayInformation.GetForCurrentView().LogicalDpi / DEFAULT_DPI;
+#else
+      _dpiScale = 1;
+#endif
     }
 
     public static readonly DependencyProperty CoverBrushProperty = DependencyProperty.Register("CoverBrush",
       typeof(Brush), typeof(Revealer), new PropertyMetadata(new SolidColorBrush(Colors.Magenta)));
+
 
     public object Content { get; set; }
 
@@ -98,7 +106,11 @@ namespace Newport
       return base.ArrangeOverride(finalSize);
     }
 
+#if UNIVERSAL
     private async void CreateBitmap(int w, int h)
+#else
+    private void CreateBitmap(int w, int h)
+#endif
     {
       _bitmap = new BitmapBuffer(w, h);
       _rectangle.Width = w;
@@ -124,11 +136,7 @@ namespace Newport
     private void Reveal(Point point)
     {
       _rectangle.Opacity = 0.0;
-#if UNIVERSAL
-      const double DEFAULT_DPI = 96.0;
-      var dpiScale = DisplayInformation.GetForCurrentView().LogicalDpi / DEFAULT_DPI;
-      point = new Point(point.X * dpiScale, point.Y * dpiScale);
-#endif
+      point = new Point(point.X * _dpiScale, point.Y * _dpiScale);
       var mapOffsetX = 0;
       var left = (int)(point.X - Radius);
       if (left < 0)
@@ -146,6 +154,7 @@ namespace Newport
       var right = (int)Math.Min(_bitmap.PixelWidth, point.X + Radius);
       var bottom = (int)Math.Min(_bitmap.PixelHeight, point.Y + Radius);
 
+      var c = Color.FromArgb(255, 0, 0, 0);
       for (var y = top; y < bottom; y++)
       {
         for (var x = left; x < right; x++)
@@ -153,7 +162,7 @@ namespace Newport
           var a = _alphaMap[x - left + mapOffsetX, y - top + mapOffsetY];
           if (a != 255)
           {
-            var c = _bitmap.GetPixel(x, y);
+            //var c = _bitmap.GetPixel(x, y);
             _bitmap.SetPixel(x, y, a, c);
           }
         }

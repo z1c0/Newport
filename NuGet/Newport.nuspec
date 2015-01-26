@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Newport</id>
-    <version>1.2.0.0</version>
+    <version>1.2.1.0</version>
     <title>Newport</title>
     <authors>Wolfgang Ziegler</authors>
     <owners>Wolfgang Ziegler</owners>
@@ -10,14 +10,15 @@
     <projectUrl>https://github.com/z1c0/Newport/</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/z1c0/Newport/master/NuGet/newport32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Newport is a library providing building blocks for Windows Phone App development.
-It provides an MVVM framework, attached properties for existing controls and custom controls.</description>
-    <copyright>(c) Wolfgang Ziegler 2014</copyright>
+    <description>Newport is a library providing building blocks for Windows Phone and Windows Store App development.
+It offers an MVVM framework, attached properties for existing controls and a set of custom controls.</description>
+    <copyright>(c) Wolfgang Ziegler 2015</copyright>
     <language>en-US</language>
-    <tags>WP7,WP,Windows Phone,wpdev,Silverlight,MVVM,Custom Controls,framework</tags>
+    <tags>WP7,WP,Windows Phone,WinRT,XAML,Universal,app,wpdev,Silverlight,MVVM,Custom Controls,framework</tags>
   </metadata>
   <files>
     <file src="..\Newport.WindowsPhone7\Bin\Release\Newport.WindowsPhone.dll" target="lib\sl4-windowsphone71\Newport.WindowsPhone.dll" />
     <file src="..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll" target="lib\windowsphone8\Newport.WindowsPhone.dll" />
+    <file src="..\Newport.Universal\Bin\Release\Newport.Universal.dll" target="lib\portable-wp81+wpa81" />
   </files>
 </package>

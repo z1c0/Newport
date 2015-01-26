@@ -1,6 +1,6 @@
-namespace Newport.Demo.Universal
+﻿namespace Newport.Demo.Universal
 {
-  public partial class MiscPage
+  public sealed partial class MiscPage
   {
     public MiscPage()
     {

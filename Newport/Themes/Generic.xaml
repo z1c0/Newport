@@ -12,17 +12,15 @@
       <Setter.Value>
         <ControlTemplate
           TargetType="n:CircularFrame">
-          <Border
-            BorderBrush="Blue"
-            BorderThickness="0">
-            <ContentPresenter
-              x:Name="ContentPresenter">
-              <ContentPresenter.Clip>
-                <EllipseGeometry
-                  x:Name="EllipseGeometry" />
-              </ContentPresenter.Clip>
-            </ContentPresenter>
-          </Border>
+          <Ellipse
+            x:Name="Ellipse"
+            Width="{TemplateBinding Width}"
+            Height="{TemplateBinding Height}">
+            <Ellipse.Fill>
+              <ImageBrush
+                x:Name="ImageBrush" />
+            </Ellipse.Fill>
+          </Ellipse>
 
         </ControlTemplate>
       </Setter.Value>
