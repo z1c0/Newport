@@ -7,7 +7,12 @@ Newport
 
 [![Tips Welcome](https://img.shields.io/gratipay/z1c0.svg)](https://www.gittip.com/z1c0/)
 
-Newport is an MVVM-based Windows Phone application development framework.
+Newport is an MVVM-based Windows Phone and Windows Store application development framework.
+Newport targets:
+- Windows Phone 7 Silverlight Applications
+- Windows Phone 8 Silverlight Applications
+- Windows Phone Universal Apps
+- Windows Store Universal Apps
 
 Newport contains a lot of useful ViewModel base classes, attached properties, extension methods, custom controls and basically everything that helps avoiding having to write code-behind in your apps.
 
