@@ -1,10 +1,5 @@
 param($apiKey)
 
-#(new-object Net.WebClient).DownloadString("https://raw.github.com/ligershark/psbuild/master/src/GetPSBuild.ps1") | iex
-#get-command -Module psbuild
-#Get-Help Invoke-MSBuild
-#Get-Help Invoke-MSBuild -Examples
-
 function Get-ScriptDirectory 
 { 
  $Invocation = (Get-Variable MyInvocation -Scope 1).Value 
@@ -13,25 +8,26 @@ function Get-ScriptDirectory
 $scriptDir = Get-ScriptDirectory;
 write $scriptDir;
 
-#Invoke-MSBuild "..\NewportVS2012.sln" -configuration Release
-$sln = Join-Path (Get-ScriptDirectory) "..\NewportVS2013.sln"
-write $sln;
-Invoke-MSBuild $sln -configuration Release -visualStudioVersion 12.0
+$msbuild = "C:\Program Files (x86)\MSBuild\12.0\bin\MSBuild.exe"
+$sln2012 = Join-Path (Get-ScriptDirectory) "..\NewportVS2012.sln"
+$sln2013 = Join-Path (Get-ScriptDirectory) "..\NewportVS2013.sln"
+$args = @("/m", "/t:Rebuild", "/p:Configuration=Release", "/nologo", "/verbosity:quiet")
+& $msbuild $sln2012 $args
+& $msbuild $sln2013 $args
 
 
 # Get Version of Newport.WindowsPhone assembly.
 # We will use that as the version of our NuGet package.
 $asmPath = Join-Path (Get-ScriptDirectory) "..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll"
 write($asmPath);
-$asm = [Reflection.Assembly]::ReflectionOnlyLoadFrom($asmPath)
-$asmVersion = $asm.GetName().Version.ToString()
-write($asmVersion);
+$version = [System.Reflection.AssemblyName]::GetAssemblyName($asmPath).Version.ToString();
+write $version;
 
 # Store version in NuSpec
 $nuspecPath = Join-Path (Get-ScriptDirectory) "Newport.nuspec"
 write($nuspecPath);
 [xml]$nuspec = Get-Content $nuspecPath
-$nuspec.package.metadata.version = $asmVersion
+$nuspec.package.metadata.version = $version
 $nuspec.Save($nuspecPath);
 
 cd $scriptDir;
@@ -46,4 +42,4 @@ if (!$apiKey)
 
 write($apiKey)
 .\NuGet.exe SetApiKey $apiKey
-.\NuGet.exe push .\Newport.$asmVersion.nupkg
+.\NuGet.exe push .\Newport.$version.nupkg
