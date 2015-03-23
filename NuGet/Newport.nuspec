@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Newport</id>
-    <version>1.3.0.0</version>
+    <version>1.3.0.3</version>
     <title>Newport</title>
     <authors>Wolfgang Ziegler</authors>
     <owners>Wolfgang Ziegler</owners>
@@ -19,6 +19,6 @@ It offers an MVVM framework, attached properties for existing controls and a set
   <files>
     <file src="..\Newport.WindowsPhone7\Bin\Release\Newport.WindowsPhone.dll" target="lib\sl4-windowsphone71\Newport.WindowsPhone.dll" />
     <file src="..\Newport.WindowsPhone8\Bin\Release\Newport.WindowsPhone.dll" target="lib\windowsphone8\Newport.WindowsPhone.dll" />
-    <file src="..\Newport.Universal\Bin\Release\Newport.Universal.dll" target="lib\portable-wp81+wpa81" />
+    <file src="..\Newport.Universal\Bin\Release\Newport.Universal.dll" target="lib\portable-net45+win81+wpa81+windows81" />
   </files>
 </package>
