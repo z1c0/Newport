@@ -36,12 +36,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)SpinnerPage.xaml.cs">
       <DependentUpon>SpinnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)UniformGridPage.xaml.cs">
+      <DependentUpon>UniformGridPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GeometricBackgroundViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MiscViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ParticlesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RatingViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RevealerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\UniformGridViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SpinnerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +74,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)SpinnerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)UniformGridPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

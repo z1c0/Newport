@@ -37,7 +37,12 @@ namespace Newport.Demo.Universal.ViewModels
         new TileMenuItemViewModel
         {
           Text = "Geometric Background",
-          Command = new NavigationCommand(typeof(GeometricBackgroundPage)),  //TODO -> rename
+          Command = new NavigationCommand(typeof(GeometricBackgroundPage)),
+        },
+        new TileMenuItemViewModel
+        {
+          Text = "Uniform Grid",
+          Command = new NavigationCommand(typeof(UniformGridPage)),
         },
       };
     }

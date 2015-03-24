@@ -111,6 +111,9 @@
     <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\SpinnerViewModel.cs">
       <Link>ViewModels\SpinnerViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\Newport.Demo.Universal\Newport.Demo.Universal.Shared\ViewModels\UniformGridViewModel.cs">
+      <Link>ViewModels\UniformGridViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,9 @@
     </Compile>
     <Compile Include="SpinnerPage.xaml.cs">
       <DependentUpon>SpinnerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UniformGridPage.xaml.cs">
+      <DependentUpon>UniformGridPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SpinnerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UniformGridPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

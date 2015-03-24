@@ -1,5 +1,5 @@
 ﻿<Page
-  x:Class="Newport.Demo.Universal.SpinnerPage"
+  x:Class="Newport.Demo.Universal.UniformGridPage"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vm="using:Newport.Demo.Universal.ViewModels"
@@ -9,7 +9,7 @@
   mc:Ignorable="d">
 
   <d:DesignProperties.DataContext>
-    <vm:SpinnerViewModel />
+    <vm:UniformGridViewModel />
   </d:DesignProperties.DataContext>
 
   <n:Interaction.Behaviors>
@@ -22,10 +22,6 @@
       <RowDefinition
         Height="Auto" />
       <RowDefinition
-        Height="Auto" />
-      <RowDefinition
-        Height="Auto" />
-      <RowDefinition
         Height="*" />
     </Grid.RowDefinitions>
 
@@ -33,22 +29,28 @@
     <StackPanel
       Grid.Row="0">
       <TextBlock
-        Text="{Binding Path=Text}"
-        />
+        Text="{Binding Path=Text}"/>
     </StackPanel>
 
-    <Button
-            Grid.Row="1"
-            Command="{Binding Path=StartBusyCommand}">Start Busy Operation</Button>
+    <ItemsControl
+      Margin="30"
+      Grid.Row="1"
+      ItemsSource="{Binding Path=Items}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Border BorderBrush="LightGreen"
+                  BorderThickness="3"/>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <ItemsControl.ItemsPanel>
+        <ItemsPanelTemplate>
+          <n:UniformGrid            
+            RowCount="{Binding Path=Rows}"
+            ColumnCount="{Binding Path=Cols}"/>
+        </ItemsPanelTemplate>
+      </ItemsControl.ItemsPanel>
 
-    <ComboBox Grid.Row="2"
-                  SelectedItem="{Binding Path=Colors.SelectedTheme, Mode=TwoWay}"
-                  ItemsSource="{Binding Path=Colors.Themes}"/>
-
-    <n:ProgressSpinner
-          Grid.Row="3"
-          Color="{Binding Path=Colors.SelectedTheme.Color1.Color}"
-          IsBusy="{Binding Path=IsBusy}"/>
+    </ItemsControl>
 
   </Grid>
 </Page>
