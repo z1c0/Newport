@@ -33,7 +33,8 @@ namespace Newport
 
     #endregion CommandParameter (Attached Property)
 
-    #region MouseLeftButtonDownCommand (Attached Property)
+    //TODO -> Rename to "pointer down"
+    #region MouseLeftButtonDownCommand (Attached Property) 
 
     public static readonly DependencyProperty MouseLeftButtonDownCommandProperty =
       DependencyProperty.RegisterAttached(
@@ -61,6 +62,38 @@ namespace Newport
       element.MouseLeftButtonDown += (_, e) 
 #endif
         => TriggerCommand(GetMouseLeftButtonDownCommand(element), element, e);
+    }
+
+    #endregion MouseLeftButtonDownCommand (Attached Property)
+
+    #region PointerMovedCommand (Attached Property) 
+
+    public static readonly DependencyProperty PointerMovedCommandProperty =
+      DependencyProperty.RegisterAttached(
+      "PointerMovedCommand",
+      typeof(ICommand),
+      typeof(UIElementExtensions),
+      new PropertyMetadata(null, OnPointerMovedCommandChanged));
+
+    public static void SetPointerMovedCommand(UIElement e, ICommand command)
+    {
+      e.SetValue(PointerMovedCommandProperty, command);
+    }
+
+    public static ICommand GetPointerMovedCommand(UIElement e)
+    {
+      return e.GetValue(PointerMovedCommandProperty) as ICommand;
+    }
+
+    private static void OnPointerMovedCommandChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
+    {
+      var element = (UIElement)sender;
+#if UNIVERSAL
+      element.PointerMoved += (_, e)
+#else
+      element.MouseMove += (_, e) 
+#endif
+        => TriggerCommand(GetPointerMovedCommand(element), element, e);
     }
 
     #endregion MouseLeftButtonDownCommand (Attached Property)

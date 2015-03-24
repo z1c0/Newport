@@ -16,6 +16,20 @@
     <n:SetViewModelBehavior />
   </n:Interaction.Behaviors>
 
+  <Page.Resources>
+    <n:BooleanToBrushConverter
+      x:Key="booleanToBrushConverter">
+      <n:BooleanToBrushConverter.FalseBrush>
+        <SolidColorBrush
+          Color="Transparent" />
+      </n:BooleanToBrushConverter.FalseBrush>
+      <n:BooleanToBrushConverter.TrueBrush>
+        <SolidColorBrush
+          Color="LightGreen" />
+      </n:BooleanToBrushConverter.TrueBrush>
+    </n:BooleanToBrushConverter>
+  </Page.Resources>
+
   <Grid
     Background="Transparent">
     <Grid.RowDefinitions>
@@ -39,6 +53,8 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <Border BorderBrush="LightGreen"
+              Background="{Binding Path=IsChecked, Converter={StaticResource booleanToBrushConverter}}"
+              n:UIElementExtensions.PointerMovedCommand="{Binding Path=TapCommand}"
                   BorderThickness="3"/>
         </DataTemplate>
       </ItemsControl.ItemTemplate>
