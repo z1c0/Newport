@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Globalization;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+#else
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Media;
+#endif
 
 namespace Newport
 {
-  public class BooleanToBrushConverter : DependencyObject, IValueConverter
+  public class BooleanToBrushConverter : BaseConverter
   {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvert(object value)
     {
       if (value is bool && (bool)value)
       {
@@ -17,7 +20,7 @@ namespace Newport
       return FalseBrush;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvertBack(object value)
     {
       throw new NotImplementedException();
     }

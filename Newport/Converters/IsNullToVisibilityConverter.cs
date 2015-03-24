@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Globalization;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+#else
 using System.Windows;
-using System.Windows.Data;
+#endif
 
 namespace Newport
 {
-  public class IsNullToVisibilityConverter : IValueConverter
+  public class IsNullToVisibilityConverter : BaseConverter
   {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvert(object value)
     {
       return (value != null) ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvertBack(object value)
     {
       throw new NotImplementedException();
     }

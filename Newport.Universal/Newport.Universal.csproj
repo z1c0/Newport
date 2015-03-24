@@ -111,8 +111,26 @@
     <Compile Include="..\Newport\Controls\WrapPanel.cs">
       <Link>Controls\WrapPanel.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Converters\BaseConverter.cs">
+      <Link>Converters\BaseConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\BooleanInvertConverter.cs">
+      <Link>Converters\BooleanInvertConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\BooleanToBrushConverter.cs">
+      <Link>Converters\BooleanToBrushConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Converters\BooleanToVisibilityConverter.cs">
       <Link>Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\CountToVisibilityConverter.cs">
+      <Link>Converters\CountToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\FormatConverter.cs">
+      <Link>Converters\FormatConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\Converters\IsNullToVisibilityConverter.cs">
+      <Link>Converters\IsNullToVisibilityConverter.cs</Link>
     </Compile>
     <Compile Include="..\Newport\DataTrigger.cs">
       <Link>DataTrigger.cs</Link>

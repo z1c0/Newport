@@ -1,17 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Data;
-
-namespace Newport
+﻿namespace Newport
 {
-  public class BooleanInvertConverter : IValueConverter
+  public class BooleanInvertConverter : BaseConverter
   {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvert(object value)
     {
       return !(bool)value;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvertBack(object value)
     {
       return !(bool)value;
     }

@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Globalization;
+#if UNIVERSAL
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+#else
 using System.Windows;
-using System.Windows.Data;
+using System.Windows.Media;
+#endif
 
 namespace Newport
 {
-  public class CountToVisibilityConverter : IValueConverter
+  public class CountToVisibilityConverter : BaseConverter
   {
     public bool Invert { get; set; }
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvert(object value)
     {
       var booleanValue = ((int)value > 0);
       if (Invert)
@@ -19,7 +23,7 @@ namespace Newport
       return booleanValue ? Visibility.Visible : Visibility.Collapsed;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvertBack(object value)
     {
       throw new NotImplementedException();
     }

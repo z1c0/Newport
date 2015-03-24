@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Globalization;
-using System.Windows.Data;
 
 namespace Newport
 {
-  public class FormatConverter : IValueConverter
+  public class FormatConverter : BaseConverter
   {
     public FormatConverter()
     {
@@ -13,7 +11,7 @@ namespace Newport
 
     public string Format { get; set; }
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvert(object value)
     {
       string s = null;
       if (value is double)
@@ -34,7 +32,7 @@ namespace Newport
       return s;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    protected override object OnConvertBack(object value)
     {
       return value;
     }

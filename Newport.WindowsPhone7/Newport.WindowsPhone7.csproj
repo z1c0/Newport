@@ -138,6 +138,9 @@
     <Compile Include="..\Newport\Controls\WrapPanel.cs">
       <Link>Controls\WrapPanel.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\Converters\BaseConverter.cs">
+      <Link>Converters\BaseConverter.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\Converters\BooleanInvertConverter.cs">
       <Link>Converters\BooleanInvertConverter.cs</Link>
     </Compile>

@@ -1,40 +1,19 @@
 ﻿using System;
-using System.Globalization;
 #if UNIVERSAL
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 #else
 using System.Windows;
-using System.Windows.Data;
+using System.Windows.Media;
 #endif
 
 namespace Newport
 {
-  public class BooleanToVisibilityConverter : IValueConverter
+  public class BooleanToVisibilityConverter : BaseConverter
   {
     public bool Invert { get; set; }
 
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-      return Convert(value);
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-      throw new NotImplementedException();
-    }
-
-    public object Convert(object value, Type targetType, object parameter, string language)
-    {
-      return Convert(value);
-    }
-
-    public object ConvertBack(object value, Type targetType, object parameter, string language)
-    {
-      throw new NotImplementedException();
-    }
-
-    private object Convert(object value)
+    protected override object OnConvert(object value)
     {
       var booleanValue = (bool)value;
       if (Invert)
@@ -42,6 +21,11 @@ namespace Newport
         booleanValue = !booleanValue;
       }
       return booleanValue ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    protected override object OnConvertBack(object value)
+    {
+      throw new NotImplementedException();
     }
   }
 }
