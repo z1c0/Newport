@@ -7,6 +7,8 @@ Newport
 
 [![Tips Welcome](https://img.shields.io/gratipay/z1c0.svg)](https://www.gittip.com/z1c0/)
 
+Install it from [NuGet](https://www.nuget.org/packages/Newport/)
+
 Newport is an MVVM-based Windows Phone and Windows Store application development framework.
 Newport targets:
 - Windows Phone 7 Silverlight Applications
