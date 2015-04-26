@@ -195,9 +195,6 @@
     <Compile Include="..\Newport\ImageCache.cs">
       <Link>ImageCache.cs</Link>
     </Compile>
-    <Compile Include="..\Newport\IsolatedStorageHelper.cs">
-      <Link>IsolatedStorageHelper.cs</Link>
-    </Compile>
     <Compile Include="..\Newport\ListRandomizer.cs">
       <Link>ListRandomizer.cs</Link>
     </Compile>
@@ -221,6 +218,9 @@
     </Compile>
     <Compile Include="..\Newport\Screenshot.cs">
       <Link>Screenshot.cs</Link>
+    </Compile>
+    <Compile Include="..\Newport\SettingsStorageHelper.cs">
+      <Link>SettingsStorageHelper.cs</Link>
     </Compile>
     <Compile Include="..\Newport\ShakeDetector.cs">
       <Link>ShakeDetector.cs</Link>

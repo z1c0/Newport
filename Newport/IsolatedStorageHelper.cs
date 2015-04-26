@@ -1,20 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
-#if UNIVERSAL
 using Windows.Storage;
-#else
-using System.Windows;
-using System.ComponentModel;
-using System.IO.IsolatedStorage;
-#endif
 
 namespace Newport
 {
-  public class IsolatedStorageHelper
+  public static class IsolatedStorageHelper
   {
-    public void Save(string key, object t)
+    public static async void Save(string key, object t)
     {
       try
       {
@@ -26,12 +21,9 @@ namespace Newport
           using (var reader = new StreamReader(ms))
           {
             var xml = reader.ReadToEnd();
-#if UNIVERSAL
-            ApplicationData.Current.RoamingSettings.Values[key] = xml;
-#else
-            IsolatedStorageSettings.ApplicationSettings[key] = xml;
-            IsolatedStorageSettings.ApplicationSettings.Save();
-#endif
+            var folder = ApplicationData.Current.LocalFolder;
+            var file = await folder.CreateFileAsync(key, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(file, xml);
           }
         }
       }
@@ -41,23 +33,23 @@ namespace Newport
       }
     }
 
-    public T Load<T>(string key) where T : class
+    public static async Task<T> Load<T>(string key) where T : class
     {
       var t = default(T);
       try
       {
-        object o;
-#if UNIVERSAL
-        if (ApplicationData.Current.RoamingSettings.Values.TryGetValue(key, out o))
-#else
-        if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<object>(key, out o))
-#endif
+        var folder = ApplicationData.Current.LocalFolder;
+        var file = await folder.CreateFileAsync(key, CreationCollisionOption.OpenIfExists);
+        if (file != null)
         {
-          var xml = o as string;
-          using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
+          var xml = await FileIO.ReadTextAsync(file);
+          if (!string.IsNullOrEmpty(xml))
           {
-            var serializer = new XmlSerializer(typeof(T));
-            t = (T)serializer.Deserialize(ms);
+            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
+            {
+              var serializer = new XmlSerializer(typeof(T));
+              t = (T)serializer.Deserialize(ms);
+            }
           }
         }
       }

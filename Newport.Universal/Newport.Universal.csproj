@@ -177,6 +177,9 @@
     <Compile Include="..\Newport\RandomEnum.cs">
       <Link>RandomEnum.cs</Link>
     </Compile>
+    <Compile Include="..\Newport\SettingsStorageHelper.cs">
+      <Link>SettingsStorageHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Newport\TheColors.cs">
       <Link>TheColors.cs</Link>
     </Compile>

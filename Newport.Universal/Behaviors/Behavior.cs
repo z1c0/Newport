@@ -49,25 +49,28 @@ namespace Newport
 
     public BehaviorCollection()
     {
-      ((INotifyCollectionChanged)this).CollectionChanged += (_, args) =>
+      if (!ViewModelBase.IsDesignMode)
       {
-        switch (args.Action)
+        ((INotifyCollectionChanged)this).CollectionChanged += (_, args) =>
         {
-          case NotifyCollectionChangedAction.Add:
-            foreach (Behavior b in args.NewItems)
-            {
-              b.Attach(AssociatedObject);
-            }
-            break;
+          switch (args.Action)
+          {
+            case NotifyCollectionChangedAction.Add:
+              foreach (Behavior b in args.NewItems)
+              {
+                b.Attach(AssociatedObject);
+              }
+              break;
 
-          case NotifyCollectionChangedAction.Remove:
-            foreach (Behavior b in args.NewItems)
-            {
-              b.Detach();
-            }
-            break;
-        }
-      };
+            case NotifyCollectionChangedAction.Remove:
+              foreach (Behavior b in args.NewItems)
+              {
+                b.Detach();
+              }
+              break;
+          }
+        };
+      }
     }
 
     internal void Detach()

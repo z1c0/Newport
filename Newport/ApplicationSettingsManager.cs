@@ -10,23 +10,22 @@ namespace Newport
 {
   public class ApplicationSettingsManager
   {
-    private const string SAVE_KEY = "SAVE_KEY";
-
     public event EventHandler BeforeSave;
 
     private IApplicationSettings _settings;
-    private readonly IsolatedStorageHelper _isolatedStorage;
 
     internal ApplicationSettingsManager()
     {
-      _isolatedStorage = new IsolatedStorageHelper();
+      if (!ViewModelBase.IsDesignMode)
+      {
 #if UNIVERSAL
-      Application.Current.Suspending += (_, __) => PersistSettings();
+        Application.Current.Suspending += (_, __) => PersistSettings();
 #else
-      var s = PhoneApplicationService.Current;
-      s.Deactivated += (_, __) => PersistSettings();
-      s.Closing += (_, __) => PersistSettings();
+        var s = PhoneApplicationService.Current;
+        s.Deactivated += (_, __) => PersistSettings();
+        s.Closing += (_, __) => PersistSettings();
 #endif
+      }
     }
 
     public void PersistSettings()
@@ -37,7 +36,7 @@ namespace Newport
         {
           BeforeSave(this, EventArgs.Empty);
         }
-        _isolatedStorage.Save(SAVE_KEY, _settings);
+        SettingsStorageHelper.Save(_settings);
       }
     }
 
@@ -47,7 +46,7 @@ namespace Newport
       if (_settings as T == null)
       {
         // Try to load from isolated storage.
-        _settings = _isolatedStorage.Load<T>(SAVE_KEY);
+        _settings = SettingsStorageHelper.Load<T>();
         if (_settings == null)
         {
           // Init with default values.

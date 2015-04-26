@@ -27,6 +27,17 @@ namespace Newport
       return array[RandomData.GetInt(array.Length)];
     }
 
+    public static void Shuffle<T>(this List<T> list)
+    {
+      for (var i = 0; i < list.Count; i++)
+      {
+        var j = RandomData.GetInt(i, list.Count);
+        var tmp = list[i];
+        list[i] = list[j];
+        list[j] = tmp;
+      }
+    }
+
     public static void Times(this int count, Action<int> action)
     {
       for (var i = 0; i < count; i++)
@@ -67,6 +78,15 @@ namespace Newport
       foreach (var item in items)
       {
         action(item);
+      }
+    }
+
+    public static void ForEach<T>(this IEnumerable<T> items, Action<int, T> action)
+    {
+      var i = 0;
+      foreach (var item in items)
+      {
+        action(i++, item);
       }
     }
 
